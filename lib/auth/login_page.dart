@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/main.dart';
+import 'package:variegata_project/pages/profile_page.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -165,20 +164,30 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 34),
-                          width: 350,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Color(0xFFC9E5C6),
-                            borderRadius: BorderRadius.circular(24),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Continue",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xFF94AF9F)),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ProfilePage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(bottom: 34),
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFC9E5C6),
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Continue",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF94AF9F)),
+                              ),
                             ),
                           ),
                         ),
