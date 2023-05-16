@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/auth/login_page.dart';
+import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
+import 'package:variegata_project/pages/splash_screen/SplashScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Variegata',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: LoginPage(),
+      home: SplashScreen(),
     );
   }
 }

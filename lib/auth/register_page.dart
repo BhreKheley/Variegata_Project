@@ -5,6 +5,8 @@ import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/main.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 
+import '../pages/dashboard/dashboard_page.dart';
+
 class RegisterPage extends StatefulWidget {
   RegisterPage({Key? key}) : super(key: key);
 
@@ -14,6 +16,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   bool _obscureText = true;
+  bool _obscureText1 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +217,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           width: 350,
                           height: 50,
                           child: TextField(
-                            obscureText: _obscureText,
+                            obscureText: _obscureText1,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.grey),
@@ -228,13 +231,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               suffixIcon: IconButton(
-                                  icon: Icon(_obscureText
+                                  icon: Icon(_obscureText1
                                       ? Icons.visibility_off
                                       : Icons.visibility),
                                   color: Color(0xFFAEC2B6),
                                   onPressed: (() {
                                     setState(() {
-                                      _obscureText = !_obscureText;
+                                      _obscureText1 = !_obscureText1;
                                     });
                                   })),
                               contentPadding: EdgeInsets.only(left: 20),
@@ -250,7 +253,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProfilePage(),
+                                builder: (context) => DashboardPage(),
                               ),
                             );
                           },

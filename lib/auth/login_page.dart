@@ -4,6 +4,8 @@ import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/main.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 
+import '../pages/dashboard/dashboard_page.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -169,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ProfilePage(),
+                                builder: (context) => DashboardPage(),
                               ),
                             );
                           },
@@ -222,39 +224,49 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(horizontal: 18),
-                          margin: EdgeInsets.only(bottom: 100),
-                          width: 350,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(24),
-                            border: Border.all(
-                              color: Color(0xFFBBD6B8),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DashboardPage(),
+                              ),
+                            );
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 18),
+                            margin: EdgeInsets.only(bottom: 100),
+                            width: 350,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24),
+                              border: Border.all(
+                                color: Color(0xFFBBD6B8),
+                              ),
                             ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "assets/img/google-icon.png",
-                                height: 22,
-                                width: 22,
-                                fit: BoxFit.fill,
-                              ),
-                              Text(
-                                "Sign in with Google",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F)),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                color: Color(0xFF94AF9F),
-                              )
-                            ],
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  "assets/img/google-icon.png",
+                                  height: 22,
+                                  width: 22,
+                                  fit: BoxFit.fill,
+                                ),
+                                Text(
+                                  "Sign in with Google",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color: Color(0xFF94AF9F)),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Color(0xFF94AF9F),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         Container(
