@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/login_page.dart';
 import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/main.dart';
+import 'package:variegata_project/pages/dashboard/artikel.dart';
 import 'package:variegata_project/pages/dashboard/iklan_carousel.dart';
 import 'package:variegata_project/pages/dashboard/cuaca.dart';
 import 'package:variegata_project/pages/dashboard/product.dart';
@@ -194,9 +195,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 100,
-              )
+              Artikel_carousel(),
             ],
           ),
         ),
