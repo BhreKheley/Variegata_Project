@@ -115,33 +115,35 @@ class _DashboardPageState extends State<DashboardPage> {
                                   )
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(5),
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1.5,
+                              GestureDetector(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(5),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 1.5,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset('assets/img/toko.png'),
                                     ),
-                                    child: Image.asset('assets/img/toko.png'),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Toko",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  )
-                                ],
+                                    Text(
+                                      "Toko",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),
