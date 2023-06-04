@@ -4,6 +4,7 @@ import 'package:variegata_project/pages/budidaya_detail.dart';
 import 'package:variegata_project/pages/budidaya_page.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
 import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
 import 'package:variegata_project/pages/splash_screen/SplashScreen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: DetailBudidaya(),
+      home: SplashScreen(),
     );
   }
 }
