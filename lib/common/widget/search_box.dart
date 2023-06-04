@@ -24,15 +24,15 @@ class _Search_boxState extends State<Search_box> {
         obscureText: false,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: Color(0xFFBBD6B8),
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(10),
           ),
           prefixIcon: Icon(
             Icons.search,
