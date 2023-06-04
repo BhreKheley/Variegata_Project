@@ -6,11 +6,12 @@ import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
+import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
 
-import '../dashboard/cuaca.dart';
-import '../dashboard/iklan_carousel.dart';
-import '../dashboard/product.dart';
-import '../dashboard/search_box.dart';
+import '../../common/widget/cuaca.dart';
+import '../../common/widget/iklan_carousel.dart';
+import '../../common/widget/product.dart';
+import '../../common/widget/search_box.dart';
 
 class KatalogShop extends StatefulWidget {
   const KatalogShop({super.key});
@@ -26,16 +27,21 @@ class _KatalogShopState extends State<KatalogShop> {
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
         title: Text(
-          "Toko Variegata",
+          "Cabai",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
         backgroundColor: Color(0xFFF6F7FA),
-        elevation: 2,
+        elevation: 1,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            // Handle back button press
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DashboardPage(),
+              ),
+            );
           },
         ),
       ),
@@ -43,6 +49,9 @@ class _KatalogShopState extends State<KatalogShop> {
         child: Container(
           child: Column(
             children: [
+              SizedBox(
+                height: 10,
+              ),
               Search_box(),
               Iklan_carousel(),
               SizedBox(

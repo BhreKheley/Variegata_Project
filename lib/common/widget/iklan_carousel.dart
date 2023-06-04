@@ -16,7 +16,7 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
         height: 99,
         enableInfiniteScroll: true,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 10),
+        autoPlayInterval: Duration(seconds: 7),
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         enlargeCenterPage: true,

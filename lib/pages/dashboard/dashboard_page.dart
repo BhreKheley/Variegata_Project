@@ -3,14 +3,16 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/login_page.dart';
 import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/main.dart';
-import 'package:variegata_project/pages/dashboard/artikel.dart';
-import 'package:variegata_project/pages/dashboard/iklan_carousel.dart';
-import 'package:variegata_project/pages/dashboard/cuaca.dart';
-import 'package:variegata_project/pages/dashboard/product.dart';
+import 'package:variegata_project/common/widget/artikel.dart';
+import 'package:variegata_project/common/widget/iklan_carousel.dart';
+import 'package:variegata_project/common/widget/cuaca.dart';
+import 'package:variegata_project/common/widget/product.dart';
+import 'package:variegata_project/pages/budidaya_page.dart';
+import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:variegata_project/pages/dashboard/search_box.dart';
+import 'package:variegata_project/common/widget/search_box.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -57,34 +59,44 @@ class _DashboardPageState extends State<DashboardPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(5),
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1.5,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BudidayaPage(),
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(5),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 1.5,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                      borderRadius: BorderRadius.circular(5),
+                                      child:
+                                          Image.asset('assets/img/budidaya.png'),
                                     ),
-                                    child:
-                                        Image.asset('assets/img/budidaya.png'),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Budidaya",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  )
-                                ],
+                                    Text(
+                                      "Budidaya",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                               Column(
                                 children: [
@@ -116,6 +128,14 @@ class _DashboardPageState extends State<DashboardPage> {
                                 ],
                               ),
                               GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => KatalogShop(),
+                                    ),
+                                  );
+                                },
                                 child: Column(
                                   children: [
                                     Container(
