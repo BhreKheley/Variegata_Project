@@ -103,7 +103,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 45),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -111,6 +111,113 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(45),
                   ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Kutu Daun",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Kutu daun (Aphids)',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(
+                            text:
+                                ' adalah serangga kecil yang umumnya hidup di bagian atas atau bawah daun tanaman. Mereka menghisap sari-sari tanaman dan dapat menyebabkan kerusakan pada pertumbuhan dan kualitas tanaman. ',
+                          ),
+                          TextSpan(
+                            text:
+                                'Kutu daun biasanya berwarna hijau, kuning, atau hitam, dan dapat berkembang biak dengan cepat. ',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                            text:
+                                'Mereka sering menjadi hama yang mengganggu pada tanaman, terutama pada tanaman sayuran seperti cabai. Kutu daun dapat ditangani dengan menggunakan metode pengendalian yang tepat, seperti penggunaan insektisida alami atau pestisida nabati, serta menjaga kebersihan dan kestabilan lingkungan tumbuhan.',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                      'Gejala:',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '\u2022 Daun kering\n',
+                          ),
+                          TextSpan(
+                            text: '\u2022 Perubahan warna daun\n',
+                          ),
+                          TextSpan(
+                            text: '\u2022 Stunt atau kerdil\n',
+                          ),
+                          TextSpan(
+                            text: '\u2022 Muncul nya lapisan lengket\n',
+                          ),
+                          TextSpan(
+                            text: '\u2022 Keberadaan semut\n',
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                      'Info lebih lanjut',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: '\u2022 Nama ilmiah: ',
+                          ),
+                          TextSpan(
+                            text: 'Aphids\n',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontStyle: FontStyle.italic),
+                          ),
+                          TextSpan(
+                            text:
+                                '\u2022 Juga di temukan di: tomat, kubis, mentimun, stroberi, apel.\n',
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
