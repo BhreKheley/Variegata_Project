@@ -12,7 +12,16 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
-      options: CarouselOptions(height: 99),
+      options: CarouselOptions(
+        height: 99,
+        enableInfiniteScroll: true,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 10),
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        autoPlayCurve: Curves.fastOutSlowIn,
+        enlargeCenterPage: true,
+        scrollDirection: Axis.horizontal,
+      ),
       items: [1, 2, 3, 4, 5].map((i) {
         return Builder(
           builder: (BuildContext context) {
@@ -20,7 +29,7 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  margin: EdgeInsets.symmetric(horizontal: 0),
                   decoration: BoxDecoration(
                       color: Color(0xFFDBE4C6),
                       borderRadius: BorderRadius.circular(10)),
