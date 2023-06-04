@@ -118,7 +118,7 @@ class _DetailProdukState extends State<DetailProduk> {
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 21,
-                                fontWeight: FontWeight.normal),
+                                fontWeight: FontWeight.w600),
                           ),
                           SizedBox(
                             height: 25,

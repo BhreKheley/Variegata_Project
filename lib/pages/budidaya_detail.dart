@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:readmore/readmore.dart';
 import 'package:variegata_project/pages/budidaya_page.dart';
 import 'package:variegata_project/pages/hama_penyakit.dart';
+import 'package:flutter_dash/flutter_dash.dart';
 
 class DetailBudidaya extends StatefulWidget {
   @override
@@ -166,140 +168,285 @@ class _DetailBudidayaState extends State<DetailBudidaya>
             child: TabBarView(
               controller: _tabController,
               children: [
-                Center(child: Text('Tab 1 Content')),
+                SingleChildScrollView(
+                  child: Container(
+                    child: Column(
+                      children: [
+                        //PEMBENIHAN
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            top: 25,
+                            right: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Pembenihan",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 25),
+                              Image(
+                                image: AssetImage("assets/img/pembenihan.png"),
+                              ),
+                              SizedBox(height: 25),
+                              ReadMoreText(
+                                "1. Siapkan biji cabai yang berkualitas dan bebas dari penyakit.\n"
+                                "2. Persiapkan media tanam yang cocok, seperti pot atau bedengan dengan campuran tanah dan kompos yang subur.\n"
+                                "3. Benamkan biji cabai di dalam media tanam dengan kedalaman sekitar 1-2 cm.\n"
+                                "4. Berikan penyiraman yang cukup agar media tetap lembab. \n\n",
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: "Baca lebih lanjut",
+                                trimExpandedText: "Lihat lebih sedikit",
+                                colorClickableText: Color(0xFFBBD6B8),
+                                style: TextStyle(
+                                  color: Color(0xFF585858),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Dash(
+                          direction: Axis.horizontal,
+                          length: 380,
+                          dashLength: 6,
+                          dashColor: Color(0xFFE3E3E3),
+                          dashThickness: 2,
+                          dashGap: 6,
+                        ),
+                        //PENYEMAIAN
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            top: 25,
+                            right: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Penyemaian",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 25),
+                              Image(
+                                image: AssetImage("assets/img/penyemaian.png"),
+                              ),
+                              SizedBox(height: 25),
+                              ReadMoreText(
+                                "1. Tempatkan wadah penyemaian di tempat yang terkena sinar matahari cukup.\n"
+                                "2. Jaga kelembaban media dengan penyiraman yang teratur.\n"
+                                "3. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat.\n"
+                                "4. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat. \n\n",
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: "Baca lebih lanjut",
+                                trimExpandedText: "Lihat lebih sedikit",
+                                colorClickableText: Color(0xFFBBD6B8),
+                                style: TextStyle(
+                                  color: Color(0xFF585858),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Dash(
+                          direction: Axis.horizontal,
+                          length: 380,
+                          dashLength: 6,
+                          dashColor: Color(0xFFE3E3E3),
+                          dashThickness: 2,
+                          dashGap: 6,
+                        ),
+                        //PENANAMAN
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            top: 25,
+                            right: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Penanaman",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 25),
+                              Image(
+                                image: AssetImage("assets/img/penanaman.png"),
+                              ),
+                              SizedBox(height: 25),
+                              ReadMoreText(
+                                "1. Pilih lokasi penanaman yang mendapatkan sinar matahari penuh dan memiliki drainase yang baik.\n"
+                                "2. Siapkan lubang tanam dengan jarak yang sesuai antara tanaman cabai.\n"
+                                "3. Pindahkan bibit cabai dengan hati-hati ke lubang tanam.\n"
+                                "4. Ratakan tanah di sekitar tanaman dan beri penyiraman setelah penanaman. \n\n",
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: "Baca lebih lanjut",
+                                trimExpandedText: "Lihat lebih sedikit",
+                                colorClickableText: Color(0xFFBBD6B8),
+                                style: TextStyle(
+                                  color: Color(0xFF585858),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Dash(
+                          direction: Axis.horizontal,
+                          length: 380,
+                          dashLength: 6,
+                          dashColor: Color(0xFFE3E3E3),
+                          dashThickness: 2,
+                          dashGap: 6,
+                        ),
+                        //PERAWATAN
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            top: 25,
+                            right: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Perawatan",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 25),
+                              Image(
+                                image: AssetImage("assets/img/perawatan.png"),
+                              ),
+                              SizedBox(height: 25),
+                              ReadMoreText(
+                                "1. Lakukan penyiraman secara teratur untuk menjaga kelembaban tanah, terutama saat tanaman masih muda.\n"
+                                "2. Berikan pupuk yang sesuai, seperti pupuk organik atau pupuk khusus untuk tanaman cabai.\n"
+                                "3. Periksa dan atasi hama atau penyakit yang mungkin menyerang tanaman, seperti ulat, kutu, atau penyakit layu.\n"
+                                "4. Jaga kebersihan area penanaman dengan membersihkan gulma dan membuang daun atau ranting yang sudah mati. \n\n",
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: "Baca lebih lanjut",
+                                trimExpandedText: "Lihat lebih sedikit",
+                                colorClickableText: Color(0xFFBBD6B8),
+                                style: TextStyle(
+                                  color: Color(0xFF585858),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Dash(
+                          direction: Axis.horizontal,
+                          length: 380,
+                          dashLength: 6,
+                          dashColor: Color(0xFFE3E3E3),
+                          dashThickness: 2,
+                          dashGap: 6,
+                        ),
+                        //PANEN
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            top: 25,
+                            right: 20,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Panen",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 23,
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 25),
+                              Image(
+                                image: AssetImage("assets/img/panen.png"),
+                              ),
+                              SizedBox(height: 25),
+                              ReadMoreText(
+                                "1. Biasanya, cabai siap panen dalam waktu 2-3 bulan setelah penanaman, tergantung pada varietasnya.\n"
+                                "2. Panen cabai saat sudah mencapai ukuran yang diinginkan dan warnanya telah matang.\n"
+                                "3. Gunakan pisau atau gunting tajam untuk memotong cabai dengan tangkainya.\n"
+                                "4. Jangan lupa untuk menjaga kebersihan tangan saat memanen dan menyimpan cabai dalam kondisi yang baik. \n\n",
+                                trimLines: 5,
+                                trimMode: TrimMode.Line,
+                                trimCollapsedText: "Baca lebih lanjut",
+                                trimExpandedText: "Lihat lebih sedikit",
+                                colorClickableText: Color(0xFFBBD6B8),
+                                style: TextStyle(
+                                  color: Color(0xFF585858),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        Dash(
+                          direction: Axis.horizontal,
+                          length: 380,
+                          dashLength: 6,
+                          dashColor: Color(0xFFE3E3E3),
+                          dashThickness: 2,
+                          dashGap: 6,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 HamaPenyakit(),
-                // Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
-                //   child: Column(
-                //     children: [
-                //       Container(
-                //         padding: EdgeInsets.only(bottom: 20),
-                //         child: Column(
-                //           crossAxisAlignment: CrossAxisAlignment.start,
-                //           children: [
-                //             Text(
-                //               "Daftar Hama & Penyakit",
-                //               style: TextStyle(
-                //                 color: Colors.black,
-                //                 fontSize: 20,
-                //                 fontFamily: "Inter",
-                //                 fontWeight: FontWeight.w500,
-                //               ),
-                //             ),
-                //             SizedBox(
-                //               height: 15,
-                //             ),
-                //             Text(
-                //               "Tanaman rentan terhadap serangan hama dan penyakit yang dapat mengancam pertumbuhan dan hasil panen.",
-                //               style: TextStyle(
-                //                 color: Colors.black,
-                //                 fontSize: 14,
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ),
-                //       Container(
-                //         padding: EdgeInsets.symmetric(vertical: 10),
-                //         child: Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //           children: [
-                //             Row(
-                //               children: [
-                //                 Container(
-                //                   width: 86,
-                //                   height: 79,
-                //                   decoration: BoxDecoration(
-                //                     borderRadius: BorderRadius.circular(5),
-                //                     boxShadow: [
-                //                       BoxShadow(
-                //                         color: Colors.grey
-                //                             .withOpacity(0.5), // Warna shadow
-                //                         spreadRadius:
-                //                             2, // Jarak penyebaran shadow
-                //                         blurRadius: 5, // Radius blur shadow
-                //                         offset: Offset(
-                //                             0, 2), // Offset atau posisi shadow
-                //                       ),
-                //                     ],
-                //                     image: DecorationImage(
-                //                       image: AssetImage(
-                //                           'assets/img/hama.png'), // Path atau asset gambar
-                //                       fit: BoxFit.cover,
-                //                     ),
-                //                   ),
-                //                 ),
-                //                 Container(
-                //                   margin: EdgeInsets.symmetric(horizontal: 11),
-                //                   width: 2,
-                //                   height: 57,
-                //                   decoration: BoxDecoration(
-                //                     borderRadius: BorderRadius.circular(8),
-                //                     color: Color(0xFFDEDEDE),
-                //                   ),
-                //                 ),
-                //                 Column(
-                //                   crossAxisAlignment: CrossAxisAlignment.start,
-                //                   children: [
-                //                     Text(
-                //                       "Kutu Daun",
-                //                       style: TextStyle(
-                //                         color: Colors.black,
-                //                         fontSize: 16,
-                //                         fontFamily: "Inter",
-                //                         fontWeight: FontWeight.w600,
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       height: 8,
-                //                     ),
-                //                     Text(
-                //                       "Aphids",
-                //                       style: TextStyle(
-                //                         color: Colors.black,
-                //                         fontSize: 14,
-                //                         fontStyle: FontStyle.italic,
-                //                       ),
-                //                     ),
-                //                     SizedBox(
-                //                       height: 8,
-                //                     ),
-                //                     Row(
-                //                       children: [
-                //                         Container(
-                //                           width: 18,
-                //                           height: 18,
-                //                           child: Image(
-                //                             image: AssetImage(
-                //                                 'assets/img/hama_icon.png'),
-                //                           ),
-                //                         ),
-                //                         SizedBox(
-                //                           width: 5,
-                //                         ),
-                //                         Text(
-                //                           "Hama",
-                //                           style: TextStyle(
-                //                             color: Color(0xff7f7f7f),
-                //                             fontSize: 15,
-                //                           ),
-                //                         ),
-                //                       ],
-                //                     )
-                //                   ],
-                //                 ),
-                //               ],
-                //             ),
-                //             Icon(
-                //               Icons.arrow_forward_ios,
-                //               size: 30,
-                //             )
-                //           ],
-                //         ),
-                //       )
-                //     ],
-                //   ),
-                // )
               ],
             ),
           ),
