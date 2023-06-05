@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:variegata_project/pages/detail_hama.dart';
 
 class HamaPenyakit extends StatelessWidget {
   const HamaPenyakit({Key? key}) : super(key: key);
@@ -37,10 +38,19 @@ class HamaPenyakit extends StatelessWidget {
                 ],
               ),
             ),
-            CardHama(
-              'hama.png',
-              'Kutu Daun',
-              'Aphids',
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailHamaPenyakit(),
+                    ));
+              },
+              child: CardHama(
+                'hama.png',
+                'Kutu Daun',
+                'Aphids',
+              ),
             ),
             CardHama(
               'hama.png',

@@ -186,7 +186,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 "Pembenihan",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -198,9 +198,13 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               SizedBox(height: 25),
                               ReadMoreText(
                                 "1. Siapkan biji cabai yang berkualitas dan bebas dari penyakit.\n"
+                                "\n"
                                 "2. Persiapkan media tanam yang cocok, seperti pot atau bedengan dengan campuran tanah dan kompos yang subur.\n"
+                                "\n"
                                 "3. Benamkan biji cabai di dalam media tanam dengan kedalaman sekitar 1-2 cm.\n"
-                                "4. Berikan penyiraman yang cukup agar media tetap lembab. \n\n",
+                                "\n"
+                                "4. Berikan penyiraman yang cukup agar media tetap lembab. \n"
+                                "\n",
                                 trimLines: 5,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: "Baca lebih lanjut",
@@ -208,7 +212,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 colorClickableText: Color(0xFFBBD6B8),
                                 style: TextStyle(
                                   color: Color(0xFF585858),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -220,7 +224,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         ),
                         Dash(
                           direction: Axis.horizontal,
-                          length: 380,
+                          length: MediaQuery.of(context).size.width,
                           dashLength: 6,
                           dashColor: Color(0xFFE3E3E3),
                           dashThickness: 2,
@@ -240,7 +244,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 "Penyemaian",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -252,9 +256,13 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               SizedBox(height: 25),
                               ReadMoreText(
                                 "1. Tempatkan wadah penyemaian di tempat yang terkena sinar matahari cukup.\n"
+                                "\n"
                                 "2. Jaga kelembaban media dengan penyiraman yang teratur.\n"
+                                "\n"
                                 "3. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat.\n"
-                                "4. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat. \n\n",
+                                "\n"
+                                "4. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat. \n\n"
+                                "\n",
                                 trimLines: 5,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: "Baca lebih lanjut",
@@ -262,7 +270,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 colorClickableText: Color(0xFFBBD6B8),
                                 style: TextStyle(
                                   color: Color(0xFF585858),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -274,7 +282,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         ),
                         Dash(
                           direction: Axis.horizontal,
-                          length: 380,
+                          length: MediaQuery.of(context).size.width,
                           dashLength: 6,
                           dashColor: Color(0xFFE3E3E3),
                           dashThickness: 2,
@@ -294,7 +302,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 "Penanaman",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -306,9 +314,13 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               SizedBox(height: 25),
                               ReadMoreText(
                                 "1. Pilih lokasi penanaman yang mendapatkan sinar matahari penuh dan memiliki drainase yang baik.\n"
+                                "\n"
                                 "2. Siapkan lubang tanam dengan jarak yang sesuai antara tanaman cabai.\n"
+                                "\n"
                                 "3. Pindahkan bibit cabai dengan hati-hati ke lubang tanam.\n"
-                                "4. Ratakan tanah di sekitar tanaman dan beri penyiraman setelah penanaman. \n\n",
+                                "\n"
+                                "4. Ratakan tanah di sekitar tanaman dan beri penyiraman setelah penanaman. \n"
+                                "\n",
                                 trimLines: 5,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: "Baca lebih lanjut",
@@ -316,7 +328,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 colorClickableText: Color(0xFFBBD6B8),
                                 style: TextStyle(
                                   color: Color(0xFF585858),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -328,7 +340,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         ),
                         Dash(
                           direction: Axis.horizontal,
-                          length: 380,
+                          length: MediaQuery.of(context).size.width,
                           dashLength: 6,
                           dashColor: Color(0xFFE3E3E3),
                           dashThickness: 2,
@@ -348,7 +360,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 "Perawatan",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -360,9 +372,13 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               SizedBox(height: 25),
                               ReadMoreText(
                                 "1. Lakukan penyiraman secara teratur untuk menjaga kelembaban tanah, terutama saat tanaman masih muda.\n"
+                                "\n"
                                 "2. Berikan pupuk yang sesuai, seperti pupuk organik atau pupuk khusus untuk tanaman cabai.\n"
+                                "\n"
                                 "3. Periksa dan atasi hama atau penyakit yang mungkin menyerang tanaman, seperti ulat, kutu, atau penyakit layu.\n"
-                                "4. Jaga kebersihan area penanaman dengan membersihkan gulma dan membuang daun atau ranting yang sudah mati. \n\n",
+                                "\n"
+                                "4. Jaga kebersihan area penanaman dengan membersihkan gulma dan membuang daun atau ranting yang sudah mati. \n"
+                                "\n",
                                 trimLines: 5,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: "Baca lebih lanjut",
@@ -370,7 +386,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 colorClickableText: Color(0xFFBBD6B8),
                                 style: TextStyle(
                                   color: Color(0xFF585858),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -382,7 +398,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         ),
                         Dash(
                           direction: Axis.horizontal,
-                          length: 380,
+                          length: MediaQuery.of(context).size.width,
                           dashLength: 6,
                           dashColor: Color(0xFFE3E3E3),
                           dashThickness: 2,
@@ -402,7 +418,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 "Panen",
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -414,9 +430,13 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               SizedBox(height: 25),
                               ReadMoreText(
                                 "1. Biasanya, cabai siap panen dalam waktu 2-3 bulan setelah penanaman, tergantung pada varietasnya.\n"
+                                "\n"
                                 "2. Panen cabai saat sudah mencapai ukuran yang diinginkan dan warnanya telah matang.\n"
+                                "\n"
                                 "3. Gunakan pisau atau gunting tajam untuk memotong cabai dengan tangkainya.\n"
-                                "4. Jangan lupa untuk menjaga kebersihan tangan saat memanen dan menyimpan cabai dalam kondisi yang baik. \n\n",
+                                "\n"
+                                "4. Jangan lupa untuk menjaga kebersihan tangan saat memanen dan menyimpan cabai dalam kondisi yang baik. \n"
+                                "\n",
                                 trimLines: 5,
                                 trimMode: TrimMode.Line,
                                 trimCollapsedText: "Baca lebih lanjut",
@@ -424,7 +444,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                                 colorClickableText: Color(0xFFBBD6B8),
                                 style: TextStyle(
                                   color: Color(0xFF585858),
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -436,7 +456,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         ),
                         Dash(
                           direction: Axis.horizontal,
-                          length: 380,
+                          length: MediaQuery.of(context).size.width,
                           dashLength: 6,
                           dashColor: Color(0xFFE3E3E3),
                           dashThickness: 2,
