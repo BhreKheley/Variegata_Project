@@ -83,7 +83,6 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                       height: 181,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(28),
-                        color: Colors.amber,
                         image: DecorationImage(
                           image: AssetImage('assets/img/hama.png'),
                           fit: BoxFit.cover,
@@ -105,7 +104,6 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 45),
                 width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.vertical(
@@ -211,10 +209,73 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                                 fontStyle: FontStyle.italic),
                           ),
                           TextSpan(
-                            text:
-                                '\u2022 Juga di temukan di: tomat, kubis, mentimun, stroberi, apel.\n',
-                          ),
+                              text:
+                                  '\u2022 Juga di temukan di: tomat, kubis, mentimun, stroberi, apel.\n')
                         ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Tindakan Pencegahan",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "\u2022 Pemilihan varietas tanaman yang tahan terhadap kutu daun: Pilih varietas tanaman yang memiliki ketahanan atau resistansi terhadap serangan kutu daun. Beberapa varietas tanaman telah dikembangkan secara khusus untuk mengurangi risiko serangan kutu daun.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Praktik sanitasi: Pastikan kebersihan di sekitar area tanaman. Hapus dan hancurkan daun yang terinfeksi atau terkena serangan kutu daun untuk mencegah penyebaran lebih lanjut.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Rotasi tanaman: Lakukan rotasi tanaman secara teratur untuk mengurangi risiko penyebaran kutu daun. Hindari menanam tanaman yang rentan terhadap kutu daun secara berurutan pada area yang sama.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Penggunaan mulsa: Gunakan mulsa organik di sekitar tanaman untuk mencegah kutu daun naik ke bagian atas tanaman. Mulsa dapat menghalangi kutu daun yang berada di tanah naik ke batang dan daun tanaman.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Penggunaan semprotan air: Seringkali kutu daun dapat dihilangkan dengan semprotan air bertekanan. Semprotkan air pada tanaman secara teratur untuk membersihkan dan menghilangkan kutu daun yang ada.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Penggunaan predator alami: Tingkatkan populasi predator alami yang dapat memakan kutu daun, seperti kepik atau larva pengebor telur. Ini bisa dilakukan dengan menanam tanaman yang menarik predator alami, seperti bunga-bungaan yang mengundang kepik.\n",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                      ),
+                    ),
+                    Text(
+                      "\u2022 Penggunaan insektisida organik: Jika serangan kutu daun parah, pertimbangkan penggunaan insektisida organik yang aman dan ramah lingkungan. Pastikan untuk mengikuti petunjuk penggunaan dan dosis yang benar saat menggunakan insektisida.",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
                       ),
                     ),
                   ],
