@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/budidaya_detail.dart';
 import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
 
@@ -27,7 +28,7 @@ class _BudidayaPageState extends State<BudidayaPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => DashboardPage()),
+              MaterialPageRoute(builder: (context) => BotNavbar()),
             );
           },
         ),

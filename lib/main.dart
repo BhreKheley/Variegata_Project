@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:variegata_project/auth/login_page.dart';
+import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: ProfilePage(),
+      home: SplashScreen(),
     );
   }
 }

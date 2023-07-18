@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/login_page.dart';
 import 'package:variegata_project/auth/register_page.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/main.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 
@@ -33,14 +34,14 @@ class _RegisterPageState extends State<RegisterPage> {
                   right: 0,
                   // top: 0,
                   child: Image.asset(
-                    "assets/img/vector-register.png",
+                    "assets/img/VectorRegister.png",
+                    width: 242,
                     height: 196,
-                    width: 148,
                     fit: BoxFit.fill,
                   ),
                 ),
                 Positioned(
-                  top: 93,
+                  top: 103,
                   right: 0,
                   left: 0,
                   child: Padding(
@@ -62,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Text(
                               "Variegata",
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 26,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFF94AF9F),
                               ),
@@ -70,15 +71,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
                         Text(
                           "Create your account now",
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1,
-                            color: Color(0xFF94AF9F),
+                            color: Color(0xFF505050),
                           ),
                         ),
                         SizedBox(
@@ -89,8 +90,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Text(
                             "Username",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF94AF9F)),
+                              color: Color(0xFF505050),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                         Container(
@@ -100,7 +103,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -111,9 +115,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Enter Your Username',
+                              hintText: 'Enter your Full Name*',
                               hintStyle: TextStyle(
-                                color: Color(0xFF94AF9F),
+                                color: Color(0xFF878787),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
                               ),
                               fillColor: Colors.white,
                               filled: true,
@@ -125,8 +131,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Text(
                             "Email Address",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF94AF9F)),
+                              color: Color(0xFF505050),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                         Container(
@@ -136,7 +144,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -147,9 +156,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Enter your Email',
+                              hintText: 'Enter your E-mail*',
                               hintStyle: TextStyle(
-                                color: Color(0xFF94AF9F),
+                                color: Color(0xFF878787),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
                               ),
                               fillColor: Colors.white,
                               filled: true,
@@ -161,8 +172,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           child: Text(
                             "Password",
                             style: TextStyle(
+                              color: Color(0xFF505050),
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF94AF9F),
                             ),
                           ),
                         ),
@@ -174,7 +186,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             obscureText: _obscureText,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -188,15 +201,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                   icon: Icon(_obscureText
                                       ? Icons.visibility_off
                                       : Icons.visibility),
-                                  color: Color(0xFFAEC2B6),
+                                  color: Color(0xFF878787),
                                   onPressed: (() {
                                     setState(() {
                                       _obscureText = !_obscureText;
                                     });
                                   })),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Create your Password',
-                              hintStyle: TextStyle(color: Color(0xFF94AF9F)),
+                              hintText: 'Create your Password*',
+                              hintStyle: TextStyle(
+                                color: Color(0xFF878787),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                               fillColor: Colors.white,
                               filled: true,
                             ),
@@ -205,10 +222,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Confirm Password",
+                            "Confirm your Password",
                             style: TextStyle(
+                              color: Color(0xFF505050),
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF94AF9F),
                             ),
                           ),
                         ),
@@ -220,7 +238,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             obscureText: _obscureText1,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -234,15 +253,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                   icon: Icon(_obscureText1
                                       ? Icons.visibility_off
                                       : Icons.visibility),
-                                  color: Color(0xFFAEC2B6),
+                                  color: Color(0xFF878787),
                                   onPressed: (() {
                                     setState(() {
                                       _obscureText1 = !_obscureText1;
                                     });
                                   })),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Confirm your Password',
-                              hintStyle: TextStyle(color: Color(0xFF94AF9F)),
+                              hintText: 'Confirm your Password*',
+                              hintStyle: TextStyle(
+                                color: Color(0xFF878787),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
                               fillColor: Colors.white,
                               filled: true,
                             ),
@@ -253,7 +276,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DashboardPage(),
+                                builder: (context) => BotNavbar(),
                               ),
                             );
                           },
@@ -262,15 +285,17 @@ class _RegisterPageState extends State<RegisterPage> {
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: Color(0xFFC9E5C6),
+                              color: Color(0xFFE2EFE1),
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: Center(
                               child: Text(
                                 "Continue",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F)),
+                                  color: Color(0xFF505050),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
@@ -291,9 +316,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 child: Text(
                                   "Or",
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    color: Color(0xFF505050),
+                                    fontSize: 19,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F),
                                   ),
                                 ),
                               ),
@@ -331,8 +356,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               Text(
                                 "Sign in with Google",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F)),
+                                  color: Color(0xFF505050),
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               Icon(
                                 Icons.arrow_forward_ios,
@@ -348,9 +374,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               Text(
                                 "Already have an account?",
                                 style: TextStyle(
-                                  fontSize: 13,
+                                  color: Color(0xFF505050),
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xFF94AF9F),
                                 ),
                               ),
                               GestureDetector(
@@ -363,11 +389,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                   );
                                 },
                                 child: Text(
-                                  "Sign In",
+                                  " Sign In",
                                   style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w700,
                                       color: Color(0xFF94AF9F),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),

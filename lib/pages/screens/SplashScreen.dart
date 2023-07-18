@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
 import 'package:variegata_project/auth/login_page.dart';
+import 'package:variegata_project/pages/screens/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
           fit: BoxFit.fill,
         ),
       ),
-      nextScreen: LoginPage(),
+      nextScreen: OnboardingScreen(),
       splashTransition: SplashTransition.sizeTransition,
       backgroundColor: Colors.white,
       duration: 3000,

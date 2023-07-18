@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         },
                         child: Center(
                           child: Text(
-                            "done",
+                            "Start",
                             style: TextStyle(
                               color: Colors.white,
                             ),
