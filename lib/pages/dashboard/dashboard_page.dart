@@ -13,6 +13,9 @@ import 'package:variegata_project/pages/profile_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
+import 'package:http/http.dart' as http;
+import 'package:xml/xml.dart' as xml;
+
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -22,6 +25,31 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
+  String temperature = '';
+  
+  Future<void> fetchXMLData() async {
+  final url = 'https://api.weatherprovider.com/forecast/indonesia.xml'; // Replace with your API URL
+
+  try {
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      final responseBody = response.body;
+      
+      // Parse the XML response
+      final document = xml.XmlDocument.parse(responseBody);
+      
+      // Process and extract data from the XML document as needed
+      // ...
+
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+    }
+  } catch (error) {
+    print('Error: $error');
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,8 +109,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                         ),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      child:
-                                          Image.asset('assets/img/budidaya.png'),
+                                      child: Image.asset(
+                                          'assets/img/budidaya.png'),
                                     ),
                                     SizedBox(
                                       height: 5,

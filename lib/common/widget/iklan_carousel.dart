@@ -9,6 +9,23 @@ class Iklan_carousel extends StatefulWidget {
 }
 
 class _Iklan_carouselState extends State<Iklan_carousel> {
+  List<Map<String, dynamic>> carouselData = [
+    {
+      'title': 'Toko Variegata',
+      'subtitle': 'Cari Kebutuhan Berkebun mu dengan cara yang mudah',
+      'imagePath': 'assets/img/samplecarousel.png',
+    },
+    {
+      'title': 'Toko Variegata',
+      'subtitle': 'Cari Kebutuhan Berkebun mu dengan cara yang mudah',
+      'imagePath': 'assets/img/samplecarousel.png',
+    },
+    {
+      'title': 'Toko Variegata;',
+      'subtitle': 'Cari Kebutuhan cocokx mu dengan cara yang mudah',
+      'imagePath': 'assets/img/samplecarousel.png',
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
@@ -16,13 +33,13 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
         height: 99,
         enableInfiniteScroll: true,
         autoPlay: true,
-        autoPlayInterval: Duration(seconds: 7),
+        autoPlayInterval: Duration(seconds: 5),
         autoPlayAnimationDuration: Duration(milliseconds: 800),
         autoPlayCurve: Curves.fastOutSlowIn,
         enlargeCenterPage: true,
         scrollDirection: Axis.horizontal,
       ),
-      items: [1, 2, 3, 4, 5].map((i) {
+      items: carouselData.map((data) {
         return Builder(
           builder: (BuildContext context) {
             return Stack(
@@ -47,7 +64,7 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
                       Container(
                         width: 167,
                         child: Text(
-                          'Toko Variegata',
+                          data['title'],
                           style: TextStyle(
                               fontSize: 23,
                               fontWeight: FontWeight.w600,
@@ -57,7 +74,7 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
                       Container(
                         width: 157,
                         child: Text(
-                          'Cari Kebutuhan Berkebun mu dengan cara yang mudah',
+                          data['subtitle'],
                           style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,

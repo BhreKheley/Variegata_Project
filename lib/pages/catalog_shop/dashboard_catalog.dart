@@ -52,7 +52,9 @@ class _KatalogShopState extends State<KatalogShop> {
               SizedBox(
                 height: 10,
               ),
-              Search_box(),
+              Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Search_box()),
               Iklan_carousel(),
               SizedBox(
                 height: 30,

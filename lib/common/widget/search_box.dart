@@ -13,18 +13,16 @@ class _Search_boxState extends State<Search_box> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(
-        top: 13,
+        top: 15,
         bottom: 33,
-        left: 10,
-        right: 10,
       ),
-      width: 350,
-      height: 50,
+      width: MediaQuery.of(context).size.width,
+      height: 37,
       child: TextField(
         obscureText: false,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+            borderSide: BorderSide(color: Color(0xFF94AF9F)),
             borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(

@@ -7,8 +7,8 @@ import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
 import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
+import 'package:variegata_project/pages/profile_page.dart';
 import 'package:variegata_project/pages/splash_screen/SplashScreen.dart';
-import 'package:variegata_project/pages/splash_screen/coba.dart';
 
 void main() {
   runApp(const MyApp());
