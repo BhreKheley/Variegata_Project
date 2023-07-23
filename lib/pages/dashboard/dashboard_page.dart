@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:variegata_project/auth/login_page.dart';
-import 'package:variegata_project/auth/register_page.dart';
-import 'package:variegata_project/main.dart';
 import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
 import 'package:variegata_project/common/widget/product.dart';
-import 'package:variegata_project/pages/budidaya_page.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/profile_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
+
+import '../budidaya/budidaya_page.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -81,8 +76,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                         ),
                                         borderRadius: BorderRadius.circular(5),
                                       ),
-                                      child:
-                                          Image.asset('assets/img/budidaya.png'),
+                                      child: Image.asset(
+                                          'assets/img/budidaya.png'),
                                     ),
                                     SizedBox(
                                       height: 5,

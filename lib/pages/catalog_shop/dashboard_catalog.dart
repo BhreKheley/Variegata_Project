@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:flutter_svg/svg.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/common/widget/product_card.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
@@ -7,11 +6,8 @@ import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
-import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
 
-import '../../common/widget/cuaca.dart';
 import '../../common/widget/iklan_carousel.dart';
-import '../../common/widget/product.dart';
 import '../../common/widget/search_box.dart';
 
 class KatalogShop extends StatefulWidget {
@@ -80,7 +76,8 @@ class _KatalogShopState extends State<KatalogShop> {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: Image.asset('assets/img/katalog_tanaman.png'),
+                            child:
+                                Image.asset('assets/img/katalog_tanaman.png'),
                           ),
                           SizedBox(
                             height: 5,
@@ -312,7 +309,8 @@ class _KatalogShopState extends State<KatalogShop> {
                             padding: EdgeInsets.only(right: 8.0),
                             child: ProductCard(
                               image: 'benih_tomat.png',
-                              title: '(1 Pack) Benih buah tomat unggul WARANI F1',
+                              title:
+                                  '(1 Pack) Benih buah tomat unggul WARANI F1',
                               price: 'Rp17.000',
                             ),
                           ),
