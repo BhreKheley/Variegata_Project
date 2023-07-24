@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:readmore/readmore.dart';
-import 'package:variegata_project/pages/budidaya_page.dart';
-import 'package:variegata_project/pages/budidaya_tab.dart';
-import 'package:variegata_project/pages/hama_penyakit_tab.dart';
-import 'package:flutter_dash/flutter_dash.dart';
 
-class DetailBudidaya extends StatefulWidget {
+class MyCustomTabBar extends StatefulWidget {
   @override
-  _DetailBudidayaState createState() => _DetailBudidayaState();
+  _MyCustomTabBarState createState() => _MyCustomTabBarState();
 }
 
-class _DetailBudidayaState extends State<DetailBudidaya>
+class _MyCustomTabBarState extends State<MyCustomTabBar>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> tabs = [
     'Budidaya',
-    'Hama & Penyakit',
+    'Hama Penyakit',
   ];
 
   @override
@@ -40,7 +34,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
-            color: isActive! ? Color(0xFF94AF9F) : Color(0xFFDADADA),
+            color: isActive! ? Colors.blue : Colors.black,
           ),
         ),
       ),
@@ -50,21 +44,12 @@ class _DetailBudidayaState extends State<DetailBudidaya>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
         leading: BackButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    BudidayaPage(), // Ganti dengan halaman berikutnya
-              ),
-            );
-          },
+          onPressed: () {},
           color: Colors.black,
         ),
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Cabai',
@@ -102,7 +87,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                         child: Image(image: AssetImage('assets/img/cabai.png')),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 20),
+                        margin: EdgeInsets.only(top: 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -110,9 +95,6 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               'Cabai',
                               style: TextStyle(
                                   fontSize: 23, fontWeight: FontWeight.w600),
-                            ),
-                            SizedBox(
-                              height: 5,
                             ),
                             Text(
                               'Capsicum annum',
@@ -135,14 +117,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
           ),
           Container(
             height: 50,
-            decoration: BoxDecoration(color: Color(0xFFF6F7FA), boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5), // Warna shadow
-                spreadRadius: -4, // Jarak penyebaran shadow
-                blurRadius: 15, // Radius blur shadow
-                offset: Offset(0, 3),
-              ),
-            ]),
+            color: Colors.grey[200],
             child: TabBar(
               controller: _tabController,
               indicator: UnderlineTabIndicator(
@@ -150,7 +125,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                     topLeft: Radius.circular(5), topRight: Radius.circular(5)),
                 borderSide: BorderSide(
                   width: 3,
-                  color: Color(0xFF94AF9F),
+                  color: Colors.blue,
                 ),
                 insets: EdgeInsets.symmetric(horizontal: 52.5),
               ),
@@ -169,8 +144,8 @@ class _DetailBudidayaState extends State<DetailBudidaya>
             child: TabBarView(
               controller: _tabController,
               children: [
-                BudidayaTab(),
-                HamaPenyakit(),
+                Center(child: Text('Tab 1 Content')),
+                Center(child: Text('Tab 2 Content')),
               ],
             ),
           ),
@@ -179,3 +154,5 @@ class _DetailBudidayaState extends State<DetailBudidaya>
     );
   }
 }
+
+

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProductCard extends StatelessWidget {
   String image, title, price;
   ProductCard(

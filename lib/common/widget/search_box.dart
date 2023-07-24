@@ -8,6 +8,7 @@ class Search_box extends StatefulWidget {
 }
 
 class _Search_boxState extends State<Search_box> {
+  // ignore: unnecessary_new, unused_field
   TextEditingController _Searchcontroller = new TextEditingController();
   @override
   Widget build(BuildContext context) {

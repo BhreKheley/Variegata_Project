@@ -106,22 +106,62 @@ class _DetailProdukState extends State<DetailProduk> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Rp59.000",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 33,
-                                    fontWeight: FontWeight.w700),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'Rp59.000',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 21,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.star,
+                                        color: Color(0xFFFFC400),
+                                        size: 20,
+                                      ),
+                                      Text(
+                                        '4.9',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 11,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 2,
+                                      ),
+                                      Text(
+                                        '(1000)',
+                                        style: TextStyle(
+                                          color: Color(0xFF585858),
+                                          fontSize: 8,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
-                                "Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA",
+                                'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w600),
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                               SizedBox(
                                 height: 25,
@@ -131,38 +171,44 @@ class _DetailProdukState extends State<DetailProduk> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Detail Produk",
+                                      'Detail Produk',
                                       style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     SizedBox(
                                       height: 14,
                                     ),
                                     Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Container(
+                                          width: 166,
                                           child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                "Kondisi",
+                                                'Kondisi',
                                                 style: TextStyle(
-                                                    color: Color(0xFF585858),
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              ),
-                                              SizedBox(
-                                                width: 100,
+                                                  color: Color(0xFF585858),
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
                                               Text(
-                                                "Baru",
+                                                'Baru',
                                                 style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 18,
-                                                    fontWeight:
-                                                        FontWeight.w400),
+                                                  color: Colors.black,
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -172,52 +218,64 @@ class _DetailProdukState extends State<DetailProduk> {
                                           color: Color(0xFFD9D9D9),
                                           thickness: 1.0,
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Min. Pemesanan",
-                                              style: TextStyle(
+                                        Container(
+                                          width: 166,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Min. Pemesanan',
+                                                style: TextStyle(
                                                   color: Color(0xFF585858),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                            SizedBox(
-                                              width: 30,
-                                            ),
-                                            Text(
-                                              "1 Buah",
-                                              style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              Text(
+                                                '1 Buah',
+                                                style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         Divider(
                                           // Menambahkan garis di antara kedua teks
                                           color: Color(0xFFD9D9D9),
                                           thickness: 1.0,
                                         ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Kategori",
-                                              style: TextStyle(
+                                        Container(
+                                          width: 166,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                'Kategori',
+                                                style: TextStyle(
                                                   color: Color(0xFF585858),
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                            SizedBox(
-                                              width: 95,
-                                            ),
-                                            Text(
-                                              "Tanaman",
-                                              style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              Text(
+                                                'Tanaman',
+                                                style: TextStyle(
                                                   color: Colors.black,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w400),
-                                            ),
-                                          ],
+                                                  fontSize: 11,
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                         Divider(
                                           // Menambahkan garis di antara kedua teks
@@ -234,10 +292,12 @@ class _DetailProdukState extends State<DetailProduk> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Deskripsi Produk",
+                                          'Deskripsi Produk',
                                           style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w600,
                                           ),
                                         ),
                                         SizedBox(
@@ -265,9 +325,11 @@ class _DetailProdukState extends State<DetailProduk> {
                                               "Lihat lebih sedikit",
                                           colorClickableText: Color(0xFFBBD6B8),
                                           style: TextStyle(
-                                              color: Color(0xFF585858),
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500),
+                                            color: Color(0xFF585858),
+                                            fontSize: 11,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -293,18 +355,20 @@ class _DetailProdukState extends State<DetailProduk> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Produk lainnya',
+                                  'Lainnya di toko ini',
                                   style: TextStyle(
                                     color: Colors.black,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                    fontFamily: 'Inter',
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 Text(
                                   'Lihat Semua',
                                   style: TextStyle(
                                     color: Color(0xFF94AF9F),
-                                    fontSize: 14,
+                                    fontSize: 11,
+                                    fontFamily: 'Inter',
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
@@ -387,18 +451,20 @@ class _DetailProdukState extends State<DetailProduk> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Ulasan pembeli',
+                                      'Ulasan Pembeli',
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w700,
+                                        fontSize: 14,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
                                       'Lihat Semua',
                                       style: TextStyle(
                                         color: Color(0xFF94AF9F),
-                                        fontSize: 14,
+                                        fontSize: 11,
+                                        fontFamily: 'Inter',
                                         fontWeight: FontWeight.w700,
                                       ),
                                     ),
@@ -413,46 +479,51 @@ class _DetailProdukState extends State<DetailProduk> {
                                     Icon(
                                       Icons.star,
                                       color: Color(0xFFFFC400),
-                                      size: 20,
+                                      size: 15,
                                     ),
                                     Icon(
                                       Icons.star,
                                       color: Color(0xFFFFC400),
-                                      size: 20,
+                                      size: 15,
                                     ),
                                     Icon(
                                       Icons.star,
                                       color: Color(0xFFFFC400),
-                                      size: 20,
+                                      size: 15,
                                     ),
                                     Icon(
                                       Icons.star,
                                       color: Color(0xFFFFC400),
-                                      size: 20,
+                                      size: 15,
                                     ),
                                     Icon(
                                       Icons.star,
                                       color: Color(0xFFD9D9D9),
-                                      size: 20,
+                                      size: 15,
                                     ),
                                     SizedBox(
                                       width: 7,
                                     ),
                                     Text(
-                                      "4.9/5",
+                                      '4.9/5',
                                       style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w500),
+                                        color: Colors.black,
+                                        fontSize: 11,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 7,
                                     ),
                                     Text(
-                                      "(1000 Ulasan)",
+                                      '(1000 Ulasan)',
                                       style: TextStyle(
-                                          color: Color(0xFF585858),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500),
+                                        color: Color(0xFF585858),
+                                        fontSize: 8,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -478,8 +549,8 @@ class _DetailProdukState extends State<DetailProduk> {
                                             Icons.person,
                                             color: Color(0xFF90AF9D),
                                           ),
-                                          width: 38,
-                                          height: 38,
+                                          width: 32,
+                                          height: 32,
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(50),
@@ -496,9 +567,11 @@ class _DetailProdukState extends State<DetailProduk> {
                                             Text(
                                               "Icikiwir Icikonde",
                                               style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
+                                                color: Colors.black,
+                                                fontSize: 11,
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400,
+                                              ),
                                             ),
                                             Row(
                                               children: List.generate(
@@ -517,12 +590,17 @@ class _DetailProdukState extends State<DetailProduk> {
                                     SizedBox(
                                       height: 15,
                                     ),
-                                    Text(
-                                      "Proses dan pengiriman cepat, kemasan baik rapih, kualitas produk baik, sesuai pesanan, gambar dan deskripsi :)",
-                                      style: TextStyle(
+                                    SizedBox(
+                                      width: 320,
+                                      child: Text(
+                                        'Proses dan pengiriman cepat, kemasan baik rapih, kualitas produk baik, sesuai pesanan, gambar dan deskripsi :)',
+                                        style: TextStyle(
                                           color: Color(0xFF585858),
-                                          fontSize: 13,
-                                          fontWeight: FontWeight.w500),
+                                          fontSize: 11,
+                                          fontFamily: 'Inter',
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -566,16 +644,16 @@ class _DetailProdukState extends State<DetailProduk> {
                                 ),
                                 child: Icon(
                                   Icons.chat,
-                                  color: Colors.black,
+                                  color: Color(0xFF94AF9F),
                                 ),
                               ),
                               Container(
-                                width: 145,
+                                width: 135,
                                 height: 46,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    color: Color(0xFFDDEBA8),
+                                    color: Color(0xFF94AF9F),
                                     width: 1.0,
                                   ),
                                 ),
@@ -584,36 +662,38 @@ class _DetailProdukState extends State<DetailProduk> {
                                   children: [
                                     Icon(
                                       Icons.add,
-                                      color: Color(0xFFDDEBA8),
+                                      color: Color(0xFF94AF9F),
                                     ),
                                     SizedBox(width: 8),
                                     Text(
-                                      "Keranjang",
+                                      'Keranjang',
                                       style: TextStyle(
-                                        color: Color(0xFFDDEBA8),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
+                                        color: Color(0xFF94AF9F),
+                                        fontSize: 15,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
                               Container(
-                                width: 145,
+                                width: 135,
                                 height: 46,
                                 decoration: BoxDecoration(
-                                  color: Color(0xFFDDEBA8),
+                                  color: Color(0xFF94AF9F),
                                   borderRadius: BorderRadius.circular(5),
                                 ),
                                 child: Center(
                                   child: Text(
-                                      "Beli Sekarang",
-                                      style: TextStyle(
-                                        color: Color(0xFFF6F7FA),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                    'Beli Sekarang',
+                                    style: TextStyle(
+                                      color: Color(0xFFF6F7FA),
+                                      fontSize: 15,
+                                      fontFamily: 'Inter',
+                                      fontWeight: FontWeight.w600,
                                     ),
+                                  ),
                                 ),
                               ),
                             ],

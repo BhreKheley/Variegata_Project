@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/register_page.dart';
-import 'package:variegata_project/main.dart';
-import 'package:variegata_project/pages/profile_page.dart';
-
-import '../pages/dashboard/dashboard_page.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
@@ -16,10 +12,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
 
-  @override
   horizontalMode() {}
 
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     final currentWidth = MediaQuery.of(context).size.width;
     double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -62,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               "Variegata",
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 26,
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFF94AF9F),
                               ),
@@ -70,15 +66,15 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 15,
                         ),
                         Text(
                           "Sign in to your account",
                           style: TextStyle(
-                            fontSize: 13,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1,
-                            color: Color(0xFF94AF9F),
+                            color: Color(0xFF505050),
                           ),
                         ),
                         SizedBox(
@@ -87,12 +83,15 @@ class _LoginPageState extends State<LoginPage> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "email address",
+                            "Email",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF94AF9F)),
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xFF505050),
+                              fontSize: 16,
+                            ),
                           ),
                         ),
+                        //email
                         Container(
                           margin: EdgeInsets.only(top: 13, bottom: 33),
                           width: 350,
@@ -100,7 +99,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -111,9 +111,11 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Email',
+                              hintText: 'Example396@gmail.com',
                               hintStyle: TextStyle(
-                                color: Color(0xFF94AF9F),
+                                color: Color(0xFF878787),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
                               ),
                               fillColor: Colors.white,
                               filled: true,
@@ -126,10 +128,12 @@ class _LoginPageState extends State<LoginPage> {
                             "Password",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              color: Color(0xFF94AF9F),
+                              color: Color(0xFF505050),
+                              fontSize: 16,
                             ),
                           ),
                         ),
+                        //password
                         Container(
                           margin: EdgeInsets.only(top: 13, bottom: 33),
                           width: 350,
@@ -138,7 +142,8 @@ class _LoginPageState extends State<LoginPage> {
                             obscureText: _obscureText,
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.grey),
+                                borderSide:
+                                    BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -152,15 +157,15 @@ class _LoginPageState extends State<LoginPage> {
                                   icon: Icon(_obscureText
                                       ? Icons.visibility_off
                                       : Icons.visibility),
-                                  color: Color(0xFFAEC2B6),
+                                  color: Color(0xFF878787),
                                   onPressed: (() {
                                     setState(() {
                                       _obscureText = !_obscureText;
                                     });
                                   })),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Password',
-                              hintStyle: TextStyle(color: Color(0xFF94AF9F)),
+                              hintText: 'example78650',
+                              hintStyle: TextStyle(color: Color(0xFF878787)),
                               fillColor: Colors.white,
                               filled: true,
                             ),
@@ -171,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DashboardPage(),
+                                builder: (context) => BotNavbar(),
                               ),
                             );
                           },
@@ -180,15 +185,17 @@ class _LoginPageState extends State<LoginPage> {
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(
-                              color: Color(0xFFC9E5C6),
+                              color: Color(0xFFE2EFE1),
                               borderRadius: BorderRadius.circular(24),
                             ),
                             child: Center(
                               child: Text(
                                 "Continue",
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F)),
+                                  color: Color(0xFF505050),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                           ),
@@ -209,9 +216,9 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Text(
                                   "Or",
                                   style: TextStyle(
-                                    fontSize: 15,
+                                    color: Color(0xFF505050),
+                                    fontSize: 19,
                                     fontWeight: FontWeight.w600,
-                                    color: Color(0xFF94AF9F),
                                   ),
                                 ),
                               ),
@@ -229,7 +236,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => DashboardPage(),
+                                builder: (context) => BotNavbar(),
                               ),
                             );
                           },
@@ -258,8 +265,9 @@ class _LoginPageState extends State<LoginPage> {
                                 Text(
                                   "Sign in with Google",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      color: Color(0xFF94AF9F)),
+                                    color: Color(0xFF505050),
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                                 Icon(
                                   Icons.arrow_forward_ios,
@@ -276,9 +284,9 @@ class _LoginPageState extends State<LoginPage> {
                               Text(
                                 "Don’t have an account?",
                                 style: TextStyle(
-                                  fontSize: 13,
+                                  color: Color(0xFF505050),
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xFF94AF9F),
                                 ),
                               ),
                               SizedBox(
@@ -294,11 +302,11 @@ class _LoginPageState extends State<LoginPage> {
                                   );
                                 },
                                 child: Text(
-                                  "Create",
+                                  " Create",
                                   style: TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w700,
                                       color: Color(0xFF94AF9F),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
                                       decoration: TextDecoration.underline),
                                 ),
                               ),

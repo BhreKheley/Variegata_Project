@@ -1,5 +1,6 @@
 class CuacaModel {
   bool? success;
+  // ignore: prefer_void_to_null, unnecessary_question_mark
   Null? message;
   Data? data;
 

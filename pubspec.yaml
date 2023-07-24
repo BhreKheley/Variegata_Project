@@ -46,6 +46,9 @@ dependencies:
   flutter_dash: ^1.0.0
   html: ^0.15.4
   intl: ^0.18.1
+  smooth_page_indicator: ^1.1.0
+  flashy_tab_bar2: ^0.0.6
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +74,7 @@ flutter:
     - assets/img/
     - assets/img/dashboard/
     - assets/img/cuaca/
+    - assets/img/onboarding/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

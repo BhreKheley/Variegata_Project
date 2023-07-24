@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Appbars extends StatelessWidget {
   String title, navigate;
   Appbars({

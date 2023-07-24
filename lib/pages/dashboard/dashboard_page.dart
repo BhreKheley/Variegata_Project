@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:variegata_project/auth/login_page.dart';
-import 'package:variegata_project/auth/register_page.dart';
-import 'package:variegata_project/main.dart';
 import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
 import 'package:variegata_project/common/widget/product.dart';
-import 'package:variegata_project/pages/budidaya_page.dart';
+import 'package:variegata_project/pages/budidaya/budidaya_page.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/profile_page.dart';
+import 'package:variegata_project/pages/informasi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
-import 'package:http/http.dart' as http;
-import 'package:xml/xml.dart' as xml;
-
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -26,29 +18,29 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   String temperature = '';
-  
-  Future<void> fetchXMLData() async {
-  final url = 'https://api.weatherprovider.com/forecast/indonesia.xml'; // Replace with your API URL
 
-  try {
-    final response = await http.get(Uri.parse(url));
+//   Future<void> fetchXMLData() async {
+//   final url = 'https://api.weatherprovider.com/forecast/indonesia.xml'; // Replace with your API URL
 
-    if (response.statusCode == 200) {
-      final responseBody = response.body;
-      
-      // Parse the XML response
-      final document = xml.XmlDocument.parse(responseBody);
-      
-      // Process and extract data from the XML document as needed
-      // ...
+//   try {
+//     final response = await http.get(Uri.parse(url));
 
-    } else {
-      print('Request failed with status: ${response.statusCode}');
-    }
-  } catch (error) {
-    print('Error: $error');
-  }
-}
+//     if (response.statusCode == 200) {
+//       final responseBody = response.body;
+
+//       // Parse the XML response
+//       final document = xml.XmlDocument.parse(responseBody);
+
+//       // Process and extract data from the XML document as needed
+//       // ...
+
+//     } else {
+//       print('Request failed with status: ${response.statusCode}');
+//     }
+//   } catch (error) {
+//     print('Error: $error');
+//   }
+// }
 
   @override
   Widget build(BuildContext context) {
@@ -126,34 +118,44 @@ class _DashboardPageState extends State<DashboardPage> {
                                   ],
                                 ),
                               ),
-                              Column(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(5),
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1.5,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => InformasiPage(),
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(5),
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 1.5,
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
                                       ),
-                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.asset(
+                                          'assets/img/informasi.png'),
                                     ),
-                                    child:
-                                        Image.asset('assets/img/informasi.png'),
-                                  ),
-                                  SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    "Informasi",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      height: 5,
                                     ),
-                                  )
-                                ],
+                                    Text(
+                                      "Informasi",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                               GestureDetector(
                                 onTap: () {

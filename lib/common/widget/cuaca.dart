@@ -16,6 +16,7 @@ class _CuacaState extends State<Cuaca> {
   CuacaModel? cuacaModel;
   bool loadingGetCuacaNabil = true;
   String? _currentTime;
+  // ignore: unused_field
   String? _currentDate;
   int DateHour = DateTime.now().hour;
   late int indexModif;

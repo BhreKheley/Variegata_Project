@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya_detail.dart';
+import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
 
 class DetailHamaPenyakit extends StatefulWidget {
   DetailHamaPenyakit({Key? key}) : super(key: key);

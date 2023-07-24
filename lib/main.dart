@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/auth/login_page.dart';
-import 'package:variegata_project/pages/budidaya_detail.dart';
-import 'package:variegata_project/pages/budidaya_page.dart';
-import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
-import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
-import 'package:variegata_project/pages/profile_page.dart';
-import 'package:variegata_project/pages/splash_screen/SplashScreen.dart';
+import 'package:variegata_project/pages/informasi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -26,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: SplashScreen(),
+      home: InformasiPage(),
     );
   }
 }

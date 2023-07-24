@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/detail_hama.dart';
+import 'package:variegata_project/pages/budidaya/detail_hama.dart';
 
 class HamaPenyakit extends StatelessWidget {
   const HamaPenyakit({Key? key}) : super(key: key);

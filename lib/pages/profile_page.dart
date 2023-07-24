@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/auth/login_page.dart';
-import 'package:variegata_project/auth/register_page.dart';
-import 'package:variegata_project/main.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfilePage extends StatefulWidget {
