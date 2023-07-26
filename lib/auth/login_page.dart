@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
+import 'package:variegata_project/main.dart';
+import 'package:variegata_project/pages/profile_page.dart';
+
+import '../pages/dashboard/dashboard_page.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);

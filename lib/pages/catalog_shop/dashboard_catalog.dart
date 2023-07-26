@@ -1,11 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/common/widget/product_card.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
+
 import '../../common/widget/iklan_carousel.dart';
 import '../../common/widget/search_box.dart';
 
@@ -24,6 +26,7 @@ class _KatalogShopState extends State<KatalogShop> {
       appBar: AppBar(
         title: Text(
           "Toko Variegata",
+          "Toko Variegata",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
         backgroundColor: Color(0xFFF6F7FA),
@@ -35,6 +38,7 @@ class _KatalogShopState extends State<KatalogShop> {
             Navigator.push(
               context,
               MaterialPageRoute(
+                builder: (context) => BotNavbar(),
                 builder: (context) => BotNavbar(),
               ),
             );
