@@ -242,7 +242,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 18),
-                            margin: EdgeInsets.only(bottom: 100),
+                            margin: EdgeInsets.only(bottom: 40),
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(
@@ -282,7 +282,7 @@ class _LoginPageState extends State<LoginPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Don’t have an account?",
+                                "Don’t have an account ?",
                                 style: TextStyle(
                                   color: Color(0xFF505050),
                                   fontSize: 15,
