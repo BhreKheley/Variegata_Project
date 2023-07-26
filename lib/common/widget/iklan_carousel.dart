@@ -92,7 +92,8 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
                     height: 75,
                     width: 107,
                     child: Image(
-                        image: AssetImage('assets/img/samplecarousel.png')),
+                      image: AssetImage('assets/img/samplecarousel.png'),
+                    ),
                   ),
                 )
               ],

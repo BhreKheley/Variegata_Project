@@ -9,8 +9,6 @@ import 'package:variegata_project/pages/informasi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
 
-import '../budidaya/budidaya_page.dart';
-
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
 

@@ -1,308 +1,1484 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
-import 'package:readmore/readmore.dart';
+import 'package:variegata_project/common/widget/content_large.dart';
+import 'package:variegata_project/common/widget/content_small.dart';
 
 class BudidayaTab extends StatelessWidget {
-  const BudidayaTab({Key? key}) : super(key: key);
+  BudidayaTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //PEMBENIHAN
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 25,
-                right: 20,
+            Material(
+              elevation: 4, // Atur nilai elevation sesuai kebutuhan
+              color: Color(0xFFDCDEE4),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Tahap Prapembibitan',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          width: 193,
+                          child: Text(
+                            '4 minggu sebelum pembibitan',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 21,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Image(
+                      image:
+                          AssetImage("assets/img/budidaya/prapembibitan.png"),
+                      width: 80,
+                      height: 80,
+                    ),
+                  ],
+                ),
               ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Pembenihan",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500,
+                  Container(
+                    padding: EdgeInsets.only(bottom: 19),
+                    child: Text(
+                      '4 Minggu sebelum pembibitan',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Image(
-                    image: AssetImage("assets/img/pembenihan.png"),
-                  ),
-                  SizedBox(height: 25),
-                  ReadMoreText(
-                    "1. Siapkan biji cabai yang berkualitas dan bebas dari penyakit.\n"
-                    "\n"
-                    "2. Persiapkan media tanam yang cocok, seperti pot atau bedengan dengan campuran tanah dan kompos yang subur.\n"
-                    "\n"
-                    "3. Benamkan biji cabai di dalam media tanam dengan kedalaman sekitar 1-2 cm.\n"
-                    "\n"
-                    "4. Berikan penyiraman yang cukup agar media tetap lembab. \n"
-                    "\n",
-                    trimLines: 5,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: "Baca lebih lanjut",
-                    trimExpandedText: "Lihat lebih sedikit",
-                    colorClickableText: Color(0xFFBBD6B8),
-                    style: TextStyle(
-                      color: Color(0xFF585858),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                  LargeContent(),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: Dash(
+                      // length: MediaQuery.of(context).size.width,
+                      length: 320,
+                      dashThickness: 2,
+                      dashColor: Color(0xFFE3E3E3),
                     ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 19),
+                    child: Text(
+                      '3 Minggu sebelum pembibitan',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  // GridView.count(
+                  //   crossAxisCount: 2, // Jumlah kolom dalam grid
+                  //   crossAxisSpacing: 10, // Jarak antara kolom
+                  //   mainAxisSpacing: 10, // Jarak antara baris
+                  //   shrinkWrap: true,
+                  //   physics: NeverScrollableScrollPhysics(),
+                  //   children: [
+                  //     SmallContent(),
+                  //     SmallContent(),
+                  //     SmallContent(),
+                  //   ],
+                  // ), // Supaya grid tidak bisa di-scroll
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallContent(),
+                      SmallContent(),
+                    ],
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: Dash(
+                      // length: MediaQuery.of(context).size.width,
+                      length: 320,
+                      dashThickness: 2,
+                      dashColor: Color(0xFFE3E3E3),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 19),
+                    child: Text(
+                      '2 Minggu sebelum pembibitan',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallContent(),
+                      SmallContent(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 19,
+                  ),
+                  SmallContent(),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 20),
+                    width: MediaQuery.of(context).size.width,
+                    child: Dash(
+                      // length: MediaQuery.of(context).size.width,
+                      length: 320,
+                      dashThickness: 2,
+                      dashColor: Color(0xFFE3E3E3),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 19),
+                    child: Text(
+                      '1 Minggu sebelum pembibitan',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SmallContent(),
+                      SmallContent(),
+                    ],
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: 25,
-            ),
-            Dash(
-              direction: Axis.horizontal,
-              length: MediaQuery.of(context).size.width,
-              dashLength: 6,
-              dashColor: Color(0xFFE3E3E3),
-              dashThickness: 2,
-              dashGap: 6,
-            ),
-            //PENYEMAIAN
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 25,
-                right: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Penyemaian",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500,
+
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            //  Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "3 Minggu sebelum pembibitan",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            //  Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "2 Minggu sebelum pembibitan",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 19,
+            //       ),
+            //       ContentShort()
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            //  Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "1 Minggu sebelum pembibitan",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding:  EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              children: [
+                // Container(
+                //   width: 395,
+                //   height: 10,
+                //   color: Color(0xFFF1F1F1),
+                // ),
+                Material(
+                  elevation: 4, // Atur nilai elevation sesuai kebutuhan
+                  color: Color(0xFFFFC672),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tahap Pembibitan',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Minggu 1 - 3',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image: AssetImage(
+                              "assets/img/budidaya/tahap-pembibitan.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Image(
-                    image: AssetImage("assets/img/penyemaian.png"),
-                  ),
-                  SizedBox(height: 25),
-                  ReadMoreText(
-                    "1. Tempatkan wadah penyemaian di tempat yang terkena sinar matahari cukup.\n"
-                    "\n"
-                    "2. Jaga kelembaban media dengan penyiraman yang teratur.\n"
-                    "\n"
-                    "3. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat.\n"
-                    "\n"
-                    "4. Setelah bibit cabai muncul, pastikan mereka mendapatkan cahaya yang cukup dan suhu yang hangat. \n\n"
-                    "\n",
-                    trimLines: 5,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: "Baca lebih lanjut",
-                    trimExpandedText: "Lihat lebih sedikit",
-                    colorClickableText: Color(0xFFBBD6B8),
-                    style: TextStyle(
-                      color: Color(0xFF585858),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                ),
+              ],
+            ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     top: 25,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 1",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 19,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 2",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 3",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 19,
+            //       ),
+            //       ContentShort()
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              children: [
+                Material(
+                  elevation: 4, // Atur nilai elevation sesuai kebutuhan
+                  color: Color(0xFFFF9494),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tahap Vegetatif',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Minggu 4 - 12',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image: AssetImage(
+                              "assets/img/budidaya/tahap-vegetatif.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 25,
-            ),
-            Dash(
-              direction: Axis.horizontal,
-              length: MediaQuery.of(context).size.width,
-              dashLength: 6,
-              dashColor: Color(0xFFE3E3E3),
-              dashThickness: 2,
-              dashGap: 6,
-            ),
-            //PENANAMAN
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 25,
-                right: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Penanaman",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500,
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 4",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 5",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 6",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 7",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 8",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 9",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 10",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 11",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 12",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              children: [
+                Material(
+                  elevation: 4, // Atur nilai elevation sesuai kebutuhan
+                  color: Color(0xFFA5DFFF),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tahap Berbunga',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Minggu 13 - 15',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image: AssetImage(
+                              "assets/img/budidaya/tahap-berbunga.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Image(
-                    image: AssetImage("assets/img/penanaman.png"),
-                  ),
-                  SizedBox(height: 25),
-                  ReadMoreText(
-                    "1. Pilih lokasi penanaman yang mendapatkan sinar matahari penuh dan memiliki drainase yang baik.\n"
-                    "\n"
-                    "2. Siapkan lubang tanam dengan jarak yang sesuai antara tanaman cabai.\n"
-                    "\n"
-                    "3. Pindahkan bibit cabai dengan hati-hati ke lubang tanam.\n"
-                    "\n"
-                    "4. Ratakan tanah di sekitar tanaman dan beri penyiraman setelah penanaman. \n"
-                    "\n",
-                    trimLines: 5,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: "Baca lebih lanjut",
-                    trimExpandedText: "Lihat lebih sedikit",
-                    colorClickableText: Color(0xFFBBD6B8),
-                    style: TextStyle(
-                      color: Color(0xFF585858),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                ),
+              ],
+            ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 13",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 14 - 15",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              children: [
+                Material(
+                  elevation: 4, // Atur nilai elevation sesuai kebutuhan
+                  color: Color(0xFFFFF6A5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tahap Berbuah',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Minggu 16 - 18',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image: AssetImage(
+                              "assets/img/budidaya/tahap-berbuah.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 25,
-            ),
-            Dash(
-              direction: Axis.horizontal,
-              length: MediaQuery.of(context).size.width,
-              dashLength: 6,
-              dashColor: Color(0xFFE3E3E3),
-              dashThickness: 2,
-              dashGap: 6,
-            ),
-            //PERAWATAN
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 25,
-                right: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Perawatan",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500,
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 16",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 17",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 340,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 18",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            Column(
+              children: [
+                Material(
+                  elevation: 4, // Atur nilai elevation sesuai kebutuhan
+                  color: Color(0xFFDDFFA5),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tahap Panen',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Minggu 19 - 22',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 21,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image:
+                              AssetImage("assets/img/budidaya/tahap-panen.png"),
+                          width: 80,
+                          height: 80,
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(height: 25),
-                  Image(
-                    image: AssetImage("assets/img/perawatan.png"),
-                  ),
-                  SizedBox(height: 25),
-                  ReadMoreText(
-                    "1. Lakukan penyiraman secara teratur untuk menjaga kelembaban tanah, terutama saat tanaman masih muda.\n"
-                    "\n"
-                    "2. Berikan pupuk yang sesuai, seperti pupuk organik atau pupuk khusus untuk tanaman cabai.\n"
-                    "\n"
-                    "3. Periksa dan atasi hama atau penyakit yang mungkin menyerang tanaman, seperti ulat, kutu, atau penyakit layu.\n"
-                    "\n"
-                    "4. Jaga kebersihan area penanaman dengan membersihkan gulma dan membuang daun atau ranting yang sudah mati. \n"
-                    "\n",
-                    trimLines: 5,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: "Baca lebih lanjut",
-                    trimExpandedText: "Lihat lebih sedikit",
-                    colorClickableText: Color(0xFFBBD6B8),
-                    style: TextStyle(
-                      color: Color(0xFF585858),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 25,
-            ),
-            Dash(
-              direction: Axis.horizontal,
-              length: MediaQuery.of(context).size.width,
-              dashLength: 6,
-              dashColor: Color(0xFFE3E3E3),
-              dashThickness: 2,
-              dashGap: 6,
-            ),
-            //PANEN
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 25,
-                right: 20,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Panen",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontFamily: "Inter",
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 25),
-                  Image(
-                    image: AssetImage("assets/img/panen.png"),
-                  ),
-                  SizedBox(height: 25),
-                  ReadMoreText(
-                    "1. Biasanya, cabai siap panen dalam waktu 2-3 bulan setelah penanaman, tergantung pada varietasnya.\n"
-                    "\n"
-                    "2. Panen cabai saat sudah mencapai ukuran yang diinginkan dan warnanya telah matang.\n"
-                    "\n"
-                    "3. Gunakan pisau atau gunting tajam untuk memotong cabai dengan tangkainya.\n"
-                    "\n"
-                    "4. Jangan lupa untuk menjaga kebersihan tangan saat memanen dan menyimpan cabai dalam kondisi yang baik. \n"
-                    "\n",
-                    trimLines: 5,
-                    trimMode: TrimMode.Line,
-                    trimCollapsedText: "Baca lebih lanjut",
-                    trimExpandedText: "Lihat lebih sedikit",
-                    colorClickableText: Color(0xFFBBD6B8),
-                    style: TextStyle(
-                      color: Color(0xFF585858),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 25,
-            ),
-            Dash(
-              direction: Axis.horizontal,
-              length: MediaQuery.of(context).size.width,
-              dashLength: 6,
-              dashColor: Color(0xFFE3E3E3),
-              dashThickness: 2,
-              dashGap: 6,
-            ),
+            // SizedBox(
+            //   height: 15,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 19",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // ContentLength(),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 332,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //     bottom: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 20",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           ContentShort(),
+            //           ContentShort(),
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 19,
+            //       ),
+            //       ContentShort(),
+            //     ],
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 20),
+            //   child: Dash(
+            //     direction: Axis.horizontal,
+            //     length: 340,
+            //     dashLength: 6,
+            //     dashThickness: 2,
+            //     dashColor: Color(0xFFE3E3E3),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Minggu 21 - 22",
+            //     style: TextStyle(
+            //       fontSize: 21,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            // Padding(
+            //   padding: EdgeInsets.only(
+            //     left: 20,
+            //     right: 20,
+            //   ),
+            //   child: Text(
+            //     "Tidak ada tugas pada minggu ini",
+            //     style: TextStyle(
+            //       fontSize: 17,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //   ),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget ContentShort() {
+    return Container(
+      width: 140,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(3),
+                child: Image(
+                  image: AssetImage("assets/img/budidaya/activity-1.png"),
+                  width: 140,
+                ),
+              ),
+              Positioned(
+                left: 0,
+                bottom: 0,
+                child: Container(
+                  // Properti dan styling untuk Container yang menimpa gambar
+                  width: 111,
+                  height: 18,
+                  decoration: BoxDecoration(
+                      color: Color(0xFFE3CA8A),
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(3),
+                          bottomLeft: Radius.circular(3))),
+                  child: Center(
+                    child: Text(
+                      'Pelatihan tanaman',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 14,
+          ),
+          Text(
+            'Persiapan lahan primer dengan cepat',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(
+            height: 14,
+          ),
+          Text(
+            'Klik lebih lanjut',
+            style: TextStyle(
+              color: Color(0xFFBBD6B8),
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget ContentLength() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(3),
+                child: Image(
+                  image: AssetImage("assets/img/budidaya/pertumbuhan.png"),
+                ),
+              ),
+              Positioned(
+                left: 0,
+                bottom: 0,
+                child: Container(
+                  // Properti dan styling untuk Container yang menimpa gambar
+                  width: 115,
+                  height: 20,
+                  decoration: BoxDecoration(
+                      color: Color(0xFFE3CA8A),
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(3),
+                          bottomLeft: Radius.circular(3))),
+                  child: Center(
+                    child: Text(
+                      "Pelatihan tanaman",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 13,
+          ),
+          Text(
+            'Jarangkan bibit untuk menghasil kan tegakan tanaman yang sehat',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          SizedBox(
+            height: 13,
+          ),
+          Text(
+            'Klik lebih lanjut',
+            style: TextStyle(
+              color: Color(0xFFBBD6B8),
+              fontSize: 12,
+              fontFamily: 'Inter',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
       ),
     );
   }

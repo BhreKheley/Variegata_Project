@@ -24,7 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
       nextScreen: OnboardingScreen(),
-      nextScreen: OnboardingScreen(),
       splashTransition: SplashTransition.sizeTransition,
       backgroundColor: Colors.white,
       duration: 3000,
