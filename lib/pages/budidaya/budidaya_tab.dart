@@ -102,18 +102,6 @@ class BudidayaTab extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // GridView.count(
-                  //   crossAxisCount: 2, // Jumlah kolom dalam grid
-                  //   crossAxisSpacing: 10, // Jarak antara kolom
-                  //   mainAxisSpacing: 10, // Jarak antara baris
-                  //   shrinkWrap: true,
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   children: [
-                  //     SmallContent(),
-                  //     SmallContent(),
-                  //     SmallContent(),
-                  //   ],
-                  // ), // Supaya grid tidak bisa di-scroll
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -187,152 +175,8 @@ class BudidayaTab extends StatelessWidget {
               ),
             ),
 
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            //  Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "3 Minggu sebelum pembibitan",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            //  Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "2 Minggu sebelum pembibitan",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //       SizedBox(
-            //         height: 19,
-            //       ),
-            //       ContentShort()
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            //  Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "1 Minggu sebelum pembibitan",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding:  EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
             Column(
               children: [
-                Container(
-                  width: 395,
-                  height: 10,
-                  color: Color(0xFFF1F1F1),
-                ),
                 Material(
                   elevation: 4, // Atur nilai elevation sesuai kebutuhan
                   color: Color(0xFFFFC672),
@@ -379,131 +223,102 @@ class BudidayaTab extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 1',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 2',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 3',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      SmallContent(),
+                    ],
+                  ),
+                ),
               ],
             ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     top: 25,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "Minggu 1",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //       SizedBox(
-            //         height: 19,
-            //       ),
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "Minggu 2",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // ContentLength(),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "Minggu 3",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Row(
-            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //         children: [
-            //           ContentShort(),
-            //           ContentShort(),
-            //         ],
-            //       ),
-            //       SizedBox(
-            //         height: 19,
-            //       ),
-            //       ContentShort()
-            //     ],
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
+
             Column(
               children: [
                 Material(
@@ -549,6 +364,247 @@ class BudidayaTab extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 4',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 5',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 6',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 7',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 8',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 9',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 10',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 11',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 12',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -940,74 +996,61 @@ class BudidayaTab extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 13',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 14 - 15',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //     bottom: 20,
-            //   ),
-            //   child: Text(
-            //     "Minggu 13",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // ContentLength(),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(horizontal: 20),
-            //   child: Dash(
-            //     direction: Axis.horizontal,
-            //     length: 332,
-            //     dashLength: 6,
-            //     dashThickness: 2,
-            //     dashColor: Color(0xFFE3E3E3),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //   ),
-            //   child: Text(
-            //     "Minggu 14 - 15",
-            //     style: TextStyle(
-            //       fontSize: 21,
-            //       fontWeight: FontWeight.w500,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 10,
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.only(
-            //     left: 20,
-            //     right: 20,
-            //   ),
-            //   child: Text(
-            //     "Tidak ada tugas pada minggu ini",
-            //     style: TextStyle(
-            //       fontSize: 17,
-            //       fontWeight: FontWeight.w400,
-            //     ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   height: 20,
-            // ),
+
             Column(
               children: [
                 Material(
@@ -1054,6 +1097,87 @@ class BudidayaTab extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 16',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 17',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 18',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -1215,6 +1339,91 @@ class BudidayaTab extends StatelessWidget {
                         ),
                       ],
                     ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 19',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      LargeContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 20',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SmallContent(),
+                          SmallContent(),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 19,
+                      ),
+                      SmallContent(),
+                      Container(
+                        padding: EdgeInsets.symmetric(vertical: 20),
+                        width: MediaQuery.of(context).size.width,
+                        child: Dash(
+                          // length: MediaQuery.of(context).size.width,
+                          length: 320,
+                          dashThickness: 2,
+                          dashColor: Color(0xFFE3E3E3),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(bottom: 19),
+                        child: Text(
+                          'Minggu 21 - 22',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        'Tidak ada tugas pada minggu ini',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
