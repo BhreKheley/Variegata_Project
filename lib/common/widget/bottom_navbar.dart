@@ -15,7 +15,7 @@ class _BotNavbarState extends State<BotNavbar> {
 
   List<Widget> tabItems = [
     DashboardPage(),
-    Center(child: Text("nabil asu")),
+    Center(child: Text("nabil Gans")),
     ProfilePage(),
   ];
 

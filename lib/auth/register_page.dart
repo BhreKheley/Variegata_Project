@@ -1,9 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:variegata_project/Services/auth_services.dart';
+import 'package:variegata_project/Services/globals.dart';
+import 'package:variegata_project/Services/rounded_button.dart';
 import 'package:variegata_project/auth/login_page.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({Key? key}) : super(key: key);
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -12,6 +18,32 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool _obscureText = true;
   bool _obscureText1 = true;
+
+  String _email = '';
+  String _password = '';
+  String _name = '';
+
+  createAccountPressed() async {
+    bool emailValid = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(_email);
+    if (emailValid) {
+      http.Response response =
+      await AuthServices.register(_name, _email, _password);
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const BotNavbar(),
+            ));
+      } else {
+        errorSnackBar(context, responseMap.values.first[0]);
+      }
+    } else {
+      errorSnackBar(context, 'email not valid');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,6 +151,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               fillColor: Colors.white,
                               filled: true,
                             ),
+                            onChanged: (value) {
+                              _name = value;
+                            },
                           ),
                         ),
                         Align(
@@ -160,6 +195,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               fillColor: Colors.white,
                               filled: true,
                             ),
+                            onChanged: (value) {
+                              _email = value;
+                            },
                           ),
                         ),
                         Align(
@@ -212,89 +250,46 @@ class _RegisterPageState extends State<RegisterPage> {
                               fillColor: Colors.white,
                               filled: true,
                             ),
+                            onChanged: (value) {
+                              _password = value;
+                            },
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Confirm your Password",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                        SizedBox(height: 20,),
+                        RoundedButton(
+                          btnText: 'Create Account',
+                          onBtnPressed: () => createAccountPressed(),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(top: 13, bottom: 33),
-                          width: 350,
-                          height: 50,
-                          child: TextField(
-                            obscureText: _obscureText1,
-                            decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Color(0xFFBBD6B8)),
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Color(0xFFBBD6B8),
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                              suffixIcon: IconButton(
-                                  icon: Icon(_obscureText1
-                                      ? Icons.visibility_off
-                                      : Icons.visibility),
-                                  color: Color(0xFF878787),
-                                  onPressed: (() {
-                                    setState(() {
-                                      _obscureText1 = !_obscureText1;
-                                    });
-                                  })),
-                              contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Confirm your Password*',
-                              hintStyle: TextStyle(
-                                color: Color(0xFF878787),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              fillColor: Colors.white,
-                              filled: true,
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BotNavbar(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(bottom: 34),
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE2EFE1),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Continue",
-                                style: TextStyle(
-                                  color: Color(0xFF505050),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                        SizedBox(height: 20,),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => BotNavbar(),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Container(
+                        //     margin: EdgeInsets.only(bottom: 34),
+                        //     width: 350,
+                        //     height: 50,
+                        //     decoration: BoxDecoration(
+                        //       color: Color(0xFFE2EFE1),
+                        //       borderRadius: BorderRadius.circular(24),
+                        //     ),
+                        //     child: Center(
+                        //       child: Text(
+                        //         "Continue",
+                        //         style: TextStyle(
+                        //           color: Color(0xFF505050),
+                        //           fontSize: 16,
+                        //           fontWeight: FontWeight.w600,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           margin: EdgeInsets.only(bottom: 34),
                           child: Row(
@@ -328,7 +323,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         Container(
                           padding: EdgeInsets.symmetric(horizontal: 18),
-                          margin: EdgeInsets.only(bottom: 100),
+                          margin: EdgeInsets.only(bottom: 60),
                           width: 350,
                           height: 50,
                           decoration: BoxDecoration(

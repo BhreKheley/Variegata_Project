@@ -1,4 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:variegata_project/Services/auth_services.dart';
+import 'package:variegata_project/Services/globals.dart';
+import 'package:variegata_project/Services/rounded_button.dart';
 import 'package:variegata_project/auth/register_page.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
 
@@ -11,6 +17,26 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
+  String _email = '';
+  String _password = '';
+
+  loginPressed() async {
+    if (_email.isNotEmpty && _password.isNotEmpty) {
+      http.Response response = await AuthServices.login(_email, _password);
+      Map responseMap = jsonDecode(response.body);
+      if (response.statusCode == 200) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => const BotNavbar(),
+            ));
+      } else {
+        errorSnackBar(context, responseMap.values.first);
+      }
+    } else {
+      errorSnackBar(context, 'enter all required fields');
+    }
+  }
 
   horizontalMode() {}
 
@@ -93,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         //email
                         Container(
-                          margin: EdgeInsets.only(top: 13, bottom: 33),
+                          margin: EdgeInsets.only(top: 13, bottom: 30),
                           width: 350,
                           height: 50,
                           child: TextField(
@@ -120,6 +146,9 @@ class _LoginPageState extends State<LoginPage> {
                               fillColor: Colors.white,
                               filled: true,
                             ),
+                            onChanged: (value) {
+                              _email = value;
+                            },
                           ),
                         ),
                         Align(
@@ -135,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         //password
                         Container(
-                          margin: EdgeInsets.only(top: 13, bottom: 33),
+                          margin: EdgeInsets.only(top: 13, bottom: 30),
                           width: 350,
                           height: 50,
                           child: TextField(
@@ -169,39 +198,17 @@ class _LoginPageState extends State<LoginPage> {
                               fillColor: Colors.white,
                               filled: true,
                             ),
+                            onChanged: (value) {
+                              _password = value;
+                            },
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BotNavbar(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            margin: EdgeInsets.only(bottom: 34),
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE2EFE1),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Continue",
-                                style: TextStyle(
-                                  color: Color(0xFF505050),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                          ),
+                        RoundedButton(
+                          btnText: 'CONTINUE',
+                          onBtnPressed: () => loginPressed(),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 34),
+                          margin: EdgeInsets.only(bottom: 20),
                           child: Row(
                             children: [
                               Expanded(
@@ -242,7 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                           },
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 18),
-                            margin: EdgeInsets.only(bottom: 40),
+                            margin: EdgeInsets.only(bottom: 30),
                             width: 350,
                             height: 50,
                             decoration: BoxDecoration(

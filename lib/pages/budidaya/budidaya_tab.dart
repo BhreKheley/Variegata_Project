@@ -328,11 +328,11 @@ class BudidayaTab extends StatelessWidget {
             // ),
             Column(
               children: [
-                // Container(
-                //   width: 395,
-                //   height: 10,
-                //   color: Color(0xFFF1F1F1),
-                // ),
+                Container(
+                  width: 395,
+                  height: 10,
+                  color: Color(0xFFF1F1F1),
+                ),
                 Material(
                   elevation: 4, // Atur nilai elevation sesuai kebutuhan
                   color: Color(0xFFFFC672),
