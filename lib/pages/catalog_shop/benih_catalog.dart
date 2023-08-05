@@ -8,7 +8,7 @@ class ShopBenih extends StatelessWidget {
   const ShopBenih({Key? key}) : super(key: key);
 
 
-  final String url = 'http://10.0.2.2:8000/api/products';
+  final String url = 'http://variegata.my.id/api/products';
 
   Future getProducts() async{
     var response = await http.get(Uri.parse(url));

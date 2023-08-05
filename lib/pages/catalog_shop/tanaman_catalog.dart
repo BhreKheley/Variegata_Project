@@ -3,12 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:variegata_project/pages/catalog_shop/Detail_Toko.dart';
+import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 
 class ShopTanaman extends StatelessWidget {
   const ShopTanaman({Key? key}) : super(key: key);
 
 
-  final String url = 'http://10.0.2.2:8000/api/products';
+  final String url = 'http://variegata.my.id/api/products';
 
   Future getProducts() async{
     var response = await http.get(Uri.parse(url));
@@ -32,10 +33,10 @@ class ShopTanaman extends StatelessWidget {
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => KatalogShop()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => KatalogShop()),
+            );
           },
         ),
       ),

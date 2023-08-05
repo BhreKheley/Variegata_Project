@@ -226,12 +226,10 @@ class DetailPage extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                ),
-                                //
+                                ), //
                                 Container(
                                   child: Katalog(),
                                   height: 250,
-
                                   // child: ListView.builder(
                                   //   padding: EdgeInsets.symmetric(horizontal: 20),
                                   //   scrollDirection: Axis.horizontal,
