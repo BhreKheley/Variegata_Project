@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
+import 'package:variegata_project/pages/catalog_shop/cart.dart';
+import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:variegata_project/pages/profile_page.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 
 void main() {
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: DetailBudidaya(),
+      home: KatalogShop(),
     );
   }
 }
