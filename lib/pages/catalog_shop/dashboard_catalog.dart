@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
+import 'package:variegata_project/pages/catalog_shop/cart.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
@@ -22,10 +23,6 @@ class _KatalogShopState extends State<KatalogShop> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: Text(
-          "Toko Variegata",
-          style: TextStyle(color: Color(0xFF33363F)),
-        ),
         backgroundColor: Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
@@ -40,6 +37,24 @@ class _KatalogShopState extends State<KatalogShop> {
             );
           },
         ),
+        title: Text(
+          "Toko Variegata",
+          style: TextStyle(color: Color(0xFF33363F)),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_basket_outlined),
+            color: Color(0xFF33363F),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Cart(),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(

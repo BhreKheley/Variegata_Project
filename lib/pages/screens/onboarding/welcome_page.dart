@@ -10,6 +10,7 @@ class WelcomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
               width: MediaQuery.of(context).size.width,
               height: 440,
@@ -26,8 +27,8 @@ class WelcomePage extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(
+            const Padding(
+              padding: EdgeInsets.only(
                 right: 145,
                 top: 42,
               ),
@@ -39,8 +40,8 @@ class WelcomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 75, top: 16),
+            const Padding(
+              padding: EdgeInsets.only(right: 75, top: 16),
               child: Text(
                 "Variegata adalah aplikasi\npetani bahasa indonesia yang dapat\nmembantu anda dalam menanam\ntanaman yang anda inginkan!",
                 style: TextStyle(
