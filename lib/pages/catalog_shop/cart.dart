@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 
 class Cart extends StatefulWidget {
@@ -70,37 +71,38 @@ class _CartState extends State<Cart> {
           Padding(
             padding: const EdgeInsets.only(
               left: 7,
-              top: 10,
             ),
-            child: Row(
-              children: [
-                Transform.scale(
-                  scale: 1,
-                  child: Checkbox(
-                    value: isChecked,
-                    onChanged: (val) {
-                      setState(() {
-                        isChecked = val;
-                      });
-                    },
-                    activeColor: Colors.green,
+            child: Container(
+              child: Row(
+                children: [
+                  Transform.scale(
+                    scale: 1,
+                    child: Checkbox(
+                      value: isChecked,
+                      onChanged: (val) {
+                        setState(() {
+                          isChecked = val;
+                        });
+                      },
+                      activeColor: Color(0xFF94AF9F),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  "Pilih Semua",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold),
-                )
-              ],
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    "Pilih Semua",
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
             ),
           ),
           SizedBox(
-            height: 15,
+            height: 5,
           ),
           Divider(
             thickness: 6,
@@ -114,7 +116,7 @@ class _CartState extends State<Cart> {
               return Padding(
                 padding: const EdgeInsets.only(
                   left: 7,
-                  top: 10,
+                  top: 15,
                   right: 20,
                 ),
                 child: Row(
@@ -232,7 +234,7 @@ class _CartState extends State<Cart> {
                                       ),
                                       GestureDetector(
                                         onTap: () {
-                                          decrement();
+                                          increment();
                                         },
                                         child: Icon(
                                           Icons.add_circle_outline,
@@ -270,105 +272,70 @@ class _CartState extends State<Cart> {
       bottomNavigationBar: Container(
         color: Colors.white,
         width: 395,
-        height: 220,
+        height: 90,
         child: Padding(
           padding: const EdgeInsets.only(
             left: 20,
             top: 20,
             right: 20,
+            bottom: 20,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Pesanan Anda",
-                style: TextStyle(
-                    color: Color(0xFFADADAD),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Pengiriman",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "Rp3.000",
-                    style: TextStyle(
-                        color: Colors.black,
+          child: Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total :",
+                      style: TextStyle(
+                        color: Color(0xFF505050),
                         fontSize: 17,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Total",
-                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Rp150.000",
+                      style: TextStyle(
                         color: Colors.black,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "Rp150.000",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 19,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 42,
-              ),
-              Center(
-                child: InkWell(
+                        fontSize: 21,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => KatalogShop(),
-                        ));
+                      context,
+                      MaterialPageRoute(builder: (context) => Alamat()),
+                    );
                   },
                   child: Container(
-                    width: 320,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(33),
-                      color: Color(0xffa3bfae),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Sign Out",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w600,
-                          ),
+                    width: 136,
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        "Checkout",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 21,
+                          fontWeight: FontWeight.w600,
                         ),
-                      ],
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF9ED098),
+                      borderRadius: BorderRadius.circular(6),
                     ),
                   ),
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),

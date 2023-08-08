@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/pages/catalog_shop/cart.dart';
+import 'package:variegata_project/pages/catalog_shop/checkout.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
 import 'package:variegata_project/pages/profile_page.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: KatalogShop(),
+      home: Checkout(),
     );
   }
 }
