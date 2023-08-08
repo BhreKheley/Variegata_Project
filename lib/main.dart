@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 
 void main() {
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: DetailBudidaya(),
+      home: BotNavbar(),
     );
   }
 }

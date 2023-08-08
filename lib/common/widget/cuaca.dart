@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+// ignore: unused_import
+import 'package:shimmer/shimmer.dart';
 import 'package:variegata_project/API/model_cuaca.dart';
+import 'package:variegata_project/common/widget/shimmer.dart';
 
 class Cuaca extends StatefulWidget {
   Cuaca({Key? key}) : super(key: key);
@@ -44,7 +47,7 @@ class _CuacaState extends State<Cuaca> {
   }
 
   void _getCurrentTime() {
-    final formatter = DateFormat('HH:mm').format(DateTime.now());
+    final formatter = DateFormat('HH:mm:ss').format(DateTime.now());
     setState(() {
       _currentTime = formatter;
     });
@@ -130,98 +133,107 @@ class _CuacaState extends State<Cuaca> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
-        image: DecorationImage(
-            image: AssetImage('assets/img/cuaca/$indexCuaca.png'),
-            colorFilter: ColorFilter.mode(
-                Color(0xFF939393).withOpacity(0.4), BlendMode.color),
-            fit: BoxFit.cover),
-      ),
-      height: 191,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          top: 17,
-          left: 17,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Cuaca saat ini',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
+    return loadingGetCuacaNabil
+        ? Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              image: DecorationImage(
+                  image: AssetImage('assets/img/cuaca/$indexCuaca.png'),
+                  colorFilter: ColorFilter.mode(
+                      Color(0xFF939393).withOpacity(0.4), BlendMode.color),
+                  fit: BoxFit.cover),
+            ),
+            height: 191,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 17,
+                left: 17,
               ),
-            ),
-            Text(
-              _currentTime ?? '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 10,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Row(
-              children: [
-                Image(
-                  image: AssetImage('assets/img/dashboard/cuaca.png'),
-                  height: 70,
-                  width: 81,
-                  fit: BoxFit.fill,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      loadingGetCuacaNabil
-                          ? cuacaModel!
-                              .data!.params![5].times![indexModif].celcius
-                              .toString()
-                          : '-',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 53,
-                        fontWeight: FontWeight.w500,
-                      ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Cuaca saat ini',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
-                    Text(
-                      loadingGetCuacaNabil
-                          ? cuacaModel!.data!.params![6].times![indexModif].name
-                              .toString()
-                          : '-',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  ),
+                  Text(
+                    _currentTime ?? '',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
                     ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              'Cuaca saat ini cocok untuk kamu melakukan Penyiangan pada tanaman mu!',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Row(
+                    children: [
+                      Image(
+                        image: AssetImage('assets/img/dashboard/cuaca.png'),
+                        height: 70,
+                        width: 81,
+                        fit: BoxFit.fill,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            loadingGetCuacaNabil
+                                ? cuacaModel!.data!.params![5]
+                                        .times![indexModif].celcius!
+                                        .replaceAll('C', '')
+                                        .trim() +
+                                    "°C".toString()
+                                : '-',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 53,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            loadingGetCuacaNabil
+                                ? cuacaModel!
+                                    .data!.params![6].times![indexModif].name
+                                    .toString()
+                                : '-',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    'Cuaca saat ini cocok untuk kamu melakukan Penyiangan pada tanaman mu!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          )
+        : ShimmerWidget(
+            width: double.infinity,
+            height: 191,
+            // radius: 0,
+          );
   }
 }
