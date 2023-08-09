@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:variegata_project/common/widget/info_card.dart';
 import 'package:variegata_project/pages/informasi.dart';
+import 'package:variegata_project/pages/screens/Example_informasi.dart';
 
 class DetailInformasi extends StatefulWidget {
-  DetailInformasi({Key? key}) : super(key: key);
+  final dynamic product;
+  DetailInformasi({required this.product});
 
   @override
   State<DetailInformasi> createState() => _DetailInformasiState();
@@ -13,6 +16,7 @@ class _DetailInformasiState extends State<DetailInformasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
@@ -20,7 +24,7 @@ class _DetailInformasiState extends State<DetailInformasi> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    InformasiPage(), // Ganti dengan halaman berikutnya
+                    Informasi(), // Ganti dengan halaman berikutnya
               ),
             );
           },
@@ -45,10 +49,9 @@ class _DetailInformasiState extends State<DetailInformasi> {
                   horizontal: 20,
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat: Mengungkap Keberagaman yang Menarik!',
+                    Text(widget.product['name'],
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -104,23 +107,15 @@ class _DetailInformasiState extends State<DetailInformasi> {
                         ],
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 313,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/tomat.png'),
-                          fit: BoxFit.cover,
+                    Center(
+                      child: Container(
+                        height: 400,
+                        width: 400,
+                        child: CachedNetworkImage(
+                          imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
+                          placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(Icons.error),
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3F000000),
-                            blurRadius: 10,
-                            offset: Offset(0, 0),
-                            spreadRadius: 0,
-                          ),
-                        ],
                       ),
                     ),
                     SizedBox(
@@ -183,49 +178,50 @@ class _DetailInformasiState extends State<DetailInformasi> {
                   ],
                 ),
               ),
-              SizedBox(
-                height: 33,
-              ),
-              Divider(
-                thickness: 2,
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 25, bottom: 15),
-                      child: Text(
-                        'Lihat lainnya',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    CardInfo(
-                      image: 'tomat.png',
-                      title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-                      kategori: 'Penyakit',
-                    ),
-                    CardInfo(
-                      image: 'tomat.png',
-                      title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-                      kategori: 'Penyakit',
-                    ),
-                    CardInfo(
-                      image: 'tomat.png',
-                      title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-                      kategori: 'Penyakit',
-                    ),
-                  ],
-                ),
-              )
+              // SizedBox(
+              //   height: 33,
+              // ),
+              // Divider(
+              //   thickness: 2,
+              // ),
+              // Container(
+              //   padding: EdgeInsets.symmetric(
+              //     horizontal: 20,
+              //   ),
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Container(
+              //         padding: EdgeInsets.only(top: 25, bottom: 15),
+              //         child: Text(
+              //           'Lihat lainnya',
+              //           style: TextStyle(
+              //             color: Colors.black,
+              //             fontSize: 14,
+              //             fontFamily: 'Inter',
+              //             fontWeight: FontWeight.w600,
+              //           ),
+              //         ),
+              //       ),
+              //       // Informasi(),
+              //       // CardInfo(
+              //       //   image: 'tomat.png',
+              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
+              //       //   kategori: 'Penyakit',
+              //       // ),
+              //       // CardInfo(
+              //       //   image: 'tomat.png',
+              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
+              //       //   kategori: 'Penyakit',
+              //       // ),
+              //       // CardInfo(
+              //       //   image: 'tomat.png',
+              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
+              //       //   kategori: 'Penyakit',
+              //       // ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
         ),

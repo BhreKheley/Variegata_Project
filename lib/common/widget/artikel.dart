@@ -48,7 +48,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                           alignment: Alignment.topLeft,
                           child: Container(
                             width: 194,
-                            height: 104,
+                            height: 101,
                             child: Stack(
                               children: [
                                 Positioned.fill(

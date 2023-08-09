@@ -1,16 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:variegata_project/pages/budidaya/Example_Hama.dart';
 import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
 import 'package:variegata_project/pages/budidaya/hama_penyakit_tab.dart';
 
+import 'Example_budidaya.dart';
 import 'budidaya_page.dart';
 
-class DetailBudidaya extends StatefulWidget {
+class DetailPlant extends StatefulWidget {
+
+  final dynamic product;
+  DetailPlant({required this.product});
+
   @override
-  _DetailBudidayaState createState() => _DetailBudidayaState();
+  _DetailPlantState createState() => _DetailPlantState();
 }
 
-class _DetailBudidayaState extends State<DetailBudidaya>
+class _DetailPlantState extends State<DetailPlant>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> tabs = [
@@ -40,7 +46,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color:
-                isActive! ? const Color(0xFF94AF9F) : const Color(0xFFDADADA),
+            isActive! ? const Color(0xFF94AF9F) : const Color(0xFFDADADA),
           ),
         ),
       ),
@@ -58,7 +64,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    BudidayaPage(), // Ganti dengan halaman berikutnya
+                    Budidaya(), // Ganti dengan halaman berikutnya
               ),
             );
           },
@@ -66,8 +72,8 @@ class _DetailBudidayaState extends State<DetailBudidaya>
         ),
         backgroundColor: const Color(0xFFF6F7FA),
         elevation: 0,
-        title: const Text(
-          'Cabai',
+        title: Text(
+          widget.product['name'],
           style: TextStyle(
             color: Colors.black,
           ),
@@ -81,13 +87,15 @@ class _DetailBudidayaState extends State<DetailBudidaya>
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  child: const Image(
-                    image: AssetImage('assets/img/bg-cabai.png'),
+                  child: CachedNetworkImage(
+                    imageUrl: 'https://variegata.my.id/storage/${widget.product['image_bg']}',
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(
-                  top: 100,
+                  top: 180,
                   left: 20,
                   child: Row(
                     children: [
@@ -99,16 +107,18 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                           borderRadius: BorderRadius.circular(50),
                           color: Colors.white,
                         ),
-                        child: const Image(
-                            image: AssetImage('assets/img/cabai.png')),
+                        child: CachedNetworkImage(
+                          imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
+                          placeholder: (context, url) => CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => Icon(Icons.error),),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
-                        child: const Column(
+                        child:  Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Cabai',
+                              widget.product['name'],
                               style: TextStyle(
                                   fontSize: 23, fontWeight: FontWeight.w600),
                             ),
@@ -116,7 +126,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
                               height: 5,
                             ),
                             Text(
-                              'Capsicum annum',
+                              widget.product['name'],
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -137,7 +147,7 @@ class _DetailBudidayaState extends State<DetailBudidaya>
           Container(
             height: 50,
             decoration:
-                BoxDecoration(color: const Color(0xFFF6F7FA), boxShadow: [
+            BoxDecoration(color: const Color(0xFFF6F7FA), boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5), // Warna shadow
                 spreadRadius: -4, // Jarak penyebaran shadow
