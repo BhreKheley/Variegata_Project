@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 
 class Cart extends StatefulWidget {
@@ -72,7 +73,6 @@ class _CartState extends State<Cart> {
           Padding(
             padding: const EdgeInsets.only(
               left: 7,
-              top: 10,
             ),
             child: Row(
               children: [
@@ -341,10 +341,9 @@ class _CartState extends State<Cart> {
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => KatalogShop(),
-                        ));
+                      context,
+                      MaterialPageRoute(builder: (context) => Alamat()),
+                    );
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -369,9 +368,9 @@ class _CartState extends State<Cart> {
                       ],
                     ),
                   ),
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ),
       ),
