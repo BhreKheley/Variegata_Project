@@ -10,6 +10,11 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  bool allCheckbox = false;
+  List<bool> CheckBoxList = [
+    for (var i = 0; i <= 3; i++) false,
+  ];
+
   bool? isChecked = false;
 
   int quantity = 1;
@@ -79,10 +84,11 @@ class _CartState extends State<Cart> {
                 Transform.scale(
                   scale: 1,
                   child: Checkbox(
-                    value: isChecked,
-                    onChanged: (val) {
+                    value: allCheckbox,
+                    onChanged: (value) {
                       setState(() {
-                        isChecked = val;
+                        allCheckbox = value!;
+                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value!;
                       });
                     },
                     activeColor: Color(0xFF94AF9F),
@@ -123,10 +129,21 @@ class _CartState extends State<Cart> {
                     Transform.scale(
                       scale: 1,
                       child: Checkbox(
-                        value: isChecked,
+                        value: CheckBoxList[index],
                         onChanged: (val) {
+                          print('asw');
+                          allCheckbox =
+                              CheckBoxList.every((value) => value == true);
+
                           setState(() {
-                            isChecked = val;
+                            CheckBoxList[index] = val!;
+                            if (val == false) {
+                              allCheckbox = false;
+                            } else if (CheckBoxList.every(
+                                ((value) => value == true))) {
+                              allCheckbox = false;
+                            }
+                            ;
                           });
                         },
                         activeColor: Color(0xFF94AF9F),
@@ -368,12 +385,43 @@ class _CartState extends State<Cart> {
                       ],
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
+//   onAllClicked(checkboxModal ckbItem) {
+//     final newValue = !ckbItem.value;
+//     setState(() {
+//       ckbItem.value = newValue;
+//       CheckBoxList.forEach((element) {
+//         element.value = newValue;
+//       });
+//     });
+//   }
+
+//   onItemClicked(checkboxModal ckbItem) {
+//     final newValue = !ckbItem.value;
+//     setState(() {
+//       ckbItem.value = newValue;
+
+//       if (!newValue) {
+//         AllChecked.value = false;
+//       } else {
+//         final allListChecked = CheckBoxList.every((element) => element.value);
+//         AllChecked.value = allListChecked;
+//       }
+//     });
+//   }
+// }
+
+// class checkboxModal {
+//   bool value;
+
+//   checkboxModal({this.value = false});
+// }

@@ -13,22 +13,22 @@ class _AlamatState extends State<Alamat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7FA),
+      backgroundColor: const Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Tambah Alamat",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: const Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color(0xFF33363F),
+          icon: const Icon(Icons.arrow_back),
+          color: const Color(0xFF33363F),
           onPressed: () {
             Navigator.pop(
               context,
               MaterialPageRoute(
-                builder: (context) => Cart(),
+                builder: (context) => const Cart(),
               ),
             );
           },
@@ -43,7 +43,7 @@ class _AlamatState extends State<Alamat> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Titik Lokasi",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -51,7 +51,7 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -72,7 +72,7 @@ class _AlamatState extends State<Alamat> {
                           Padding(
                             padding: const EdgeInsets.only(top: 25),
                             child: Container(
-                              child: Row(
+                              child: const Row(
                                 children: [
                                   Image(
                                     image: AssetImage("assets/img/pin.png"),
@@ -96,10 +96,10 @@ class _AlamatState extends State<Alamat> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
-                          Text(
+                          const Text(
                             "Pilih titik lokasi yang sesuai atau mendekati",
                             style: TextStyle(
                                 color: Color(0xFF505050),
@@ -108,7 +108,7 @@ class _AlamatState extends State<Alamat> {
                           ),
                         ],
                       ),
-                      Image(
+                      const Image(
                         image: AssetImage("assets/img/lokasi.png"),
                         width: 58,
                         height: 58,
@@ -121,10 +121,10 @@ class _AlamatState extends State<Alamat> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Alamat Lengkap",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -132,11 +132,11 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: TextField(
+                child: const TextField(
                   maxLines: 3,
                   decoration: InputDecoration(
                     hintText: 'Masukan alamat lengkap',
@@ -147,10 +147,10 @@ class _AlamatState extends State<Alamat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Nama Penerima",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -158,11 +158,11 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: TextField(
+                child: const TextField(
                   decoration: InputDecoration(
                     hintText: 'Masukan nama penerima paket',
                     border: OutlineInputBorder(
@@ -172,10 +172,10 @@ class _AlamatState extends State<Alamat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "No. Telepon penerima",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -183,11 +183,11 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: TextField(
+                child: const TextField(
                   decoration: InputDecoration(
                     hintText: 'Masukan nomor telpon penerima paket',
                     border: OutlineInputBorder(
@@ -197,10 +197,10 @@ class _AlamatState extends State<Alamat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Email",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -208,11 +208,11 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: TextField(
+                child: const TextField(
                   decoration: InputDecoration(
                     hintText: 'Masukan alamat email',
                     border: OutlineInputBorder(
@@ -222,10 +222,10 @@ class _AlamatState extends State<Alamat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text(
+              const Text(
                 "Catatan untuk Driver (Opsional)",
                 style: TextStyle(
                   color: Color(0xFF505050),
@@ -233,11 +233,11 @@ class _AlamatState extends State<Alamat> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                child: TextField(
+                child: const TextField(
                   maxLines: 3,
                   decoration: InputDecoration(
                     hintText: 'Isi patokan/petunjuk arah',
@@ -248,20 +248,20 @@ class _AlamatState extends State<Alamat> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 85,
               ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Checkout()),
+                    MaterialPageRoute(builder: (context) => const Checkout()),
                   );
                 },
                 child: Container(
                   width: 355,
                   height: 40,
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Simpan",
                       style: TextStyle(
@@ -272,7 +272,7 @@ class _AlamatState extends State<Alamat> {
                     ),
                   ),
                   decoration: BoxDecoration(
-                    color: Color(0xFF9ED098),
+                    color: const Color(0xFF9ED098),
                     borderRadius: BorderRadius.circular(3),
                   ),
                 ),
