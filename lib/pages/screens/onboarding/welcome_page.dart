@@ -11,6 +11,7 @@ class WelcomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
+            // ignore: sized_box_for_whitespace
             Container(
                 padding: EdgeInsets.zero,
                 width: 400,

@@ -157,10 +157,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               Divider(
-                thickness: 4,
+                thickness: 3.5,
+                color: Color(0xFFEBEBEB),
               ),
               SizedBox(
-                height: 20,
+                height: 25,
               ),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
@@ -169,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Pusat Akun",
+                      "Bantuan dan Dukungan",
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -178,14 +179,31 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     Cardds(
                       'help.svg',
                       'Pusat Bantuan',
                     ),
                     Divider(
-                      thickness: 1.5,
+                      thickness: 1,
+                      color: Color(0xFFD9D9D9),
+                    ),
+                    Cardds(
+                      'security.svg',
+                      'Kebijakan Privasi',
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: Color(0xFFD9D9D9),
+                    ),
+                    Cardds(
+                      'security.svg',
+                      'Kebijakan Privasi',
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: Color(0xFFD9D9D9),
                     ),
                     Cardds(
                       'security.svg',
@@ -193,6 +211,13 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Divider(
+                thickness: 3.5,
+                color: Color(0xFFEBEBEB),
               ),
               SizedBox(
                 height: 30,
@@ -229,6 +254,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
+              SizedBox(height: 25,)
               // SizedBox(
               //   height: 34,
               // ),
@@ -396,7 +422,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget Cardds(String image, String title) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 13),
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/DetailContent.dart';
-import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
+import 'package:variegata_project/pages/catalog_shop/cart.dart';
+import 'package:variegata_project/pages/catalog_shop/checkout.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/informasi.dart';
-import 'package:variegata_project/pages/screens/Example_informasi.dart';
+import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
+import 'package:variegata_project/pages/profile_page.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 
 void main() {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: SplashScreen(),
+      home: Checkout(),
     );
   }
 }
