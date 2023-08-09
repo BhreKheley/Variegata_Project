@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
+
+import 'Example_Hama.dart';
 
 class DetailHamaPenyakit extends StatefulWidget {
-  DetailHamaPenyakit({Key? key}) : super(key: key);
+
+  final dynamic product;
+  DetailHamaPenyakit({required this.product});
 
   @override
   State<DetailHamaPenyakit> createState() => _DetailHamaPenyakitState();
@@ -20,7 +24,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
               context,
               MaterialPageRoute(
                 builder: (context) =>
-                    DetailBudidaya(), // Ganti dengan halaman berikutnya
+                    Hama(), // Ganti dengan halaman berikutnya
               ),
             );
           },
@@ -40,8 +44,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Kutu Daun',
+                        Text(widget.product['name'],
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 26,
@@ -65,7 +68,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                               width: 6,
                             ),
                             Text(
-                              "Hama",
+                                widget.product['tipe'],
                               style: TextStyle(
                                 color: Color(0xff7f7f7f),
                                 fontSize: 17,
@@ -77,17 +80,14 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 10,),
                     Container(
-                      margin: EdgeInsets.only(top: 25),
+                      height: 220,
                       width: 320,
-                      height: 181,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        image: DecorationImage(
-                          image: AssetImage('assets/img/hama.png'),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
+                        placeholder: (context, url) => CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),),
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 12),
@@ -137,16 +137,16 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           TextSpan(
                             text:
-                                ' adalah serangga kecil yang umumnya hidup di bagian atas atau bawah daun tanaman. Mereka menghisap sari-sari tanaman dan dapat menyebabkan kerusakan pada pertumbuhan dan kualitas tanaman. ',
+                            ' adalah serangga kecil yang umumnya hidup di bagian atas atau bawah daun tanaman. Mereka menghisap sari-sari tanaman dan dapat menyebabkan kerusakan pada pertumbuhan dan kualitas tanaman. ',
                           ),
                           TextSpan(
                             text:
-                                'Kutu daun biasanya berwarna hijau, kuning, atau hitam, dan dapat berkembang biak dengan cepat. ',
+                            'Kutu daun biasanya berwarna hijau, kuning, atau hitam, dan dapat berkembang biak dengan cepat. ',
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                           TextSpan(
                             text:
-                                'Mereka sering menjadi hama yang mengganggu pada tanaman, terutama pada tanaman sayuran seperti cabai. Kutu daun dapat ditangani dengan menggunakan metode pengendalian yang tepat, seperti penggunaan insektisida alami atau pestisida nabati, serta menjaga kebersihan dan kestabilan lingkungan tumbuhan.',
+                            'Mereka sering menjadi hama yang mengganggu pada tanaman, terutama pada tanaman sayuran seperti cabai. Kutu daun dapat ditangani dengan menggunakan metode pengendalian yang tepat, seperti penggunaan insektisida alami atau pestisida nabati, serta menjaga kebersihan dan kestabilan lingkungan tumbuhan.',
                           ),
                         ],
                       ),
@@ -157,7 +157,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                     Text(
                       'Gejala:',
                       style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                      TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
                     ),
                     RichText(
                       text: TextSpan(
@@ -190,7 +190,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                     Text(
                       'Info lebih lanjut',
                       style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+                      TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
                     ),
                     RichText(
                       text: TextSpan(
@@ -210,7 +210,7 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                           ),
                           TextSpan(
                               text:
-                                  '\u2022 Juga di temukan di: tomat, kubis, mentimun, stroberi, apel.\n')
+                              '\u2022 Juga di temukan di: tomat, kubis, mentimun, stroberi, apel.\n')
                         ],
                       ),
                     ),

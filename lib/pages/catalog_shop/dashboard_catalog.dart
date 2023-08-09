@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
+import 'package:variegata_project/pages/catalog_shop/Example_Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';

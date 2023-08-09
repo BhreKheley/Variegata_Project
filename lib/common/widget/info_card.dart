@@ -95,7 +95,7 @@ class CardInfo extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'Apr 04, 2092',
+                    'Apr 04, 2023   ',
                     style: TextStyle(
                       color: Color(0xFFBABABA),
                       fontSize: 10,

@@ -55,7 +55,7 @@ class Katalog extends StatelessWidget {
                                       child: GestureDetector(
                                         onTap: (){
                                           Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                                              DetailPage(product: (snapshot.data as dynamic)['data'][index],
+                                              DetailProduk(product: (snapshot.data as dynamic)['data'][index],
                                               )));
                                         },
                                         child: Column(
