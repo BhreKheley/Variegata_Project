@@ -40,7 +40,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
         //penanda page / dot indicator
         Padding(
-          padding: const EdgeInsets.only(top: 750),
+          padding: const EdgeInsets.only(top: 700),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

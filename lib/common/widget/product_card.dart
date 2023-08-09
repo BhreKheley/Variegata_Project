@@ -11,14 +11,6 @@ class ProductCard extends StatelessWidget {
       required this.price,
       super.key});
 
-  final String url = 'http://10.0.2.2:8000/api/produkbenihs';
-
-  Future getProducts() async {
-    var response = await http.get(Uri.parse(url));
-    print(json.decode(response.body));
-    return json.decode(response.body);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

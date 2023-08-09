@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class FeaturesPage extends StatelessWidget {
   const FeaturesPage({super.key});
@@ -17,11 +18,11 @@ class FeaturesPage extends StatelessWidget {
               child: Stack(
                 children: [
                   Positioned(
-                    left: 125,
-                    top: -25,
+                    left: 100,
+                    top: -20,
                     child: Container(
                       width: 400,
-                      height: 330,
+                      height: 410,
                       decoration: BoxDecoration(
                         color: Color(0xFFAEC2B6),
                         borderRadius: BorderRadius.circular(30),
@@ -29,16 +30,7 @@ class FeaturesPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 110,
-                    left: 120,
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      color: Color(0xFF94AF9F),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 130,
+                    bottom: 30,
                     left: 100,
                     child: Container(
                       width: 36,
@@ -48,28 +40,37 @@ class FeaturesPage extends StatelessWidget {
                   ),
                   Positioned(
                     bottom: 50,
-                    left: 160,
+                    left: 80,
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      color: Color(0xFF94AF9F),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 20,
+                    left: 100,
                     child: Image(
                       image: AssetImage('assets/img/onboarding/BudidayaMockup.png'),
                       width: 328,
-                      height: 621,
+                      height: 500,
                     ),
                   )
                 ],
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 145, top: 42),
+              padding: const EdgeInsets.only(right: 50, top: 10),
               child: Text(
-                "Budidaya Tanaman\ndengan Bijak!",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
+                "Budidaya tanaman dengan bijak!",
+                style: GoogleFonts.notoSerif(fontSize: 26, fontWeight: FontWeight.w600,),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 85, top: 16),
+              padding: const EdgeInsets.only(right: 100, top: 16),
               child: Text(
                 "Mengoptimalkan pengalaman anda\nserta mempermudah anda dalam\nberkebun dan merawat tanaman.",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             )
           ],
