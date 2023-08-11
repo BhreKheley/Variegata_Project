@@ -50,7 +50,9 @@ dependencies:
   flashy_tab_bar2: ^0.0.6
   curved_navigation_bar: ^1.0.3
   flutter_screenutil: ^5.8.4
+  cached_network_image: ^3.0.0
   motion_tab_bar_v2: ^0.3.0
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -10,6 +10,11 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
+  bool allCheckbox = false;
+  List<bool> CheckBoxList = [
+    for (var i = 0; i <= 3; i++) false,
+  ];
+
   bool? isChecked = false;
 
   int quantity = 1;
@@ -61,51 +66,51 @@ class _CartState extends State<Cart> {
               top: 20,
             ),
             child: Text(
-              "Pesanan Anda",
+              'Pesanan Anda',
               style: TextStyle(
-                  color: Color(0xFFADADAD),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w400),
+                color: Color(0xFFADADAD),
+                fontSize: 12,
+                fontFamily: 'Inter',
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
               left: 7,
             ),
-            child: Container(
-              child: Row(
-                children: [
-                  Transform.scale(
-                    scale: 1,
-                    child: Checkbox(
-                      value: isChecked,
-                      onChanged: (val) {
-                        setState(() {
-                          isChecked = val;
-                        });
-                      },
-                      activeColor: Color(0xFF94AF9F),
-                    ),
+            child: Row(
+              children: [
+                Transform.scale(
+                  scale: 1,
+                  child: Checkbox(
+                    value: allCheckbox,
+                    onChanged: (value) {
+                      setState(() {
+                        allCheckbox = value!;
+                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value!;
+                      });
+                    },
+                    activeColor: Color(0xFF94AF9F),
                   ),
-                  SizedBox(
-                    width: 5,
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  'Pilih Semua',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
                   ),
-                  Text(
-                    "Pilih Semua",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          SizedBox(
-            height: 5,
-          ),
           Divider(
-            thickness: 6,
+            thickness: 3,
             color: Color(0xFFEBEBEB),
           ),
           ListView.builder(
@@ -116,28 +121,36 @@ class _CartState extends State<Cart> {
               return Padding(
                 padding: const EdgeInsets.only(
                   left: 7,
-                  top: 15,
-                  right: 20,
+                  top: 10,
+                  right: 10,
                 ),
                 child: Row(
                   children: [
                     Transform.scale(
                       scale: 1,
                       child: Checkbox(
-                        value: isChecked,
+                        value: CheckBoxList[index],
                         onChanged: (val) {
+                          print('asw');
+                          allCheckbox =
+                              CheckBoxList.every((value) => value == true);
+
                           setState(() {
-                            isChecked = val;
+                            CheckBoxList[index] = val!;
+                            if (val == false) {
+                              allCheckbox = false;
+                            } else if (CheckBoxList.every(
+                                ((value) => value == true))) {
+                              allCheckbox = false;
+                            }
+                            ;
                           });
                         },
-                        activeColor: Colors.green,
+                        activeColor: Color(0xFF94AF9F),
                       ),
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
                     Container(
-                      width: 308,
+                      width: 289,
                       height: 107,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -147,9 +160,11 @@ class _CartState extends State<Cart> {
                         padding: const EdgeInsets.only(
                           left: 9,
                           top: 9,
-                          right: 9,
+                          bottom: 9,
+                          right: 15,
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClipRRect(
@@ -161,102 +176,99 @@ class _CartState extends State<Cart> {
                                 height: 89,
                               ),
                             ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Tanaman",
-                                        style: TextStyle(
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 5),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 168,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          'Tanaman',
+                                          style: TextStyle(
                                             color: Color(0xFFADADAD),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      SizedBox(
-                                        width: 129,
-                                      ),
-                                      Icon(
-                                        Icons.delete,
-                                        size: 17,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Container(
-                                  width: 160,
-                                  child: Text(
-                                    "Tanaman Philodendron Monstera Deliciosa",
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
+                                            fontSize: 10,
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        Icon(
+                                          Icons.delete,
+                                          size: 15,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 7,
-                                ),
-                                Container(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          decrement();
-                                        },
-                                        child: Icon(
-                                          Icons.remove_circle_outline,
-                                          size: 27,
-                                          color: Colors.green,
-                                        ),
+                                  Container(
+                                    width: 160,
+                                    child: Text(
+                                      'Tanaman Philodendron\nMonstera Deliciosa',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 12,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
                                       ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      Text(
-                                        '$quantity',
-                                        style: TextStyle(fontSize: 14),
-                                      ),
-                                      SizedBox(
-                                        width: 7,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          increment();
-                                        },
-                                        child: Icon(
-                                          Icons.add_circle_outline,
-                                          size: 27,
-                                          color: Colors.green,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 44,
-                                      ),
-                                      Text(
-                                        "Rp150.000",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      )
-                                    ],
+                                    ),
                                   ),
-                                )
-                              ],
+                                  Container(
+                                    width: 169,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () {
+                                                decrement();
+                                              },
+                                              child: Icon(
+                                                Icons.remove_circle_outline,
+                                                size: 17,
+                                                color: Color(0xFF94AF9F),
+                                              ),
+                                            ),
+                                            Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 5),
+                                              child: Text(
+                                                '$quantity',
+                                                style: TextStyle(fontSize: 14),
+                                              ),
+                                            ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                decrement();
+                                              },
+                                              child: Icon(
+                                                Icons.add_circle_outline,
+                                                size: 17,
+                                                color: Color(0xFF94AF9F),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          "Rp150.000",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -271,44 +283,79 @@ class _CartState extends State<Cart> {
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
-        width: 395,
-        height: 90,
+        width: MediaQuery.of(context).size.width,
+        height: 159,
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            top: 20,
-            right: 20,
-            bottom: 20,
-          ),
-          child: Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Total :",
-                      style: TextStyle(
-                        color: Color(0xFF505050),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      "Rp150.000",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ],
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Pesanan Anda',
+                style: TextStyle(
+                  color: Color(0xFF4F4F4F),
+                  fontSize: 12,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w600,
                 ),
-                GestureDetector(
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Pengiriman',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "Rp3.000",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Total",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        "Rp150.000",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14,
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Center(
+                child: InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
@@ -316,29 +363,65 @@ class _CartState extends State<Cart> {
                     );
                   },
                   child: Container(
-                    width: 136,
+                    width: MediaQuery.of(context).size.width,
                     height: 40,
-                    child: Center(
-                      child: Text(
-                        "Checkout",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 21,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF9ED098),
-                      borderRadius: BorderRadius.circular(6),
+                      borderRadius: BorderRadius.circular(33),
+                      color: Color(0xffa3bfae),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Checkout",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
+
+//   onAllClicked(checkboxModal ckbItem) {
+//     final newValue = !ckbItem.value;
+//     setState(() {
+//       ckbItem.value = newValue;
+//       CheckBoxList.forEach((element) {
+//         element.value = newValue;
+//       });
+//     });
+//   }
+
+//   onItemClicked(checkboxModal ckbItem) {
+//     final newValue = !ckbItem.value;
+//     setState(() {
+//       ckbItem.value = newValue;
+
+//       if (!newValue) {
+//         AllChecked.value = false;
+//       } else {
+//         final allListChecked = CheckBoxList.every((element) => element.value);
+//         AllChecked.value = allListChecked;
+//       }
+//     });
+//   }
+// }
+
+// class checkboxModal {
+//   bool value;
+
+//   checkboxModal({this.value = false});
+// }

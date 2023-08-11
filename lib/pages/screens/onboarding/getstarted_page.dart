@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -38,7 +39,7 @@ class GetStartedPage extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    top: 60,
+                    top: 40,
                     right: 30,
                     child: Container(
                       width: 62,
@@ -84,17 +85,17 @@ class GetStartedPage extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 130, top: 42),
+              padding: const EdgeInsets.only(right: 70, top: 10),
               child: Text(
                 "Lengkapi Kebutuhan\nBerkebunmu",
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
+                style: GoogleFonts.notoSerif(fontSize: 26, fontWeight: FontWeight.w600,),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 70, top: 16),
+              padding: const EdgeInsets.only(right: 90, top: 16),
               child: Text(
                 "Jelajahi Katalog dengan Ribuan Jenis\nkebutuhan yang tersedia dalam satu\naplikasi yang memudahkan Anda\nmemilih dan membeli produk-produk\nberkualitas tinggi.",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
             )
           ],
