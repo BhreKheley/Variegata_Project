@@ -10,11 +10,9 @@ class Hama extends StatefulWidget {
 
   @override
   State<Hama> createState() => _HamaState();
-
 }
 
 class _HamaState extends State<Hama> {
-
   String apiUrl = 'https://variegata.my.id/api/hamas'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
@@ -45,18 +43,19 @@ class _HamaState extends State<Hama> {
               itemBuilder: (BuildContext context, int index) {
                 final product = snapshot.data![index];
                 return Container(
-                  padding: EdgeInsets.symmetric(vertical: 10),
+                  padding: EdgeInsets.only(left: 10, right: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Row(
                         children: [
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => DetailHamaPenyakit(product: product),
+                                  builder: (context) =>
+                                      DetailHamaPenyakit(product: product),
                                 ),
                               );
                             },
@@ -74,10 +73,17 @@ class _HamaState extends State<Hama> {
                                   ),
                                 ],
                               ),
-                              child: CachedNetworkImage(
-                                imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                                placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Icon(Icons.error),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://variegata.my.id/storage/${product['image']}',
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
                               ),
                             ),
                           ),
@@ -93,7 +99,8 @@ class _HamaState extends State<Hama> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(product['tipe'],
+                              Text(
+                                product['tipe'],
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 16,
@@ -104,7 +111,8 @@ class _HamaState extends State<Hama> {
                               SizedBox(
                                 height: 8,
                               ),
-                              Text(product['name'],
+                              Text(
+                                product['name'],
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
@@ -120,7 +128,8 @@ class _HamaState extends State<Hama> {
                                     width: 18,
                                     height: 18,
                                     child: Image(
-                                      image: AssetImage('assets/img/hama_icon.png'),
+                                      image: AssetImage(
+                                          'assets/img/hama_icon.png'),
                                     ),
                                   ),
                                   SizedBox(

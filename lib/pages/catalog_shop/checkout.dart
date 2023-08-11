@@ -21,8 +21,13 @@ class _CheckoutState extends State<Checkout> {
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
         title: Text(
-          "Checkout",
-          style: TextStyle(color: Color(0xFF33363F)),
+          'Checkout',
+          style: TextStyle(
+            color: Color(0xFF4F4F4F),
+            fontSize: 16,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w600,
+          ),
         ),
         backgroundColor: Color(0xFFF6F7FA),
         elevation: 1,
@@ -52,10 +57,11 @@ class _CheckoutState extends State<Checkout> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "Alamat Pengiriman",
+                    'Alamat Pengiriman',
                     style: TextStyle(
-                      color: Color(0xFF505050),
-                      fontSize: 17,
+                      color: Color(0xFF4F4F4F),
+                      fontSize: 12,
+                      fontFamily: 'Inter',
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -68,10 +74,11 @@ class _CheckoutState extends State<Checkout> {
                     },
                     child: Container(
                       child: Text(
-                        "Ganti Alamat",
+                        'Ganti Alamat',
                         style: TextStyle(
                           color: Color(0xFF94AF9F),
-                          fontSize: 15,
+                          fontSize: 10,
+                          fontFamily: 'Inter',
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -83,8 +90,8 @@ class _CheckoutState extends State<Checkout> {
                 height: 10,
               ),
               Container(
-                width: 355,
-                height: 118,
+                width: MediaQuery.of(context).size.width,
+                height: 98,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.white,
@@ -107,10 +114,11 @@ class _CheckoutState extends State<Checkout> {
                               child: Row(
                                 children: [
                                   Text(
-                                    "Nama",
+                                    'Nama',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 12,
+                                      fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -119,10 +127,11 @@ class _CheckoutState extends State<Checkout> {
                                   ),
                                   Center(
                                     child: Text(
-                                      "+6283877176448",
+                                      '+6283877176448',
                                       style: TextStyle(
-                                        color: Color(0xFF505050),
-                                        fontSize: 17,
+                                        color: Color(0xFF4F4F4F),
+                                        fontSize: 12,
+                                        fontFamily: 'Inter',
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -141,17 +150,19 @@ class _CheckoutState extends State<Checkout> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                  color: Color(0xFF505050),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w400),
+                                color: Color(0xFF4F4F4F),
+                                fontSize: 12,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
                           ),
                         ],
                       ),
                       Image(
                         image: AssetImage("assets/img/lokasi.png"),
-                        width: 58,
-                        height: 58,
+                        width: 38,
+                        height: 38,
                       )
                     ],
                   ),
@@ -161,10 +172,11 @@ class _CheckoutState extends State<Checkout> {
                 height: 30,
               ),
               Text(
-                "Pesanan Anda",
+                'Pesanan Anda ',
                 style: TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 17,
+                  color: Color(0xFF4F4F4F),
+                  fontSize: 12,
+                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -172,8 +184,8 @@ class _CheckoutState extends State<Checkout> {
                 height: 10,
               ),
               Container(
-                width: 355,
-                height: 197,
+                width: MediaQuery.of(context).size.width,
+                height: 162,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(3),
@@ -189,14 +201,14 @@ class _CheckoutState extends State<Checkout> {
                             SvgPicture.asset(
                               "assets/img/vector-checkout.svg",
                               width: 199,
-                              height: 53,
+                              height: 43,
                             ),
                             Positioned(
                               left: 15,
                               top: 9,
                               child: Container(
-                                width: 32,
-                                height: 32,
+                                width: 24,
+                                height: 24,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
@@ -204,8 +216,8 @@ class _CheckoutState extends State<Checkout> {
                                 child: ClipOval(
                                   child: Image(
                                     image: AssetImage("assets/img/logo.png"),
-                                    width: 29,
-                                    height: 29,
+                                    width: 24,
+                                    height: 24,
                                   ),
                                 ),
                               ),
@@ -216,10 +228,11 @@ class _CheckoutState extends State<Checkout> {
                               child: Column(
                                 children: [
                                   Text(
-                                    "Variegata",
+                                    'Variegata',
                                     style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 17,
+                                      fontSize: 12,
+                                      fontFamily: 'Inter',
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -227,10 +240,11 @@ class _CheckoutState extends State<Checkout> {
                                     height: 3,
                                   ),
                                   Text(
-                                    "Kab. Kudus",
+                                    'Kab. Kudus',
                                     style: TextStyle(
-                                      color: Color(0xFF505050),
-                                      fontSize: 14,
+                                      color: Color(0xFF4F4F4F),
+                                      fontSize: 9,
+                                      fontFamily: 'Inter',
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
@@ -256,6 +270,7 @@ class _CheckoutState extends State<Checkout> {
                             child: Image(
                               image: AssetImage(
                                   "assets/img/produk-philodendron.png"),
+                              fit: BoxFit.cover,
                               width: 88,
                               height: 89,
                             ),
@@ -265,50 +280,53 @@ class _CheckoutState extends State<Checkout> {
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Tanaman",
+                                'Tanaman',
                                 style: TextStyle(
-                                    color: Color(0xFFADADAD),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
+                                  color: Color(0xFFADADAD),
+                                  fontSize: 10,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                               SizedBox(
                                 height: 3,
                               ),
-                              Container(
-                                width: 185,
-                                child: Text(
-                                  "Tanaman Philodendron Monstera Deliciosa",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                              Text(
+                                'Tanaman Philodendron\nMonstera Deliciosa',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               Text(
-                                "1 Barang",
+                                '1 Barang',
                                 style: TextStyle(
-                                    color: Color(0xFFADADAD),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
+                                  color: Color(0xFFADADAD),
+                                  fontSize: 9,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               Text(
-                                "Rp150.000",
+                                'Rp150.000',
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600),
-                              ),
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
                             ],
                           )
                         ],
@@ -321,10 +339,11 @@ class _CheckoutState extends State<Checkout> {
                 height: 30,
               ),
               Text(
-                "Pilihan Pengiriman",
+                'Pilihan Pengiriman',
                 style: TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 17,
+                  color: Color(0xFF4F4F4F),
+                  fontSize: 12,
+                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -334,8 +353,7 @@ class _CheckoutState extends State<Checkout> {
               GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-                    
-isScrollControlled: true,                    
+                      isScrollControlled: true,
                       context: context,
                       isDismissible: false,
                       shape: RoundedRectangleBorder(
@@ -382,10 +400,12 @@ isScrollControlled: true,
                               ),
                               Center(
                                 child: Text(
-                                  "Pilih Waktu Pengiriman ",
+                                  'Pilih Waktu Pengiriman',
+                                  textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    color: Color(0xFF505050),
-                                    fontSize: 19,
+                                    color: Color(0xFF4F4F4F),
+                                    fontSize: 16,
+                                    fontFamily: 'Inter',
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -402,7 +422,9 @@ isScrollControlled: true,
                                 height: 20,
                               ),
                               OngkirContent(),
-                              SizedBox(height: 20,),
+                              SizedBox(
+                                height: 20,
+                              ),
                               GestureDetector(
                                 onTap: () {
                                   Navigator.push(
@@ -412,7 +434,8 @@ isScrollControlled: true,
                                   );
                                 },
                                 child: Container(
-                                  width: 355,
+                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  width: MediaQuery.of(context).size.width,
                                   height: 40,
                                   child: Center(
                                     child: Text(
@@ -430,14 +453,16 @@ isScrollControlled: true,
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 20,)
+                              SizedBox(
+                                height: 20,
+                              )
                             ],
                           ),
                         );
                       }));
                 },
                 child: Container(
-                  width: 355,
+                  width: MediaQuery.of(context).size.width,
                   height: 49,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
@@ -487,7 +512,7 @@ isScrollControlled: true,
                 height: 10,
               ),
               Container(
-                width: 355,
+                width: MediaQuery.of(context).size.width,
                 height: 178,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -671,8 +696,8 @@ isScrollControlled: true,
 
   Widget OngkirContent() {
     return Container(
-      width: 355,
-      height: 97,
+      width: MediaQuery.of(context).size.width,
+      height: 80,
       decoration: BoxDecoration(
         border: Border.all(color: Color(0xFFD9D9D9)),
         borderRadius: BorderRadius.circular(2),
@@ -689,10 +714,11 @@ isScrollControlled: true,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Variegata Reguler",
+                  'Variegata Reguler',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 17,
+                    fontSize: 12,
+                    fontFamily: 'Inter',
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -700,33 +726,40 @@ isScrollControlled: true,
                   height: 10,
                 ),
                 Text(
-                  "Rp12.000 - Rp15.000",
+                  'Rp12.000 - Rp15.000',
                   style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 15,
+                    color: Color(0xFF4F4F4F),
+                    fontSize: 10,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
-                  "Estimasi tiba 10 - 14 Aug",
+                  'Estimasi tiba 10 - 14 Aug',
                   style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 15,
+                    color: Color(0xFF4F4F4F),
+                    fontSize: 10,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
             Radio(
-                activeColor: Color(0xFF91C6A6),
-                value: options[1],
-                groupValue: currentOption,
-                onChanged: (value) {
-                  setState(() {
+              activeColor: Color(0xFF91C6A6),
+              value: options[1],
+              groupValue: currentOption,
+              onChanged: (value) {
+                setState(
+                  () {
                     currentOption = value.toString();
-                  });
-                }),
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

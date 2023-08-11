@@ -14,8 +14,8 @@ class ShopTanaman extends StatefulWidget {
 }
 
 class _ShopTanamanState extends State<ShopTanaman> {
-
-  String apiUrl = 'https://variegata.my.id/api/products/category/1'; // Ganti dengan URL Anda
+  String apiUrl =
+      'https://variegata.my.id/api/products/category/1'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -60,147 +60,153 @@ class _ShopTanamanState extends State<ShopTanaman> {
             return Text('No data available');
           } else {
             return GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Jumlah kolom dalam grid
-                  mainAxisSpacing: 20.0, // Jarak antara baris
-                  crossAxisSpacing: 20.0, // Jarak antara kolom
-                  childAspectRatio: 0.62, // Rasio lebar-tinggi item dalam grid
-                ),
-                padding: EdgeInsets.all(20.0), // Padding di sekitar grid
-                // physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: snapshot.data!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final product = snapshot.data![index];
-                  return Container(
-                    width: 140,
-                    height: 231,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: -4,
-                          blurRadius: 14,
-                          offset: Offset(0, 2),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Jumlah kolom dalam grid
+                mainAxisSpacing: 20.0, // Jarak antara baris
+                crossAxisSpacing: 20.0, // Jarak antara kolom
+                childAspectRatio: 0.62, // Rasio lebar-tinggi item dalam grid
+              ),
+              padding: EdgeInsets.all(20.0), // Padding di sekitar grid
+              // physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: snapshot.data!.length,
+              itemBuilder: (BuildContext context, int index) {
+                final product = snapshot.data![index];
+                return Container(
+                  width: 140,
+                  height: 231,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: -4,
+                        blurRadius: 14,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailProduk(product: product),
                         ),
-                      ],
-                    ),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailProduk(product: product),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(5),
                           ),
-                        );
-                      },
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(5),
-                            ),
-                            child: CachedNetworkImage(
-                              imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                              placeholder: (context, url) => CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
-                              alignment: Alignment.topCenter,
-                              fit: BoxFit.cover,
-                              width: double.infinity,
-                              height: 110,
-                            ),
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                'https://variegata.my.id/storage/${product['image']}',
+                            placeholder: (context, url) =>
+                                CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                            alignment: Alignment.topCenter,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 110,
                           ),
-                          SizedBox(
-                            height: 9,
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 9),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(product['name'],
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 9,
-                                ),
-                                Text('\Rp.${product['price']}',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 9,
-                                ),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      color: Color(0xFFBBD6B8),
-                                      size: 15,
-                                    ),
-                                    SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      'Kudus',
-                                      style: TextStyle(
-                                          color: Color(0xFFADADAD),
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 2),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Color(0xFFFFC400),
-                                      size: 10,
-                                    ),
-                                    SizedBox(
-                                      width: 2,
-                                    ),
-                                    Text(
-                                      '4.9 | Belum Terjual',
-                                      style: TextStyle(
-                                          color: Color(0xFFADADAD),
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                        ),
+                        SizedBox(
+                          height: 9,
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 9),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Icon(
-                                Icons.more_horiz,
-                                color: Color(0xFFADADAD),
-                                size: 20,
+                              Text(
+                                product['name'],
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
                               SizedBox(
-                                width: 5,
+                                height: 9,
+                              ),
+                              Text(
+                                '\Rp.${product['price']}',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 9,
+                              ),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Color(0xFFBBD6B8),
+                                    size: 15,
+                                  ),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Text(
+                                    'Kudus',
+                                    style: TextStyle(
+                                        color: Color(0xFFADADAD),
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 2),
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Color(0xFFFFC400),
+                                    size: 10,
+                                  ),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Text(
+                                    '4.9 | Belum Terjual',
+                                    style: TextStyle(
+                                        color: Color(0xFFADADAD),
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
-                      ),
+                        ),
+                        Spacer(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.more_horiz,
+                              color: Color(0xFFADADAD),
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  );
-                });
+                  ),
+                );
+              },
+            );
           }
         },
       ),

@@ -79,7 +79,6 @@ flutter:
     - assets/img/dashboard/
     - assets/img/cuaca/
     - assets/img/onboarding/
-    - assets/img/onboarding/
     - assets/img/budidaya/
 
   # To add assets to your application, add an assets section, like this:

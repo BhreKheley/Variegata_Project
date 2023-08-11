@@ -44,7 +44,7 @@ class _KatalogShopState extends State<KatalogShop> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_basket_outlined),
+            icon: Icon(Icons.shopping_cart_outlined),
             color: Color(0xFF33363F),
             onPressed: () {
               Navigator.push(
@@ -146,57 +146,33 @@ class _KatalogShopState extends State<KatalogShop> {
                   height: 35,
                 ),
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   width: MediaQuery.of(context).size.width,
                   height: 211,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/img/bg-katalog.png"),
+                      image: AssetImage("assets/img/promo.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 25),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 90,
-                              child: Text(
-                                'Berkebun Lebih Praktis',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Image(
-                                width: 147,
-                                height: 114,
-                                image: AssetImage('assets/img/ktg.png'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Products(
+                          'pestisida.png',
+                          'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
+                          'Rp50.000',
                         ),
                       ),
-                      Products(
-                        'pestisida.png',
-                        'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                        'Rp50.000',
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Products(
-                        'pestisida.png',
-                        'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                        'Rp50.000',
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Products(
+                          'pestisida.png',
+                          'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
+                          'Rp50.000',
+                        ),
                       ),
 
                       // ProductCard(
@@ -222,8 +198,8 @@ class _KatalogShopState extends State<KatalogShop> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             image: DecorationImage(
-                              image: AssetImage('assets/img/bg-ktg1.png'),
-                            ),
+                                image: AssetImage('assets/img/bg-ktg1.png'),
+                                fit: BoxFit.cover),
                           ),
                           child: Container(
                             padding: EdgeInsets.only(left: 20),
@@ -292,6 +268,7 @@ class _KatalogShopState extends State<KatalogShop> {
                             borderRadius: BorderRadius.circular(5),
                             image: DecorationImage(
                               image: AssetImage('assets/img/bg-ktg1.png'),
+                              fit: BoxFit.cover,
                             ),
                           ),
                           child: Container(
@@ -323,7 +300,7 @@ class _KatalogShopState extends State<KatalogShop> {
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Products(
                               'pestisida.png',
