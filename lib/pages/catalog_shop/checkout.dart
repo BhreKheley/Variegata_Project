@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/pages/catalog_shop/alamat.dart';
@@ -480,17 +482,18 @@ class _CheckoutState extends State<Checkout> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Klik untuk pilih",
+                          'Klik untuk pilih',
                           style: TextStyle(
-                            color: Color(0xFF505050),
-                            fontSize: 17,
+                            color: Color(0xFF4F4F4F),
+                            fontSize: 12,
+                            fontFamily: 'Inter',
                             fontWeight: FontWeight.w400,
                           ),
                         ),
                         Icon(
                           Icons.keyboard_arrow_down_sharp,
                           color: Color(0xFF94AF9F),
-                          size: 34,
+                          size: 25,
                         ),
                       ],
                     ),
@@ -501,10 +504,11 @@ class _CheckoutState extends State<Checkout> {
                 height: 30,
               ),
               Text(
-                "Ringkasan Pembayaran",
+                'Ringkasan Pembayaran',
                 style: TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 17,
+                  color: Color(0xFF4F4F4F),
+                  fontSize: 12,
+                  fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -512,109 +516,122 @@ class _CheckoutState extends State<Checkout> {
                 height: 10,
               ),
               Container(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 width: MediaQuery.of(context).size.width,
-                height: 178,
+                height: 134,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(3),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 20,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ringkasan Pembayaran",
-                        style: TextStyle(
-                          color: Color(0xFF505050),
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 2.5),
+                          child: Text(
+                            'Ringkasan Pembayaran',
+                            style: TextStyle(
+                              color: Color(0xFF4F4F4F),
+                              fontSize: 12,
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Subtotal  Produk (1 Item)",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 2.5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Subtotal produk (1 Item)',
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 11,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Text(
+                                'Rp150.000',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 11,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Rp150.000",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      color: Color(0xFFF1F1F1),
+                      thickness: 1,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 2.5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Subtotal Pembayaran',
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 12,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              Text(
+                                'Rp150.000',
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 11,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Divider(
-                        color: Color(0xFFF1F1F1),
-                        thickness: 1,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Ringkasan Pembayaran",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 2.5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Biaya Layanan',
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 11,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Text(
+                                'Rp2.000',
+                                style: TextStyle(
+                                  color: Color(0xFF4F4F4F),
+                                  fontSize: 11,
+                                  fontFamily: 'Inter',
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            "Rp150.000",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Biaya Layanan",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "Rp2.000",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               )
             ],
@@ -623,38 +640,33 @@ class _CheckoutState extends State<Checkout> {
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
-        width: 395,
-        height: 86,
+        width: MediaQuery.of(context).size.width,
+        height: 80,
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            top: 20,
-            right: 20,
-            bottom: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Total :",
+                      'Total :',
                       style: TextStyle(
-                        color: Color(0xFF505050),
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400,
+                        color: Color(0xFF4F4F4F),
+                        fontSize: 12,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
                     Text(
-                      "Rp150.000",
+                      'Rp152.000',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 21,
+                        fontSize: 16,
+                        fontFamily: 'Inter',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -675,7 +687,8 @@ class _CheckoutState extends State<Checkout> {
                         "Checkout",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 21,
+                          fontSize: 17,
+                          fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -696,71 +709,74 @@ class _CheckoutState extends State<Checkout> {
 
   Widget OngkirContent() {
     return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 80,
-      decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFFD9D9D9)),
-        borderRadius: BorderRadius.circular(2),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 15,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: 80,
+        decoration: BoxDecoration(
+          border: Border.all(color: Color(0xFFD9D9D9)),
+          borderRadius: BorderRadius.circular(2),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Variegata Reguler',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Variegata Reguler',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 12,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Rp12.000 - Rp15.000',
-                  style: TextStyle(
-                    color: Color(0xFF4F4F4F),
-                    fontSize: 10,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
+                  SizedBox(
+                    height: 10,
                   ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  'Estimasi tiba 10 - 14 Aug',
-                  style: TextStyle(
-                    color: Color(0xFF4F4F4F),
-                    fontSize: 10,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w400,
+                  Text(
+                    'Rp12.000 - Rp15.000',
+                    style: TextStyle(
+                      color: Color(0xFF4F4F4F),
+                      fontSize: 10,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-              ],
-            ),
-            Radio(
-              activeColor: Color(0xFF91C6A6),
-              value: options[1],
-              groupValue: currentOption,
-              onChanged: (value) {
-                setState(
-                  () {
-                    currentOption = value.toString();
-                  },
-                );
-              },
-            ),
-          ],
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Estimasi tiba 10 - 14 Aug',
+                    style: TextStyle(
+                      color: Color(0xFF4F4F4F),
+                      fontSize: 10,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              Radio(
+                activeColor: Color(0xFF91C6A6),
+                value: options[1],
+                groupValue: currentOption,
+                onChanged: (value) {
+                  setState(
+                    () {
+                      currentOption = value.toString();
+                    },
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

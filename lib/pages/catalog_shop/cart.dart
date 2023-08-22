@@ -88,7 +88,7 @@ class _CartState extends State<Cart> {
                     onChanged: (value) {
                       setState(() {
                         allCheckbox = value!;
-                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value!;
+                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value;
                       });
                     },
                     activeColor: Color(0xFF94AF9F),

@@ -14,8 +14,8 @@ class ShopPupuk extends StatefulWidget {
 }
 
 class _ShopPupukState extends State<ShopPupuk> {
-
-  String apiUrl = 'https://variegata.my.id/api/products/category/3'; // Ganti dengan URL Anda
+  String apiUrl =
+      'https://variegata.my.id/api/products/category/3'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -53,7 +53,9 @@ class _ShopPupukState extends State<ShopPupuk> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
@@ -92,7 +94,8 @@ class _ShopPupukState extends State<ShopPupuk> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailProduk(product: product),
+                            builder: (context) =>
+                                DetailProduk(product: product),
                           ),
                         );
                       },
@@ -103,9 +106,12 @@ class _ShopPupukState extends State<ShopPupuk> {
                               top: Radius.circular(5),
                             ),
                             child: CachedNetworkImage(
-                              imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                              placeholder: (context, url) => CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => Icon(Icons.error),
+                              imageUrl:
+                                  'https://variegata.my.id/storage/${product['image']}',
+                              placeholder: (context, url) =>
+                                  CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  Icon(Icons.error),
                               alignment: Alignment.topCenter,
                               fit: BoxFit.cover,
                               width: double.infinity,
@@ -120,7 +126,8 @@ class _ShopPupukState extends State<ShopPupuk> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(product['name'],
+                                Text(
+                                  product['name'],
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style: TextStyle(
@@ -131,7 +138,8 @@ class _ShopPupukState extends State<ShopPupuk> {
                                 SizedBox(
                                   height: 9,
                                 ),
-                                Text('\Rp.${product['price']}',
+                                Text(
+                                  '\Rp.${product['price']}',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,

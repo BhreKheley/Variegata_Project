@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
 import 'dart:convert';
 
 import '../../common/widget/bottom_navbar.dart';
@@ -15,7 +14,6 @@ class Budidaya extends StatefulWidget {
 }
 
 class _BudidayaState extends State<Budidaya> {
-
   String apiUrl = 'https://variegata.my.id/api/plants'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
@@ -54,7 +52,9 @@ class _BudidayaState extends State<Budidaya> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
@@ -65,7 +65,7 @@ class _BudidayaState extends State<Budidaya> {
               itemBuilder: (BuildContext context, int index) {
                 final product = snapshot.data![index];
                 return GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -93,18 +93,25 @@ class _BudidayaState extends State<Budidaya> {
                                 color: Colors.white,
                               ),
                               child: CachedNetworkImage(
-                                  imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                                  placeholder: (context, url) => CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) => Icon(Icons.error)),
+                                  imageUrl:
+                                      'https://variegata.my.id/storage/${product['image']}',
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error)),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(product['name'],
-                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                                Text(
+                                  product['name'],
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600),
                                 ),
-                                Text(product['scientific'],
+                                Text(
+                                  product['scientific'],
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -126,6 +133,6 @@ class _BudidayaState extends State<Budidaya> {
           }
         },
       ),
-    );;
+    );
   }
 }

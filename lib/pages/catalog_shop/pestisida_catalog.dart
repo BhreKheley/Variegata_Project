@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'dart:convert';
-import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
 
 import 'Detail_Toko.dart';
 
@@ -54,7 +53,7 @@ class _ShopPestisidaState extends State<ShopPestisida> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator(),);
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {

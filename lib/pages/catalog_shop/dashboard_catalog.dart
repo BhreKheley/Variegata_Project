@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
-import 'package:variegata_project/pages/catalog_shop/Example_Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/cart.dart';
@@ -323,91 +322,6 @@ class _KatalogShopState extends State<KatalogShop> {
                     ),
                   ),
                 ),
-
-                // Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         'Rekomendasi untuk kamu',
-                //         style: TextStyle(
-                //           color: Color(0xFF505050),
-                //           fontSize: 14,
-                //           fontWeight: FontWeight.w600,
-                //         ),
-                //       ),
-                //       Text(
-                //         'Lihat Semua',
-                //         style: TextStyle(
-                //           color: Color(0xFF94AF9F),
-                //           fontSize: 11,
-                //           fontWeight: FontWeight.w700,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Container(
-                //   height: 300,
-                //   child: ListView.builder(
-                //     padding: EdgeInsets.symmetric(horizontal: 10),
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: 3,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'pupuk_merah.png',
-                //               title:
-                //                   'Pupuk NPK phonska plus 15-15-15 kemasan pabrik 25kg',
-                //               price: 'Rp459.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'fullset_alat.png',
-                //               title:
-                //                   'Alat berkebun menanam cangkul sekop tanah tanaman hobi cocok tanam',
-                //               price: 'Rp59.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'pupuk_merah.png',
-                //               title:
-                //                   'Pupuk NPK phonska plus 15-15-15 kemasan pabrik 25kg',
-                //               price: 'Rp459.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'fullset_alat.png',
-                //               title:
-                //                   'Alat berkebun menanam cangkul sekop tanah tanaman hobi cocok tanam',
-                //               price: 'Rp59.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'benih_tomat.png',
-                //               title:
-                //                   '(1 Pack) Benih buah tomat unggul WARANI F1',
-                //               price: 'Rp17.000',
-                //             ),
-                //           ),
-                //         ],
-                //       );
-                //     },
-                //   ),
-                // )
               ],
             ),
           ),

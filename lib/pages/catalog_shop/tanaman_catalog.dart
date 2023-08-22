@@ -27,6 +27,20 @@ class _ShopTanamanState extends State<ShopTanaman> {
     }
   }
 
+  String formatPrice(String price) {
+    // Ubah string harga menjadi tipe double
+    double parsedPrice = double.tryParse(price) ?? 0.0;
+
+    // Format angka dengan tanda pemisah ribuan dan simbol mata uang
+    String formattedPrice = 'Rp ' +
+        parsedPrice.toStringAsFixed(0).replaceAllMapped(
+              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+              (Match m) => '${m[1]}.',
+            );
+
+    return formattedPrice;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +67,9 @@ class _ShopTanamanState extends State<ShopTanaman> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(
+              child: CircularProgressIndicator(),
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
@@ -72,30 +88,30 @@ class _ShopTanamanState extends State<ShopTanaman> {
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
                 final product = snapshot.data![index];
-                return Container(
-                  width: 140,
-                  height: 231,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: -4,
-                        blurRadius: 14,
-                        offset: Offset(0, 2),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailProduk(product: product),
                       ),
-                    ],
-                  ),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DetailProduk(product: product),
+                    );
+                  },
+                  child: Container(
+                    width: 140,
+                    height: 231,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: -4,
+                          blurRadius: 14,
+                          offset: Offset(0, 2),
                         ),
-                      );
-                    },
+                      ],
+                    ),
                     child: Column(
                       children: [
                         ClipRRect(
@@ -136,11 +152,9 @@ class _ShopTanamanState extends State<ShopTanaman> {
                                 height: 9,
                               ),
                               Text(
-                                '\Rp.${product['price']}',
+                                '${formatPrice(product['price'])}',
                                 style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                    fontSize: 13, fontWeight: FontWeight.w700),
                               ),
                               SizedBox(
                                 height: 9,
@@ -150,7 +164,7 @@ class _ShopTanamanState extends State<ShopTanaman> {
                                   Icon(
                                     Icons.location_on,
                                     color: Color(0xFFBBD6B8),
-                                    size: 15,
+                                    size: 10,
                                   ),
                                   SizedBox(
                                     width: 2,

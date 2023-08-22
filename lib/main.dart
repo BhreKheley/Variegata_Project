@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/catalog_shop/cart.dart';
-import 'package:variegata_project/pages/catalog_shop/checkout.dart';
-import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/wishlist.dart';
-import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
-import 'package:variegata_project/pages/profile/profile_page.dart';
+import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 
 void main() {
