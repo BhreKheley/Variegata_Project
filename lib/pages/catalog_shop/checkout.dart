@@ -33,7 +33,7 @@ class _CheckoutState extends State<Checkout> {
             Navigator.pop(
               context,
               MaterialPageRoute(
-                builder: (context) => Alamat(),
+                builder: (context) => Container(),
               ),
             );
           },
@@ -639,7 +639,7 @@ isScrollControlled: true,
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Alamat()),
+                      MaterialPageRoute(builder: (context) => Container()),
                     );
                   },
                   child: Container(

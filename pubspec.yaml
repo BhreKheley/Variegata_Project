@@ -53,6 +53,10 @@ dependencies:
   cached_network_image: ^3.0.0
   motion_tab_bar_v2: ^0.3.0
   shimmer: ^3.0.0
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+  flutter_map: ^4.0.0
+  latlong2: ^0.8.2
 
 dev_dependencies:
   flutter_test:

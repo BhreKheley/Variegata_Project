@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:variegata_project/pages/catalog_shop/cart.dart';
 import 'package:variegata_project/pages/catalog_shop/checkout.dart';
 
+import '../../common/widget/mapFunction.dart';
+
 class Alamat extends StatefulWidget {
-  const Alamat({super.key});
+ Alamat({super.key, required this.currentAddress});
+  final String currentAddress;
 
   @override
   State<Alamat> createState() => _AlamatState();
 }
 
 class _AlamatState extends State<Alamat> {
+  late LatLng MyPosition;
+  bool isloading = true;
+  String _currentAddress = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getLocationAndAddress(_onLocationReceived);
+  }
+
+  void _onLocationReceived(LatLng myPosition, String currentAddress) {
+    setState(() {
+      MyPosition = myPosition;
+      _currentAddress = currentAddress;
+      isloading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,68 +79,63 @@ class _AlamatState extends State<Alamat> {
               Container(
                 width: 355,
                 height: 98,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15,
-                    right: 15,
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: Container(
-                              child: const Row(
-                                children: [
-                                  Image(
-                                    image: AssetImage("assets/img/pin.png"),
-                                    width: 14,
-                                    height: 18,
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      "Besito",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text(
-                            "Pilih titik lokasi yang sesuai atau mendekati",
-                            style: TextStyle(
-                                color: Color(0xFF505050),
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400),
-                          ),
-                        ],
-                      ),
-                      const Image(
-                        image: AssetImage("assets/img/lokasi.png"),
-                        width: 58,
-                        height: 58,
-                      )
-                    ],
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(3),
                   color: Colors.white,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 25),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Image(
+                                  image: AssetImage("assets/img/pin.png"),
+                                  width: 14,
+                                  height: 18,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Center(
+                                  child: Text(
+                                    widget.currentAddress,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text(
+                          "Pilih titik lokasi yang sesuai atau mendekati",
+                          style: TextStyle(
+                              color: Color(0xFF505050),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
+                    const Image(
+                      image: AssetImage("assets/img/lokasi.png"),
+                      width: 58,
+                      height: 58,
+                    )
+                  ],
                 ),
               ),
               const SizedBox(
@@ -261,6 +278,10 @@ class _AlamatState extends State<Alamat> {
                 child: Container(
                   width: 355,
                   height: 40,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF9ED098),
+                    borderRadius: BorderRadius.circular(3),
+                  ),
                   child: const Center(
                     child: Text(
                       "Simpan",
@@ -270,10 +291,6 @@ class _AlamatState extends State<Alamat> {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF9ED098),
-                    borderRadius: BorderRadius.circular(3),
                   ),
                 ),
               )
