@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
+import 'package:variegata_project/pages/catalog_shop/Example_Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/cart.dart';
 import 'package:http/http.dart' as http;
@@ -66,6 +67,7 @@ class _DetailProdukState extends State<DetailProduk> {
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -306,9 +308,14 @@ class _DetailProdukState extends State<DetailProduk> {
                             ],
                           ),
                         ),
+                        Divider(
+                          // Menambahkan garis di antara kedua teks
+                          color: Color(0xFFD9D9D9),
+                          thickness: 3,
+                        ),
                         Container(
-                          child: Katalog(),
-                          height: 250,
+                          child: Katalogs(),
+                          height: 300,
                         ),
                         Divider(
                           // Menambahkan garis di antara kedua teks

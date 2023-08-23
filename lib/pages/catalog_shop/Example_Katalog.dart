@@ -15,7 +15,7 @@ class Katalogs extends StatefulWidget {
 
 class _KatalogsState extends State<Katalogs> {
 
-  String apiUrl = 'https://variegata.my.id/api/products/plants'; // Ganti dengan URL Anda
+  String apiUrl = 'http://variegata.my.id/api/products/category/1'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -30,9 +30,6 @@ class _KatalogsState extends State<Katalogs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Product List'),
-      ),
       body: FutureBuilder<List<dynamic>>(
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {

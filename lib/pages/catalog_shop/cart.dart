@@ -187,39 +187,6 @@ class _CartState extends State<Cart> {
         .format(totalHarga);
   }
 
-  // Future<void> initiatePayment() async {
-  //   final response = await http.get(Uri.parse('http://variegata.my.id/api/getAllUsers'), // Ganti dengan URL yang sesuai
-  //     headers: {
-  //       'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Ganti dengan access token yang diterima saat login
-  //     },
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     final jsonResponse = json.decode(response.body);
-  //     final username = jsonResponse['name'];
-  //     final userEmail = jsonResponse['email'];
-  //
-  //     final paymentResponse = await http.post(
-  //       Uri.parse('http://variegata.my.id/api/request-payment'), // Ganti dengan URL yang sesuai
-  //       body: {
-  //         'total_amount': totalHarga.toString(), // Menggunakan totalHarga sebagai total_amount
-  //         'first_name': username, // Menggunakan nama dari data pengguna
-  //         'email': userEmail, // Menggunakan alamat email dari data pengguna
-  //       },
-  //     );
-  //
-  //     if (paymentResponse.statusCode == 200) {
-  //       final snapToken = json.decode(paymentResponse.body)['snap_token'];
-  //       // Lakukan pengalihan ke halaman pembayaran menggunakan WebView atau SDK Midtrans
-  //       // Pastikan Anda telah mengintegrasikan Midtrans SDK di sini
-  //     } else {
-  //       // Handle error
-  //     }
-  //   } else {
-  //     // Handle error
-  //   }
-  // }
-
 
   @override
   Widget build(BuildContext context) {
