@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/ganti_alamat.dart';
 
 class Checkout extends StatefulWidget {
@@ -20,9 +19,9 @@ class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7FA),
+      backgroundColor: const Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Checkout',
           style: TextStyle(
             color: Color(0xFF4F4F4F),
@@ -31,11 +30,11 @@ class _CheckoutState extends State<Checkout> {
             fontWeight: FontWeight.w600,
           ),
         ),
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: const Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color(0xFF33363F),
+          icon: const Icon(Icons.arrow_back),
+          color: const Color(0xFF33363F),
           onPressed: () {
             Navigator.pop(
               context,
@@ -58,7 +57,7 @@ class _CheckoutState extends State<Checkout> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Alamat Pengiriman',
                     style: TextStyle(
                       color: Color(0xFF4F4F4F),
@@ -71,11 +70,11 @@ class _CheckoutState extends State<Checkout> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => GantiAlamat()),
+                        MaterialPageRoute(builder: (context) => const GantiAlamat()),
                       );
                     },
                     child: Container(
-                      child: Text(
+                      child: const Text(
                         'Ganti Alamat',
                         style: TextStyle(
                           color: Color(0xFF94AF9F),
@@ -88,7 +87,7 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -113,7 +112,7 @@ class _CheckoutState extends State<Checkout> {
                           Padding(
                             padding: const EdgeInsets.only(top: 25),
                             child: Container(
-                              child: Row(
+                              child: const Row(
                                 children: [
                                   Text(
                                     'Nama',
@@ -142,12 +141,12 @@ class _CheckoutState extends State<Checkout> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
                             width: 240,
-                            child: Text(
+                            child: const Text(
                               "Rangkapan Jaya, Kec. Pancoran Mas, Kota Depok, Jawa Barat, 16435, Indonesia",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
@@ -161,7 +160,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ],
                       ),
-                      Image(
+                      const Image(
                         image: AssetImage("assets/img/lokasi.png"),
                         width: 38,
                         height: 38,
@@ -170,10 +169,10 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 'Pesanan Anda ',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
@@ -182,7 +181,7 @@ class _CheckoutState extends State<Checkout> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -211,11 +210,11 @@ class _CheckoutState extends State<Checkout> {
                               child: Container(
                                 width: 24,
                                 height: 24,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   color: Colors.white,
                                   shape: BoxShape.circle,
                                 ),
-                                child: ClipOval(
+                                child: const ClipOval(
                                   child: Image(
                                     image: AssetImage("assets/img/logo.png"),
                                     width: 24,
@@ -224,7 +223,7 @@ class _CheckoutState extends State<Checkout> {
                                 ),
                               ),
                             ),
-                            Positioned(
+                            const Positioned(
                               left: 55,
                               top: 6,
                               child: Column(
@@ -269,7 +268,7 @@ class _CheckoutState extends State<Checkout> {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child: Image(
+                            child: const Image(
                               image: AssetImage(
                                   "assets/img/produk-philodendron.png"),
                               fit: BoxFit.cover,
@@ -277,10 +276,10 @@ class _CheckoutState extends State<Checkout> {
                               height: 89,
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
-                          Column(
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -337,10 +336,10 @@ class _CheckoutState extends State<Checkout> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 'Pilihan Pengiriman',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
@@ -349,7 +348,7 @@ class _CheckoutState extends State<Checkout> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
@@ -358,7 +357,7 @@ class _CheckoutState extends State<Checkout> {
                       isScrollControlled: true,
                       context: context,
                       isDismissible: false,
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30),
                           topRight: Radius.circular(30),
@@ -379,28 +378,28 @@ class _CheckoutState extends State<Checkout> {
                                       width: 60,
                                       height: 7,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFDADADA),
+                                        color: const Color(0xFFDADADA),
                                         borderRadius: BorderRadius.circular(4),
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 4,
                                     ),
                                     Container(
                                       width: 40,
                                       height: 6,
                                       decoration: BoxDecoration(
-                                        color: Color(0xFFDADADA),
+                                        color: const Color(0xFFDADADA),
                                         borderRadius: BorderRadius.circular(3),
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Center(
+                              const Center(
                                 child: Text(
                                   'Pilih Waktu Pengiriman',
                                   textAlign: TextAlign.center,
@@ -412,19 +411,19 @@ class _CheckoutState extends State<Checkout> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
                               OngkirContent(),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               OngkirContent(),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               OngkirContent(),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               GestureDetector(
@@ -432,14 +431,14 @@ class _CheckoutState extends State<Checkout> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Checkout()),
+                                        builder: (context) => const Checkout()),
                                   );
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.symmetric(horizontal: 20),
+                                  margin: const EdgeInsets.symmetric(horizontal: 20),
                                   width: MediaQuery.of(context).size.width,
                                   height: 40,
-                                  child: Center(
+                                  child: const Center(
                                     child: Text(
                                       "Simpan",
                                       style: TextStyle(
@@ -450,12 +449,12 @@ class _CheckoutState extends State<Checkout> {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Color(0xFF9ED098),
+                                    color: const Color(0xFF9ED098),
                                     borderRadius: BorderRadius.circular(3),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               )
                             ],
@@ -469,12 +468,12 @@ class _CheckoutState extends State<Checkout> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     border: Border.all(
-                      color: Color(0xFFD9D9D9),
+                      color: const Color(0xFFD9D9D9),
                       width: 2,
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
                       left: 15,
                       right: 15,
                     ),
@@ -500,10 +499,10 @@ class _CheckoutState extends State<Checkout> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Text(
+              const Text(
                 'Ringkasan Pembayaran',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
@@ -512,11 +511,11 @@ class _CheckoutState extends State<Checkout> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                 width: MediaQuery.of(context).size.width,
                 height: 134,
                 decoration: BoxDecoration(
@@ -530,8 +529,8 @@ class _CheckoutState extends State<Checkout> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 2.5),
-                          child: Text(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: const Text(
                             'Ringkasan Pembayaran',
                             style: TextStyle(
                               color: Color(0xFF4F4F4F),
@@ -542,8 +541,8 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 2.5),
-                          child: Row(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -570,7 +569,7 @@ class _CheckoutState extends State<Checkout> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xFFF1F1F1),
                       thickness: 1,
                     ),
@@ -578,8 +577,8 @@ class _CheckoutState extends State<Checkout> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 2.5),
-                          child: Row(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -604,8 +603,8 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 2.5),
-                          child: Row(
+                          padding: const EdgeInsets.symmetric(vertical: 2.5),
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -648,7 +647,7 @@ class _CheckoutState extends State<Checkout> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -682,7 +681,7 @@ class _CheckoutState extends State<Checkout> {
                   child: Container(
                     width: 136,
                     height: 40,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         "Checkout",
                         style: TextStyle(
@@ -694,7 +693,7 @@ class _CheckoutState extends State<Checkout> {
                       ),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF9ED098),
+                      color: const Color(0xFF9ED098),
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
@@ -709,12 +708,12 @@ class _CheckoutState extends State<Checkout> {
 
   Widget OngkirContent() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: 80,
         decoration: BoxDecoration(
-          border: Border.all(color: Color(0xFFD9D9D9)),
+          border: Border.all(color: const Color(0xFFD9D9D9)),
           borderRadius: BorderRadius.circular(2),
         ),
         child: Padding(
@@ -764,7 +763,7 @@ class _CheckoutState extends State<Checkout> {
                 ],
               ),
               Radio(
-                activeColor: Color(0xFF91C6A6),
+                activeColor: const Color(0xFF91C6A6),
                 value: options[1],
                 groupValue: currentOption,
                 onChanged: (value) {

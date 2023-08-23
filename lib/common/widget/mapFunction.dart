@@ -1,4 +1,4 @@
-  import 'package:geolocator/geolocator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:latlong2/latlong.dart';
 

@@ -29,21 +29,21 @@ class _BudidayaState extends State<Budidaya> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEEEEEE),
+      backgroundColor: const Color(0xFFEEEEEE),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Budidaya",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: const Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color(0xFF33363F),
+          icon: const Icon(Icons.arrow_back),
+          color: const Color(0xFF33363F),
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => BotNavbar()),
+              MaterialPageRoute(builder: (context) => const BotNavbar()),
             );
           },
         ),
@@ -52,13 +52,13 @@ class _BudidayaState extends State<Budidaya> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
-            return Text('No data available');
+            return const Text('No data available');
           } else {
             return ListView.builder(
               itemCount: snapshot.data!.length,
@@ -74,11 +74,11 @@ class _BudidayaState extends State<Budidaya> {
                     );
                   },
                   child: Container(
-                    margin: EdgeInsets.only(bottom: 2),
+                    margin: const EdgeInsets.only(bottom: 2),
                     width: MediaQuery.of(context).size.width,
                     height: 90,
-                    color: Color(0xFFF6F7FA),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    color: const Color(0xFFF6F7FA),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -87,7 +87,7 @@ class _BudidayaState extends State<Budidaya> {
                             Container(
                               width: 45,
                               height: 45,
-                              margin: EdgeInsets.only(right: 20),
+                              margin: const EdgeInsets.only(right: 20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(50),
                                 color: Colors.white,
@@ -96,9 +96,9 @@ class _BudidayaState extends State<Budidaya> {
                                   imageUrl:
                                       'https://variegata.my.id/storage/${product['image']}',
                                   placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                      const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error)),
+                                      const Icon(Icons.error)),
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class _BudidayaState extends State<Budidaya> {
                               children: [
                                 Text(
                                   product['name'],
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600),
                                 ),
@@ -123,7 +123,7 @@ class _BudidayaState extends State<Budidaya> {
                             ),
                           ],
                         ),
-                        Icon(Icons.arrow_forward_ios)
+                        const Icon(Icons.arrow_forward_ios)
                       ],
                     ),
                   ),

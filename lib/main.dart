@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/common/widget/bottom_navbar.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:variegata_project/common/widget/bottom_navbar.dart';
-import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: BotNavbar(),
+      home: SplashScreen(),
     );
   }
 }
