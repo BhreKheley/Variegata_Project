@@ -334,8 +334,8 @@ class _CheckoutState extends State<Checkout> {
               GestureDetector(
                 onTap: () {
                   showModalBottomSheet(
-                    
-isScrollControlled: true,                    
+
+                      isScrollControlled: true,
                       context: context,
                       isDismissible: false,
                       shape: RoundedRectangleBorder(
@@ -405,10 +405,8 @@ isScrollControlled: true,
                               SizedBox(height: 20,),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  Navigator.pop(
                                     context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Checkout()),
                                   );
                                 },
                                 child: Container(
@@ -541,7 +539,7 @@ isScrollControlled: true,
                         thickness: 1,
                       ),
                       SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -565,7 +563,7 @@ isScrollControlled: true,
                         ],
                       ),
                       SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -605,7 +603,7 @@ isScrollControlled: true,
             left: 20,
             top: 20,
             right: 20,
-            bottom: 20,
+            bottom: 15,
           ),
           child: Container(
             child: Row(
@@ -680,7 +678,7 @@ isScrollControlled: true,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 15,
-          vertical: 15,
+          vertical: 14,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -697,7 +695,7 @@ isScrollControlled: true,
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Text(
                   "Rp12.000 - Rp15.000",

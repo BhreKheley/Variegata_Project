@@ -256,7 +256,7 @@ class _GantiAlamatState extends State<GantiAlamat> {
                           height: 10,
                         ),
                         Text(
-                          "Pilih titik lokasi yang sesuai atau mendekati",
+                          "Pilih titik lokasi anda yang sesuai",
                           style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 14,
@@ -266,8 +266,8 @@ class _GantiAlamatState extends State<GantiAlamat> {
                     ),
                     Image(
                       image: AssetImage("assets/img/lokasi.png"),
-                      width: 58,
-                      height: 58,
+                      width: 60,
+                      height: 60,
                     )
                   ],
                 ),

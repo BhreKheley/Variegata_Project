@@ -208,7 +208,7 @@ class _LoginPageState extends State<LoginPage> {
                           onBtnPressed: () => loginPressed(),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 20),
+                          margin: EdgeInsets.symmetric(vertical: 20),
                           child: Row(
                             children: [
                               Expanded(

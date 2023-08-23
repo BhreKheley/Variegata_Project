@@ -2,39 +2,19 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class Cart extends StatefulWidget {
-  const Cart({super.key});
+
+
+class ExampleCart extends StatefulWidget {
+  const ExampleCart({super.key});
 
   @override
-  State<Cart> createState() => _CartState();
+  State<ExampleCart> createState() => _ExampleCartState();
 }
 
-class _CartState extends State<Cart> {
-
-  Map<int, int> productQuantities = {};
-  double totalHarga = 0.0;
-
-  @override
-  void initState() {
-    super.initState();
-    fetchCartItems();
-  }
-
-  void updateAllCheckbox(bool? value) {
-    if (value != null) {
-      setState(() {
-        allCheckbox = value;
-        for (var cartItem in cartItems) {
-          cartItem['isChecked'] = value;
-        }
-        calculateTotalHarga();
-      });
-    }
-  }
+class _ExampleCartState extends State<ExampleCart> {
 
   List<dynamic> cartItems = [];
 
@@ -43,91 +23,33 @@ class _CartState extends State<Cart> {
     if (response.statusCode == 200) {
       setState(() {
         cartItems = json.decode(response.body);
-        for (var cartItem in cartItems) {
-          cartItem['isChecked'] = false; // Set default value for isChecked
-        }
-        calculateTotalHarga(); // Calculate total harga when data is first obtained
       });
     } else {
       print("Error: ${response.statusCode}");
     }
   }
 
-  Future<void> deleteCartItem(int cartItemId, int index) async {
+  Future<void> removeFromCart(int cartItemId) async {
     try {
-      final response = await http.delete(
-        Uri.parse('http://variegata.my.id/api/remove-from-cart/$cartItemId'),
-        headers: <String, String>{
-          'Content-Type': 'application/json',
-        },
-      );
-
+      final response = await http.get(Uri.parse('http://variegata.my.id/api/remove-from-cart/$cartItemId'));
       if (response.statusCode == 200) {
         setState(() {
-          cartItems.removeAt(index);
-          calculateTotalHarga(); // Recalculate total harga after deleting an item
+          cartItems = json.decode(response.body);
         });
       } else {
         // Handle error
-        print("Error: ${response.statusCode}");
       }
     } catch (e) {
       print("Error: $e");
     }
-  }
-
-  Future<void> _showDeleteConfirmationDialog(int cartItemId, int index) async {
-    return showDialog<void>(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Konfirmasi Hapus'),
-          content: Text('Yakin ingin menghapus item ini dari keranjang?'),
-          actions: <Widget>[
-            TextButton(
-              child: Text('Tidak'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            TextButton(
-              child: Text('Ya'),
-              onPressed: () {
-                deleteCartItem(cartItemId, index);
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  Future<void> updateCartItemCheckbox(int cartItemId, bool isChecked, int index) async {
-    int quantity = isChecked ? 1 : 0;
-    await updateCartItem(cartItemId, quantity);
-
-    // Update ceklis status
-    setState(() {
-      cartItems[index]['isChecked'] = isChecked;
-      if (cartItems.every((item) => item['isChecked'])) {
-        allCheckbox = true;
-      } else {
-        allCheckbox = false;
-      }
-    });
-
-    // Hitung ulang total harga
-    calculateTotalHarga();
   }
 
   Future<void> updateCartItem(int cartItemId, int quantity) async {
     try {
-      final response = await http.get(Uri.parse('http://variegata.my.id/api/update-cart-item/$cartItemId?quantity=$quantity'));
+      final response = await http.get(Uri.parse('http://variegata.my.id/api/update-cart-item/$cartItemId'));
       if (response.statusCode == 200) {
         setState(() {
           cartItems = json.decode(response.body);
-          calculateTotalHarga(); // Recalculate total harga after updating an item
         });
       } else {
         // Handle error
@@ -135,91 +57,53 @@ class _CartState extends State<Cart> {
     } catch (e) {
       print("Error: $e");
     }
+
   }
 
-  void calculateTotalHarga() {
-    double total = 0.0;
-    for (var cartItem in cartItems) {
-      if (cartItem['isChecked']) {
-        int quantity = productQuantities[cartItem['product']['id']] ?? 1;
-        double price = double.parse(cartItem['product']['price']);
-        total += quantity * price;
-      }
+  Future<double> calculateTotalPrice() async {
+    final response = await http.get(Uri.parse('http://variegata.my.id/api/calculate-total-price'));
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final totalPrice = double.parse(data['total_price']);
+      return totalPrice;
+    } else {
+      throw Exception('Failed to load total price');
     }
-    setState(() {
-      totalHarga = total;
-    });
   }
 
-  void incrementQuantity(int productId) {
-    setState(() {
-      if (productQuantities.containsKey(productId)) {
-        productQuantities[productId] = productQuantities[productId]! + 1; // Increment quantity
-      } else {
-        productQuantities[productId] = 1; // Initialize quantity to 1
-      }
-      calculateTotalHarga(); // Recalculate total harga after changing quantity
-    });
-  }
-
-  void decrementQuantity(int productId) {
-    setState(() {
-      if (productQuantities.containsKey(productId)) {
-        if (productQuantities[productId]! > 1) {
-          productQuantities[productId] = productQuantities[productId]! - 1; // Decrement quantity if greater than 1
-        } else {
-          productQuantities.remove(productId); // Remove entry if quantity is 1
-        }
-        calculateTotalHarga(); // Recalculate total harga after changing quantity
-      }
-    });
-  }
 
   bool allCheckbox = false;
+  List<bool> CheckBoxList = [
+    for (var i = 0; i <= 3; i++) false,
+  ];
 
-  String formatPrice(double price) {
-    return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
-        .format(price);
+  bool? isChecked = false;
+
+  int quantity = 1;
+
+  Future<void> increment(dynamic cartItem, int index) async {
+    setState(() {
+      cartItem['quantity']++;
+      updateCartItem(cartItem['id'], cartItem['quantity']);
+      cartItems[index] = cartItem;
+    });
   }
 
-  String formatTotalHarga(double totalHarga) {
-    return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
-        .format(totalHarga);
+  Future<void> decrement(dynamic cartItem, int index) async {
+    if (cartItem['quantity'] > 1) {
+      setState(() {
+        cartItem['quantity']--;
+        updateCartItem(cartItem['id'], cartItem['quantity']);
+        cartItems[index] = cartItem;
+      });
+    }
   }
 
-  // Future<void> initiatePayment() async {
-  //   final response = await http.get(Uri.parse('http://variegata.my.id/api/getAllUsers'), // Ganti dengan URL yang sesuai
-  //     headers: {
-  //       'Authorization': 'Bearer YOUR_ACCESS_TOKEN', // Ganti dengan access token yang diterima saat login
-  //     },
-  //   );
-  //
-  //   if (response.statusCode == 200) {
-  //     final jsonResponse = json.decode(response.body);
-  //     final username = jsonResponse['name'];
-  //     final userEmail = jsonResponse['email'];
-  //
-  //     final paymentResponse = await http.post(
-  //       Uri.parse('http://variegata.my.id/api/request-payment'), // Ganti dengan URL yang sesuai
-  //       body: {
-  //         'total_amount': totalHarga.toString(), // Menggunakan totalHarga sebagai total_amount
-  //         'first_name': username, // Menggunakan nama dari data pengguna
-  //         'email': userEmail, // Menggunakan alamat email dari data pengguna
-  //       },
-  //     );
-  //
-  //     if (paymentResponse.statusCode == 200) {
-  //       final snapToken = json.decode(paymentResponse.body)['snap_token'];
-  //       // Lakukan pengalihan ke halaman pembayaran menggunakan WebView atau SDK Midtrans
-  //       // Pastikan Anda telah mengintegrasikan Midtrans SDK di sini
-  //     } else {
-  //       // Handle error
-  //     }
-  //   } else {
-  //     // Handle error
-  //   }
-  // }
-
+  @override
+  void initState() {
+    super.initState();
+    fetchCartItems();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -245,85 +129,69 @@ class _CartState extends State<Cart> {
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20,
-              top: 20,
-            ),
-            child: Text(
-              'Pesanan Anda',
-              style: TextStyle(
-                color: Color(0xFFADADAD),
-                fontSize: 12,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w500,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+                top: 20,
+              ),
+              child: Text(
+                'Pesanan Anda',
+                style: TextStyle(
+                  color: Color(0xFFADADAD),
+                  fontSize: 12,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 7,
-            ),
-            child: Row(
-              children: [
-                Transform.scale(
-                  scale: 1.2,
-                  child: Checkbox(
-                    value: allCheckbox,
-                    onChanged: updateAllCheckbox,
-                    activeColor: Color(0xFF94AF9F),
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  'Pilih Semua',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontFamily: 'Inter',
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Divider(
-            thickness: 3,
-            color: Color(0xFFEBEBEB),
-          ),
-          cartItems.isEmpty
-              ? Padding(
-            padding: const EdgeInsets.symmetric(vertical: 150),
-            child: Center(
-              child: Column(
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 7,
+              ),
+              child: Row(
                 children: [
-                  Image.asset('assets/img/Cart.png'),
-                  SizedBox(height: 10,),
+                  Transform.scale(
+                    scale: 1.2,
+                    child: Checkbox(
+                      value: allCheckbox,
+                      onChanged: (value) {
+                        setState(() {
+                          allCheckbox = value!;
+                          for (var i = 0; i < 3; i++) CheckBoxList[i] = value!;
+                        });
+                      },
+                      activeColor: Color(0xFF94AF9F),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Text(
-                    'Keranjang Anda kosong saat ini',
+                    'Pilih Semua',
                     style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 15,
+                      fontFamily: 'Inter',
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ],
               ),
             ),
-          )
-          : Expanded(
-            child: ListView.builder(
+            Divider(
+              thickness: 3,
+              color: Color(0xFFEBEBEB),
+            ),
+            ListView.builder(
               itemCount: cartItems.length,
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
                 final cartItem = cartItems[index];
-                final productId = cartItem['product']['id'];
-                final cartItemId = cartItem['id'];
                 return Padding(
                   padding: const EdgeInsets.only(
                     left: 7,
@@ -335,27 +203,27 @@ class _CartState extends State<Cart> {
                       Transform.scale(
                         scale: 1.2,
                         child: Checkbox(
-                          value: cartItem['isChecked'], // Use isChecked value from cartItem
-                          onChanged: (isChecked) {
-                            allCheckbox = cartItems.every((item) => item['isChecked']);
+                          value: CheckBoxList[index],
+                          onChanged: (val) {
+                            allCheckbox =
+                                CheckBoxList.every((value) => value == true);
                             setState(() {
-                              cartItems[index]['isChecked'] = isChecked;
-                              if (!isChecked!) {
+                              CheckBoxList[index] = val!;
+                              if (val == false) {
                                 allCheckbox = false;
-                              } else if (cartItems.every((item) => item['isChecked'])) {
-                                allCheckbox = true;
+                              } else if (CheckBoxList.every(
+                                  ((value) => value == true))) {
+                                allCheckbox = false;
                               }
+                              ;
                             });
-
-                            // Update the backend checkbox status
-                            updateCartItemCheckbox(cartItemId, isChecked!, index);
                           },
                           activeColor: Color(0xFF94AF9F),
                         ),
                       ),
                       Container(
                         width: 325,
-                        height: 120,
+                        height: 110,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
@@ -371,33 +239,31 @@ class _CartState extends State<Cart> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Center(
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: CachedNetworkImage(
-                                    imageUrl: 'https://variegata.my.id/storage/${cartItem['product']['image']}',
-                                    placeholder: (context, url) => CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
-                                    width: 95,
-                                    height: 95,
-                                  ),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: CachedNetworkImage(
+                                  imageUrl: 'https://variegata.my.id/storage/${cartItem['product']['image']}',
+                                  placeholder: (context, url) => CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) => Icon(Icons.error),
+                                  width: 80,
+                                  height: 80,
                                 ),
                               ),
                               Container(
-                                padding: EdgeInsets.symmetric(vertical: 5),
+                                padding: EdgeInsets.symmetric(vertical: 0),
                                 child: Column(
                                   mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Container(
-                                      width: 170,
+                                      width: 180,
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            'Produk',
+                                            'Tanaman',
                                             style: TextStyle(
                                               color: Color(0xFFADADAD),
                                               fontSize: 10,
@@ -405,14 +271,11 @@ class _CartState extends State<Cart> {
                                               fontWeight: FontWeight.w500,
                                             ),
                                           ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              _showDeleteConfirmationDialog(cartItem['id'], index);
+                                          IconButton(
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () async {
+                                              await removeFromCart(cartItem['id']);
                                             },
-                                            child: Icon(
-                                              Icons.delete,
-                                              size: 20,
-                                            ),
                                           ),
                                         ],
                                       ),
@@ -423,15 +286,14 @@ class _CartState extends State<Cart> {
                                         cartItem['product']['name'],
                                         style: TextStyle(
                                           color: Colors.black,
-                                          fontSize: 14,
+                                          fontSize: 12,
                                           fontFamily: 'Inter',
                                           fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
                                     Container(
-                                      width: 169,
+                                      width: 170,
                                       child: Row(
                                         mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -440,35 +302,35 @@ class _CartState extends State<Cart> {
                                             children: [
                                               GestureDetector(
                                                 onTap: () {
-                                                  decrementQuantity(productId);
+                                                  decrement(cartItem, index);
                                                 },
                                                 child: Icon(
                                                   Icons.remove_circle_outline,
-                                                  size: 25,
+                                                  size: 22,
                                                   color: Color(0xFF94AF9F),
                                                 ),
                                               ),
                                               Container(
                                                 margin: const EdgeInsets.symmetric(horizontal: 5),
                                                 child: Text(
-                                                  '${productQuantities[productId] ?? 1}',
+                                                  '$quantity',
                                                   style: TextStyle(fontSize: 16),
                                                 ),
                                               ),
                                               GestureDetector(
                                                 onTap: () {
-                                                  incrementQuantity(productId);
+                                                  increment(cartItem, index);
                                                 },
                                                 child: Icon(
                                                   Icons.add_circle_outline,
-                                                  size: 25,
+                                                  size: 22,
                                                   color: Color(0xFF94AF9F),
                                                 ),
                                               ),
                                             ],
                                           ),
                                           Text(
-                                            " ${formatPrice(double.parse(cartItem['product']['price']))}",
+                                            "Rp${cartItem['product']['price']}",
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: 15,
@@ -490,8 +352,8 @@ class _CartState extends State<Cart> {
                 );
               },
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         color: Colors.white,
@@ -507,7 +369,7 @@ class _CartState extends State<Cart> {
                 'Pesanan Anda',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
-                  fontSize: 14,
+                  fontSize: 12,
                   fontFamily: 'Inter',
                   fontWeight: FontWeight.w600,
                 ),
@@ -522,19 +384,31 @@ class _CartState extends State<Cart> {
                         "Total",
                         style: TextStyle(
                           color: Colors.black,
-                          fontSize: 18,
+                          fontSize: 14,
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Text(
-                        formatTotalHarga(totalHarga),
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w500,
-                        ),
+                      FutureBuilder<double>(
+                        future: calculateTotalPrice(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text("Error");
+                          } else {
+                            final totalPrice = snapshot.data ?? 0.0;
+                            return Text(
+                              "Rp ${totalPrice.toStringAsFixed(2)}",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 14,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w500,
+                              ),
+                            );
+                          }
+                        },
                       ),
                     ],
                   ),

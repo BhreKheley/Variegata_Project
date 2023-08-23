@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
+import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
+import 'package:variegata_project/pages/catalog_shop/Example%20cart.dart';
 import 'package:variegata_project/pages/catalog_shop/Example_Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
@@ -40,11 +42,11 @@ class _KatalogShopState extends State<KatalogShop> {
         ),
         title: Text(
           "Toko Variegata",
-          style: TextStyle(color: Color(0xFF33363F)),
+          style: GoogleFonts.notoSerif(color: Color(0xFF33363F)),
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_basket_outlined),
+            icon: Icon(Icons.shopping_cart),
             color: Color(0xFF33363F),
             onPressed: () {
               Navigator.push(

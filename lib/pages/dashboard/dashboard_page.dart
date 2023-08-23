@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
@@ -21,29 +22,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   String temperature = '';
-
-//   Future<void> fetchXMLData() async {
-//   final url = 'https://api.weatherprovider.com/forecast/indonesia.xml'; // Replace with your API URL
-
-//   try {
-//     final response = await http.get(Uri.parse(url));
-
-//     if (response.statusCode == 200) {
-//       final responseBody = response.body;
-
-//       // Parse the XML response
-//       final document = xml.XmlDocument.parse(responseBody);
-
-//       // Process and extract data from the XML document as needed
-//       // ...
-
-//     } else {
-//       print('Request failed with status: ${response.statusCode}');
-//     }
-//   } catch (error) {
-//     print('Error: $error');
-//   }
-// }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +48,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               SvgPicture.asset('assets/img/logo.svg'),
                               Text(
                                 "Variegata",
-                                style: TextStyle(
+                                style: GoogleFonts.notoSerif(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,
@@ -126,7 +104,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Informasi(),
+                                      builder: (context) => InformasiPage(),
                                     ),
                                   );
                                 },

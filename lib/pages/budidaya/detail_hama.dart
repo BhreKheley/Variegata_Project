@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:variegata_project/pages/budidaya/Example_budidaya.dart';
+import 'package:variegata_project/pages/budidaya/budidaya_detail.dart';
+import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
 
 import 'Example_Hama.dart';
 
@@ -18,18 +21,15 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    Hama(), // Ganti dengan halaman berikutnya
-              ),
-            );
-          },
-          color: Colors.black,
-        ),
+        iconTheme: IconThemeData(color: Colors.black),
+        // leading: BackButton(
+        //   onPressed: () {
+        //     Navigator.pop(
+        //       context
+        //     );
+        //   },
+        //   color: Colors.black,
+        // ),
         backgroundColor: Color(0xFFF6F7FA),
         elevation: 0,
       ),
