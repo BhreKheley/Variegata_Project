@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -359,7 +360,7 @@ class _CartState extends State<Cart> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Alamat()),
+                      MaterialPageRoute(builder: (context) => TambahAlamat()),
                     );
                   },
                   child: Container(

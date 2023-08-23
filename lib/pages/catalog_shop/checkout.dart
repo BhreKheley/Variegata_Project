@@ -40,7 +40,7 @@ class _CheckoutState extends State<Checkout> {
             Navigator.pop(
               context,
               MaterialPageRoute(
-                builder: (context) => Alamat(),
+                builder: (context) => Container(),
               ),
             );
           },
@@ -676,7 +676,7 @@ class _CheckoutState extends State<Checkout> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => Alamat()),
+                      MaterialPageRoute(builder: (context) => Container()),
                     );
                   },
                   child: Container(
