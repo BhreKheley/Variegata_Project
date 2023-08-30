@@ -204,11 +204,11 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         RoundedButton(
-                          btnText: 'CONTINUE',
+                          btnText: 'Continue',
                           onBtnPressed: () => loginPressed(),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 20),
+                          padding: EdgeInsets.symmetric(vertical: 20),
                           child: Row(
                             children: [
                               Expanded(

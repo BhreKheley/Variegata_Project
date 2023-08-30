@@ -1,8 +1,8 @@
 import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
-import 'package:variegata_project/pages/catalog_shop/Example_Katalog.dart';
 import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
+import 'package:variegata_project/pages/catalog_shop/cart.dart';
 import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
@@ -23,10 +23,6 @@ class _KatalogShopState extends State<KatalogShop> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: Text(
-          "Toko Variegata",
-          style: TextStyle(color: Color(0xFF33363F)),
-        ),
         backgroundColor: Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
@@ -41,6 +37,24 @@ class _KatalogShopState extends State<KatalogShop> {
             );
           },
         ),
+        title: Text(
+          "Toko Variegata",
+          style: TextStyle(color: Color(0xFF33363F)),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_cart_outlined),
+            color: Color(0xFF33363F),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Cart(),
+                ),
+              );
+            },
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -131,57 +145,33 @@ class _KatalogShopState extends State<KatalogShop> {
                   height: 35,
                 ),
                 Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   width: MediaQuery.of(context).size.width,
                   height: 211,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("assets/img/bg-katalog.png"),
+                      image: AssetImage("assets/img/promo.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Container(
-                        padding: EdgeInsets.only(top: 25),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: 90,
-                              child: Text(
-                                'Berkebun Lebih Praktis',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 12,
-                                  fontFamily: 'Inter',
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              child: Image(
-                                width: 147,
-                                height: 114,
-                                image: AssetImage('assets/img/ktg.png'),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Products(
+                          'pestisida.png',
+                          'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
+                          'Rp50.000',
                         ),
                       ),
-                      Products(
-                        'pestisida.png',
-                        'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                        'Rp50.000',
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Products(
-                        'pestisida.png',
-                        'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                        'Rp50.000',
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Products(
+                          'pestisida.png',
+                          'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
+                          'Rp50.000',
+                        ),
                       ),
 
                       // ProductCard(
@@ -207,8 +197,8 @@ class _KatalogShopState extends State<KatalogShop> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             image: DecorationImage(
-                              image: AssetImage('assets/img/bg-ktg1.png'),
-                            ),
+                                image: AssetImage('assets/img/bg-ktg1.png'),
+                                fit: BoxFit.cover),
                           ),
                           child: Container(
                             padding: EdgeInsets.only(left: 20),
@@ -277,6 +267,7 @@ class _KatalogShopState extends State<KatalogShop> {
                             borderRadius: BorderRadius.circular(5),
                             image: DecorationImage(
                               image: AssetImage('assets/img/bg-ktg1.png'),
+                              fit: BoxFit.cover,
                             ),
                           ),
                           child: Container(
@@ -308,7 +299,7 @@ class _KatalogShopState extends State<KatalogShop> {
                           ),
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Products(
                               'pestisida.png',
@@ -331,91 +322,6 @@ class _KatalogShopState extends State<KatalogShop> {
                     ),
                   ),
                 ),
-
-                // Container(
-                //   padding: EdgeInsets.symmetric(horizontal: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text(
-                //         'Rekomendasi untuk kamu',
-                //         style: TextStyle(
-                //           color: Color(0xFF505050),
-                //           fontSize: 14,
-                //           fontWeight: FontWeight.w600,
-                //         ),
-                //       ),
-                //       Text(
-                //         'Lihat Semua',
-                //         style: TextStyle(
-                //           color: Color(0xFF94AF9F),
-                //           fontSize: 11,
-                //           fontWeight: FontWeight.w700,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // Container(
-                //   height: 300,
-                //   child: ListView.builder(
-                //     padding: EdgeInsets.symmetric(horizontal: 10),
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: 3,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       return Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'pupuk_merah.png',
-                //               title:
-                //                   'Pupuk NPK phonska plus 15-15-15 kemasan pabrik 25kg',
-                //               price: 'Rp459.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'fullset_alat.png',
-                //               title:
-                //                   'Alat berkebun menanam cangkul sekop tanah tanaman hobi cocok tanam',
-                //               price: 'Rp59.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'pupuk_merah.png',
-                //               title:
-                //                   'Pupuk NPK phonska plus 15-15-15 kemasan pabrik 25kg',
-                //               price: 'Rp459.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'fullset_alat.png',
-                //               title:
-                //                   'Alat berkebun menanam cangkul sekop tanah tanaman hobi cocok tanam',
-                //               price: 'Rp59.000',
-                //             ),
-                //           ),
-                //           Padding(
-                //             padding: EdgeInsets.only(right: 8.0),
-                //             child: ProductCard(
-                //               image: 'benih_tomat.png',
-                //               title:
-                //                   '(1 Pack) Benih buah tomat unggul WARANI F1',
-                //               price: 'Rp17.000',
-                //             ),
-                //           ),
-                //         ],
-                //       );
-                //     },
-                //   ),
-                // )
               ],
             ),
           ),

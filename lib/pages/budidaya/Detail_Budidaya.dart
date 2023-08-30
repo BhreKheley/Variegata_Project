@@ -1,14 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/Example_Hama.dart';
+import 'package:variegata_project/pages/budidaya/HamaPenyakit.dart';
 import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
-import 'package:variegata_project/pages/budidaya/hama_penyakit_tab.dart';
-
-import 'Example_budidaya.dart';
-import 'budidaya_page.dart';
 
 class DetailPlant extends StatefulWidget {
-
   final dynamic product;
   DetailPlant({required this.product});
 
@@ -46,7 +41,7 @@ class _DetailPlantState extends State<DetailPlant>
             fontSize: 16,
             fontWeight: FontWeight.bold,
             color:
-            isActive! ? const Color(0xFF94AF9F) : const Color(0xFFDADADA),
+                isActive! ? const Color(0xFF94AF9F) : const Color(0xFFDADADA),
           ),
         ),
       ),
@@ -60,24 +55,14 @@ class _DetailPlantState extends State<DetailPlant>
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    Budidaya(), // Ganti dengan halaman berikutnya
-              ),
             );
           },
           color: Colors.black,
         ),
         backgroundColor: const Color(0xFFF6F7FA),
         elevation: 0,
-        title: Text(
-          widget.product['name'],
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
       ),
       body: Column(
         children: [
@@ -87,15 +72,17 @@ class _DetailPlantState extends State<DetailPlant>
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
+                  height: 118,
                   child: CachedNetworkImage(
-                    imageUrl: 'https://variegata.my.id/storage/${widget.product['image_bg']}',
+                    imageUrl:
+                        'https://variegata.my.id/storage/${widget.product['image_bg']}',
                     placeholder: (context, url) => CircularProgressIndicator(),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                     fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(
-                  top: 180,
+                  top: 103,
                   left: 20,
                   child: Row(
                     children: [
@@ -108,13 +95,17 @@ class _DetailPlantState extends State<DetailPlant>
                           color: Colors.white,
                         ),
                         child: CachedNetworkImage(
-                          imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),),
+                          imageUrl:
+                              'https://variegata.my.id/storage/${widget.product['image']}',
+                          placeholder: (context, url) =>
+                              CircularProgressIndicator(),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
                       ),
                       Container(
                         margin: const EdgeInsets.only(top: 20),
-                        child:  Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -126,7 +117,7 @@ class _DetailPlantState extends State<DetailPlant>
                               height: 5,
                             ),
                             Text(
-                              widget.product['name'],
+                              widget.product['scientific'],
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -147,7 +138,7 @@ class _DetailPlantState extends State<DetailPlant>
           Container(
             height: 50,
             decoration:
-            BoxDecoration(color: const Color(0xFFF6F7FA), boxShadow: [
+                BoxDecoration(color: const Color(0xFFF6F7FA), boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5), // Warna shadow
                 spreadRadius: -4, // Jarak penyebaran shadow
@@ -182,7 +173,7 @@ class _DetailPlantState extends State<DetailPlant>
               controller: _tabController,
               children: [
                 BudidayaTab(),
-                Hama(),
+                HamaPenyakit(plantId: widget.product['id']),
               ],
             ),
           ),

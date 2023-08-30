@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/common/widget/info_card.dart';
-import 'package:variegata_project/pages/informasi.dart';
 import 'package:variegata_project/pages/screens/Example_informasi.dart';
 
 class DetailInformasi extends StatefulWidget {
@@ -20,12 +18,8 @@ class _DetailInformasiState extends State<DetailInformasi> {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    Informasi(), // Ganti dengan halaman berikutnya
-              ),
+            Navigator.pop(
+              context
             );
           },
           color: Colors.black,
@@ -109,31 +103,29 @@ class _DetailInformasiState extends State<DetailInformasi> {
                     ),
                     Center(
                       child: Container(
-                        height: 400,
-                        width: 400,
+                        height: 350,
+                        width: 350,
                         child: CachedNetworkImage(
                           imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
                           placeholder: (context, url) => CircularProgressIndicator(),
                           errorWidget: (context, url, error) => Icon(Icons.error),
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10), // Ganti 10 dengan radius yang diinginkan
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                     SizedBox(
                       height: 15,
                     ),
-                    Text(
-                      'Tomat (Solanum lycopersicum) adalah tanaman tahunan yang berasal dari Amerika Tengah dan Selatan. Tanaman tomat termasuk dalam keluarga Solanaceae, yang juga mencakup tanaman seperti kentang dan terong. Tomat memiliki beragam variasi yang menghasilkan buah-buahan dengan bentuk, ukuran, dan warna yang berbeda. Nama Latin untuk tomat adalah Solanum lycopersicum.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
                     SizedBox(height: 10),
-                    Text(
-                      'Salah satu variasi populer adalah tomat cherry (Solanum lycopersicum var. cerasiforme). Tomat cherry menghasilkan buah-buahan berukuran kecil, biasanya seukuran gigitan, dengan rasa manis yang konsisten. Mereka sering digunakan sebagai pelengkap dalam hidangan, seperti salad, pasta, atau camilan segar.',
+                    Text(widget.product['description'],
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         color: Colors.black,
@@ -142,39 +134,39 @@ class _DetailInformasiState extends State<DetailInformasi> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Varian lain yang terkenal adalah tomat Roma (Solanum lycopersicum var. Roma). Tomat Roma memiliki bentuk lonjong yang khas dan daging yang padat. Mereka sering digunakan dalam masakan Italia, seperti saus tomat, sup, dan hidangan panggang. Tomat Roma sangat cocok untuk diolah karena memiliki kandungan air yang lebih rendah, menghasilkan saus yang lebih kental dan pekat.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Tomat Beefsteak (Solanum lycopersicum var. Beefsteak) adalah varietas tomat yang menghasilkan buah berukuran besar dengan daging yang tebal dan sedikit biji. Mereka sering digunakan dalam sandwich, burger, dan hidangan utama lainnya karena tekstur dan rasa yang khas. Tomat Beefsteak sangat cocok untuk dipotong dalam irisan tebal dan digunakan dalam hidangan yang membutuhkan tomat dengan tekstur yang lebih padat.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Selain itu, ada juga varietas heirloom (Solanum lycopersicum var. Heirloom), yang merupakan tomat yang diwariskan dari generasi ke generasi dengan ciri khas rupa, warna, dan rasa yang unik. Varietas ini sering dikagumi karena keunikan dan keaslian mereka. Setiap varietas heirloom memiliki karakteristik yang berbeda, seperti warna-warni yang mencolok, rasa yang kompleks, dan tekstur yang unik.',
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontFamily: 'Inter',
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   'Varian lain yang terkenal adalah tomat Roma (Solanum lycopersicum var. Roma). Tomat Roma memiliki bentuk lonjong yang khas dan daging yang padat. Mereka sering digunakan dalam masakan Italia, seperti saus tomat, sup, dan hidangan panggang. Tomat Roma sangat cocok untuk diolah karena memiliki kandungan air yang lebih rendah, menghasilkan saus yang lebih kental dan pekat.',
+                    //   textAlign: TextAlign.justify,
+                    //   style: TextStyle(
+                    //     color: Colors.black,
+                    //     fontSize: 14,
+                    //     fontFamily: 'Inter',
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   'Tomat Beefsteak (Solanum lycopersicum var. Beefsteak) adalah varietas tomat yang menghasilkan buah berukuran besar dengan daging yang tebal dan sedikit biji. Mereka sering digunakan dalam sandwich, burger, dan hidangan utama lainnya karena tekstur dan rasa yang khas. Tomat Beefsteak sangat cocok untuk dipotong dalam irisan tebal dan digunakan dalam hidangan yang membutuhkan tomat dengan tekstur yang lebih padat.',
+                    //   textAlign: TextAlign.justify,
+                    //   style: TextStyle(
+                    //     color: Colors.black,
+                    //     fontSize: 14,
+                    //     fontFamily: 'Inter',
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 10),
+                    // Text(
+                    //   'Selain itu, ada juga varietas heirloom (Solanum lycopersicum var. Heirloom), yang merupakan tomat yang diwariskan dari generasi ke generasi dengan ciri khas rupa, warna, dan rasa yang unik. Varietas ini sering dikagumi karena keunikan dan keaslian mereka. Setiap varietas heirloom memiliki karakteristik yang berbeda, seperti warna-warni yang mencolok, rasa yang kompleks, dan tekstur yang unik.',
+                    //   textAlign: TextAlign.justify,
+                    //   style: TextStyle(
+                    //     color: Colors.black,
+                    //     fontSize: 14,
+                    //     fontFamily: 'Inter',
+                    //     fontWeight: FontWeight.w400,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

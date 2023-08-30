@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
-import 'package:variegata_project/common/widget/info_card.dart';
-import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
-import 'package:variegata_project/pages/detail_informasi.dart';
 import 'package:variegata_project/pages/screens/Example_informasi.dart';
 
 class InformasiPage extends StatefulWidget {
