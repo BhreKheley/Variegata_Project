@@ -4,9 +4,7 @@ import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
 import 'package:variegata_project/common/widget/product.dart';
-import 'package:variegata_project/pages/budidaya/budidaya_page.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/informasi.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
 

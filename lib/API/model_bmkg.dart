@@ -4,6 +4,7 @@ class BmkgModel {
   BmkgModel({this.data});
 
   BmkgModel.fromJson(Map<String, dynamic> json) {
+    // ignore: unnecessary_new
     data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 

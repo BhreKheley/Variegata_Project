@@ -14,12 +14,12 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
     return Container(
       height: 192,
       child: ListView.builder(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         scrollDirection: Axis.horizontal,
         itemCount: 5, // Since there's only one item in the list
         itemBuilder: (BuildContext context, int index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             width: 194,
             height: 140,
             child: Row(
@@ -33,13 +33,13 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                     boxShadow: [
-                      BoxShadow(
+                      const BoxShadow(
                         color: Color(0x3f000000),
                         blurRadius: 14,
                         offset: Offset(0, 5),
                       ),
                     ],
-                    color: Color(0xffd9d9d9),
+                    color: const Color(0xffd9d9d9),
                   ),
                   child: Stack(
                     children: [
@@ -57,7 +57,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                                     child: Container(
                                       width: 194,
                                       height: 101,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(4),
                                           topRight: Radius.circular(4),
@@ -65,7 +65,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                                           bottomRight: Radius.circular(0),
                                         ),
                                       ),
-                                      child: Image(
+                                      child: const Image(
                                         image: AssetImage(
                                           'assets/img/bg-artikel.png',
                                         ),
@@ -81,7 +81,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                                       height: 104,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
-                                        color: Color(0xcc94af9f),
+                                        color: const Color(0xcc94af9f),
                                       ),
                                     ),
                                   ),
@@ -104,7 +104,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 8,
                         top: 37,
                         child: SizedBox(
@@ -120,7 +120,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 8,
                         top: 109,
                         child: Text(
@@ -133,7 +133,7 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 19,
                         top: 82,
                         child: Text(
@@ -165,14 +165,14 @@ class _Artikel_carouselState extends State<Artikel_carousel> {
                         child: Container(
                           width: 16,
                           height: 16,
-                          child: Image(
+                          child: const Image(
                             image: AssetImage(
                               'assets/img/info-logo.png',
                             ),
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         left: 23,
                         top: 15,
                         child: Text(

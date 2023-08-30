@@ -46,7 +46,7 @@ class _GantiAlamatState extends State<GantiAlamat> {
           children: [
             //alamat 1
             Container(
-              width: 355,
+              width: MediaQuery.of(context).size.width,
               height: 118,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
@@ -129,7 +129,7 @@ class _GantiAlamatState extends State<GantiAlamat> {
             ),
             //alamat 2
             Container(
-              width: 355,
+              width: MediaQuery.of(context).size.width,
               height: 118,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
@@ -211,7 +211,7 @@ class _GantiAlamatState extends State<GantiAlamat> {
               height: 20,
             ),
             Container(
-              width: 355,
+              width: MediaQuery.of(context).size.width,
               height: 98,
               child: Padding(
                 padding: const EdgeInsets.only(

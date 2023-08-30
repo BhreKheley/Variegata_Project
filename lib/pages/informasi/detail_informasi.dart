@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/common/widget/info_card.dart';
-import 'package:variegata_project/pages/informasi.dart';
 import 'package:variegata_project/pages/screens/Example_informasi.dart';
 
 class DetailInformasi extends StatefulWidget {

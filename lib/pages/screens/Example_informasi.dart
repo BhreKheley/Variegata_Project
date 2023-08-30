@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
-import 'package:variegata_project/pages/detail_informasi.dart';
+import 'package:variegata_project/pages/informasi/detail_informasi.dart';
 
 import '../../common/widget/bottom_navbar.dart';
 
@@ -16,8 +15,8 @@ class Informasi extends StatefulWidget {
 }
 
 class _InformasiState extends State<Informasi> {
-
-  String apiUrl = 'https://variegata.my.id/api/informasis'; // Ganti dengan URL Anda
+  String apiUrl =
+      'https://variegata.my.id/api/informasis'; // Ganti dengan URL Anda
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -55,123 +54,133 @@ class _InformasiState extends State<Informasi> {
           ),
         ),
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: fetchProducts(),
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData) {
-            return Text('No data available');
-          } else {
-            return ListView.builder(
-                itemCount: snapshot.data!.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final product = snapshot.data![index];
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => DetailInformasi(product: product),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: 48,
-                                height: 14,
-                                decoration: ShapeDecoration(
-                                  color: Color(0xFFE4E4E4),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(9),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        child: FutureBuilder<List<dynamic>>(
+          future: fetchProducts(),
+          builder:
+              (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (!snapshot.hasData) {
+              return Text('No data available');
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final product = snapshot.data![index];
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 10),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  DetailInformasi(product: product),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 48,
+                                  height: 14,
+                                  decoration: ShapeDecoration(
+                                    color: Color(0xFFE4E4E4),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(9),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Penyakit',
+                                      style: TextStyle(
+                                        color: Color(0xFFB9B9B9),
+                                        fontSize: 8,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      // textAlign: ,
+                                    ),
                                   ),
                                 ),
-                                child: Center(
-                                  child: Text('Penyakit',
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                SizedBox(
+                                  width: 184,
+                                  child: Text(
+                                    product['name'],
                                     style: TextStyle(
-                                      color: Color(0xFFB9B9B9),
-                                      fontSize: 8,
+                                      color: Colors.black,
+                                      fontSize: 12,
                                       fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
+                                      fontWeight: FontWeight.w600,
                                     ),
-                                    // textAlign: ,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              SizedBox(
-                                width: 184,
-                                child: Text(product['name'],
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                SizedBox(
+                                  height: 9,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 9,
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(5),
-                                    width: 23,
-                                    height: 23,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(50)),
-                                    child: Image.asset(
-                                      "assets/img/logo-mini.png",
+                                Row(
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(5),
+                                      width: 23,
+                                      height: 23,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      child: Image.asset(
+                                        "assets/img/logo-mini.png",
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: 6,
-                                  ),
-                                  Text(
-                                    'Variegata ',
-                                    style: TextStyle(
-                                      color: Color(0xFFBABABA),
-                                      fontSize: 10,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
+                                    SizedBox(
+                                      width: 6,
                                     ),
-                                  ),
-                                  Container(
-                                    margin: EdgeInsets.symmetric(horizontal: 10),
-                                    width: 4,
-                                    height: 4,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: Color(0xFFBABABA),
+                                    Text(
+                                      'Variegata ',
+                                      style: TextStyle(
+                                        color: Color(0xFFBABABA),
+                                        fontSize: 10,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    'Apr 04, 2023',
-                                    style: TextStyle(
-                                      color: Color(0xFFBABABA),
-                                      fontSize: 10,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w500,
+                                    Container(
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      width: 4,
+                                      height: 4,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Color(0xFFBABABA),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          Container(
+                                    Text(
+                                      'Apr 04, 2023',
+                                      style: TextStyle(
+                                        color: Color(0xFFBABABA),
+                                        fontSize: 10,
+                                        fontFamily: 'Inter',
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
                               padding: EdgeInsets.all(10.0),
                               width: 100,
                               height: 100,
@@ -185,23 +194,28 @@ class _InformasiState extends State<Informasi> {
                                   ),
                                 ],
                               ),
-                              child: CachedNetworkImage(
-                                imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                                placeholder: (context, url) => CircularProgressIndicator(),
-                                errorWidget: (context, url, error) => Icon(Icons.error),
-                                alignment: Alignment.topCenter,
-                                fit: BoxFit.cover,
-                                width: double.infinity,
-                                height: 110,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(7),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://variegata.my.id/storage/${product['image']}',
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                  alignment: Alignment.topCenter,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  );
-                });
-          }
-        },
+                    );
+                  });
+            }
+          },
+        ),
       ),
     );
   }
