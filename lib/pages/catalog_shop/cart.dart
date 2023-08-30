@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/catalog_shop/alamat.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
+import 'package:variegata_project/pages/catalog_shop/Mini_map.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
@@ -37,22 +36,22 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6F7FA),
+      backgroundColor: const Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Keranjang",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: const Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          color: Color(0xFF33363F),
+          icon: const Icon(Icons.arrow_back),
+          color: const Color(0xFF33363F),
           onPressed: () {
             Navigator.pop(
               context,
               MaterialPageRoute(
-                builder: (context) => KatalogShop(),
+                builder: (context) => const KatalogShop(),
               ),
             );
           },
@@ -61,8 +60,8 @@ class _CartState extends State<Cart> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
+          const Padding(
+            padding: EdgeInsets.only(
               left: 20,
               top: 20,
             ),
@@ -89,16 +88,16 @@ class _CartState extends State<Cart> {
                     onChanged: (value) {
                       setState(() {
                         allCheckbox = value!;
-                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value!;
+                        for (var i = 0; i < 3; i++) CheckBoxList[i] = value;
                       });
                     },
-                    activeColor: Color(0xFF94AF9F),
+                    activeColor: const Color(0xFF94AF9F),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 5,
                 ),
-                Text(
+                const Text(
                   'Pilih Semua',
                   style: TextStyle(
                     color: Colors.black,
@@ -110,7 +109,7 @@ class _CartState extends State<Cart> {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             thickness: 3,
             color: Color(0xFFEBEBEB),
           ),
@@ -147,11 +146,11 @@ class _CartState extends State<Cart> {
                             ;
                           });
                         },
-                        activeColor: Color(0xFF94AF9F),
+                        activeColor: const Color(0xFF94AF9F),
                       ),
                     ),
                     Container(
-                      width: 289,
+                      width: MediaQuery.of(context).size.width - 65,
                       height: 107,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -170,7 +169,7 @@ class _CartState extends State<Cart> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image(
+                              child: const Image(
                                 image: AssetImage(
                                     "assets/img/produk-philodendron.png"),
                                 width: 88,
@@ -178,7 +177,7 @@ class _CartState extends State<Cart> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(vertical: 5),
+                              padding: const EdgeInsets.symmetric(vertical: 5),
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -186,7 +185,7 @@ class _CartState extends State<Cart> {
                                 children: [
                                   Container(
                                     width: 168,
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -208,7 +207,7 @@ class _CartState extends State<Cart> {
                                   ),
                                   Container(
                                     width: 160,
-                                    child: Text(
+                                    child: const Text(
                                       'Tanaman Philodendron\nMonstera Deliciosa',
                                       style: TextStyle(
                                         color: Colors.black,
@@ -230,7 +229,7 @@ class _CartState extends State<Cart> {
                                               onTap: () {
                                                 decrement();
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.remove_circle_outline,
                                                 size: 17,
                                                 color: Color(0xFF94AF9F),
@@ -242,14 +241,14 @@ class _CartState extends State<Cart> {
                                                       horizontal: 5),
                                               child: Text(
                                                 '$quantity',
-                                                style: TextStyle(fontSize: 14),
+                                                style: const TextStyle(fontSize: 14),
                                               ),
                                             ),
                                             GestureDetector(
                                               onTap: () {
                                                 decrement();
                                               },
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.add_circle_outline,
                                                 size: 17,
                                                 color: Color(0xFF94AF9F),
@@ -257,7 +256,7 @@ class _CartState extends State<Cart> {
                                             ),
                                           ],
                                         ),
-                                        Text(
+                                        const Text(
                                           "Rp150.000",
                                           style: TextStyle(
                                             color: Colors.black,
@@ -292,7 +291,7 @@ class _CartState extends State<Cart> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Pesanan Anda',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
@@ -301,7 +300,7 @@ class _CartState extends State<Cart> {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              Column(
+              const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
@@ -360,7 +359,7 @@ class _CartState extends State<Cart> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => TambahAlamat()),
+                      MaterialPageRoute(builder: (context) => const MiniMap()),
                     );
                   },
                   child: Container(
@@ -368,9 +367,9 @@ class _CartState extends State<Cart> {
                     height: 40,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(33),
-                      color: Color(0xffa3bfae),
+                      color: const Color(0xffa3bfae),
                     ),
-                    child: Column(
+                    child: const Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

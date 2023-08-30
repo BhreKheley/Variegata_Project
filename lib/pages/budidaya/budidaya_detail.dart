@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/pages/budidaya/Example_Hama.dart';
 import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
-import 'package:variegata_project/pages/budidaya/hama_penyakit_tab.dart';
 
 import 'budidaya_page.dart';
 

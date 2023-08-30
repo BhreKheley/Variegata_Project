@@ -21,97 +21,106 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        //ini pageview ya nyet
-        PageView(
-          controller: _controller,
-          onPageChanged: (index) {
-            setState(() {
-              onLastPage = (index == 2);
-            });
-          },
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(
           children: [
-            WelcomePage(),
-            FeaturesPage(),
-            GetStartedPage(),
+            Expanded(
+              child: PageView(
+                controller: _controller,
+                onPageChanged: (index) {
+                  setState(() {
+                    onLastPage = (index == 2);
+                  });
+                },
+                children: [
+                  WelcomePage(),
+                  FeaturesPage(),
+                  GetStartedPage(),
+                ],
+              ),
+            ),
+
+            //penanda page / dot indicator
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    child: SmoothPageIndicator(
+                      controller: _controller,
+                      count: 3,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: Color(0xFFAEC2B6),
+                        dotColor: Color(0xFFD9D9D9),
+                        dotWidth: 6,
+                        dotHeight: 6,
+                      ),
+                    ),
+                  ),
+                  Spacer(),
+                  Container(
+                    child: onLastPage
+                        ? GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return LoginPage();
+                                  },
+                                ),
+                              );
+                            },
+                            child: Container(
+                              width: 82,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFAEC2B6),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Start",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              _controller.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeIn,
+                              );
+                            },
+                            child: Container(
+                              width: 82,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFAEC2B6),
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Next",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-
-        //penanda page / dot indicator
-        Padding(
-          padding: const EdgeInsets.only(top: 700),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                width: 30,
-              ),
-              Container(
-                child: SmoothPageIndicator(
-                  controller: _controller,
-                  count: 3,
-                  effect: ExpandingDotsEffect(
-                    activeDotColor: Color(0xFFAEC2B6),
-                    dotColor: Color(0xFFD9D9D9),
-                    dotWidth: 10,
-                    dotHeight: 10,
-                  ),
-                ),
-              ),
-              Spacer(),
-              Container(
-                width: 82,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: Color(0xFFAEC2B6),
-                  borderRadius: BorderRadius.circular(18),
-                ),
-                child: onLastPage
-                    ? GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return LoginPage();
-                              },
-                            ),
-                          );
-                        },
-                        child: Center(
-                          child: Text(
-                            "Start",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      )
-                    : GestureDetector(
-                        onTap: () {
-                          _controller.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeIn,
-                          );
-                        },
-                        child: Center(
-                          child: Text(
-                            "Next",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-              ),
-              SizedBox(
-                width: 30,
-              )
-            ],
-          ),
-        ),
-      ],
-    ));
+      ),
+    );
   }
 }

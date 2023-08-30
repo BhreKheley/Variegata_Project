@@ -1,9 +1,9 @@
 // import 'package:flutter/material.dart';
 // import 'package:variegata_project/pages/budidaya/detail_hama.dart';
-//
+
 // class HamaPenyakit extends StatelessWidget {
 //   const HamaPenyakit({Key? key}) : super(key: key);
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return SingleChildScrollView(
@@ -77,7 +77,7 @@
 //       ),
 //     );
 //   }
-//
+
 //   Widget CardHama(String image, String title, String subTitle) {
 //     return Container(
 //       padding: EdgeInsets.symmetric(vertical: 10),
