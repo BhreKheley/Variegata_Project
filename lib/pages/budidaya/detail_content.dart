@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class ContentDetail extends StatefulWidget {
-  const ContentDetail({super.key});
+class ContentDetail extends StatelessWidget {
+  final dynamic content;
+  ContentDetail({required this.content});
 
-  @override
-  State<ContentDetail> createState() => _ContentDetailState();
-}
-
-class _ContentDetailState extends State<ContentDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
         title: Text(
-          "Tahap Prapembibitan",
+          content['name'],
           style: TextStyle(color: Color(0xFF33363F)),
         ),
         backgroundColor: Color(0xFFF6F7FA),
@@ -23,56 +20,59 @@ class _ContentDetailState extends State<ContentDetail> {
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            Navigator.pop(
-              context,
-            );
+            Navigator.pop(context);
           },
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 25, top: 20, right: 25, bottom: 20),
-                child: Text(
-                  "Jarangkan bibit untuk hasilkan tegakan tanaman yang sehat",
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w600,
-                  ),
+              Text(
+                content['title'],
+                style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+              SizedBox(height: 20),
               Stack(
                 children: [
-                  Container(
+                  CachedNetworkImage(
+                    imageUrl: 'https://variegata.my.id/storage/${content['image']}',
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    fit: BoxFit.cover,
                     width: 395,
                     height: 201,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image:
-                              AssetImage("assets/img/budidaya/pertumbuhan.png"),
-                          fit: BoxFit.cover),
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                   Positioned(
                     left: 0,
                     bottom: 0,
                     child: Container(
-                      // Properti dan styling untuk Container yang menimpa gambar
                       width: 139,
                       height: 27,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Color(0xFFE3CA8A),
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(3),
+                          bottomLeft: Radius.circular(10),
                         ),
                       ),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          "Pelatihan tanaman",
+                          content['name'],
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.black,
@@ -84,37 +84,20 @@ class _ContentDetailState extends State<ContentDetail> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                ),
-                child: Text(
-                  "4 Minggu sebelum pembibitan",
-                  style: TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w500,
-                  ),
+              SizedBox(height: 20),
+              Text(
+                content['week'],
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(
-                height: 25,
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 25,
-                  right: 25,
-                ),
-                child: Text(
-                  "Untuk menumbuhkan tanaman lada yang sehat dan produktif, utamakan lokasi yang dipilih bebas dari embun beku dan mendapat paparan pada arah selatan untuk memastikan bahwa tanah menghangat pada awal musim semi dan siap untuk ditanam. Baris harus berorientasi dari utara ke selatan sehingga tanaman mendapatkan sinat matahari sebanyak mungkin. Tanaman tumbuh paling baik ketika suhu siang hari berkisar 22-25 °C dan suhu malam hari tidak berada di bawah 12 °C. Hindari lahan dengan riwayat penyakit dan monokultur. Hindari tanah yang telah di gunakan untuk menanam lada, tomat, terong, atau kentang selama dua musim sebelumnya untuk mencegah penyakit.",
-                  textAlign: TextAlign.justify,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
+              SizedBox(height: 10),
+              Text(
+                content['description'],
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                  fontSize: 16,
                 ),
               ),
             ],

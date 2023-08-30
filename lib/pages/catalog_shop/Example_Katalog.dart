@@ -4,8 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:variegata_project/pages/catalog_shop/Detail_Toko.dart';
 import 'dart:convert';
 
-import 'package:variegata_project/pages/catalog_shop/produk_catalog.dart';
-
 class Katalogs extends StatefulWidget {
   const Katalogs({Key? key}) : super(key: key);
 

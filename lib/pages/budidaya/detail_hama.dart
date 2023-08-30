@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'Example_Hama.dart';
 
 class DetailHamaPenyakit extends StatefulWidget {
   final dynamic product;
@@ -19,11 +18,8 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(
-                builder: (context) => Hama(), // Ganti dengan halaman berikutnya
-              ),
             );
           },
           color: Colors.black,

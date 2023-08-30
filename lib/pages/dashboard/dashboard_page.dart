@@ -4,12 +4,11 @@ import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
 import 'package:variegata_project/common/widget/product.dart';
+import 'package:variegata_project/pages/budidaya/Budidaya.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
-
-import '../budidaya/Example_budidaya.dart';
-import '../screens/Example_informasi.dart';
+import 'package:variegata_project/pages/informasi/informasi.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);

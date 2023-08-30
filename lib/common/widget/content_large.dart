@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/detail_content.dart';
+import 'package:variegata_project/pages/budidaya/Detail_Content.dart';
 
 class LargeContent extends StatelessWidget {
   const LargeContent({Key? key}) : super(key: key);
@@ -7,14 +7,14 @@ class LargeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ContentDetail(),
-          ),
-        );
-      },
+      // onTap: () {
+      //   Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) => ContentDetail(),
+      //     ),
+      //   );
+      // },
       child: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

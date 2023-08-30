@@ -1,11 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/Banner.dart';
-import 'package:variegata_project/pages/budidaya/Stage.dart';
+import 'package:variegata_project/pages/budidaya/HamaPenyakit.dart';
 import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
-
-import 'Example.dart';
-import 'Example_budidaya.dart';
 
 class DetailPlant extends StatefulWidget {
   final dynamic product;
