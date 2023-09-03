@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/screens/SplashScreen.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:variegata_project/pages/screens/SplashScreen.dart';
