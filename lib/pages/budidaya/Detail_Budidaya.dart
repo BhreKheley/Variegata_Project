@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/budidaya/Example_Hama.dart';
+import 'package:variegata_project/pages/budidaya/HamaPenyakit.dart';
 import 'package:variegata_project/pages/budidaya/budidaya_tab.dart';
-
-import 'Example_budidaya.dart';
 
 class DetailPlant extends StatefulWidget {
   final dynamic product;
@@ -57,24 +55,14 @@ class _DetailPlantState extends State<DetailPlant>
       appBar: AppBar(
         leading: BackButton(
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    Budidaya(), // Ganti dengan halaman berikutnya
-              ),
             );
           },
           color: Colors.black,
         ),
         backgroundColor: const Color(0xFFF6F7FA),
         elevation: 0,
-        title: Text(
-          widget.product['name'],
-          style: TextStyle(
-            color: Colors.black,
-          ),
-        ),
       ),
       body: Column(
         children: [
@@ -129,7 +117,7 @@ class _DetailPlantState extends State<DetailPlant>
                               height: 5,
                             ),
                             Text(
-                              widget.product['name'],
+                              widget.product['scientific'],
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
@@ -185,7 +173,7 @@ class _DetailPlantState extends State<DetailPlant>
               controller: _tabController,
               children: [
                 BudidayaTab(),
-                Hama(),
+                HamaPenyakit(plantId: widget.product['id']),
               ],
             ),
           ),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:variegata_project/common/widget/artikel.dart';
 import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
 import 'package:variegata_project/common/widget/product.dart';
+import 'package:variegata_project/pages/budidaya/Budidaya.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/common/widget/search_box.dart';
-
-import '../budidaya/Example_budidaya.dart';
-import '../screens/Example_informasi.dart';
+import 'package:variegata_project/pages/informasi/informasi.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -19,29 +19,6 @@ class DashboardPage extends StatefulWidget {
 
 class _DashboardPageState extends State<DashboardPage> {
   String temperature = '';
-
-//   Future<void> fetchXMLData() async {
-//   final url = 'https://api.weatherprovider.com/forecast/indonesia.xml'; // Replace with your API URL
-
-//   try {
-//     final response = await http.get(Uri.parse(url));
-
-//     if (response.statusCode == 200) {
-//       final responseBody = response.body;
-
-//       // Parse the XML response
-//       final document = xml.XmlDocument.parse(responseBody);
-
-//       // Process and extract data from the XML document as needed
-//       // ...
-
-//     } else {
-//       print('Request failed with status: ${response.statusCode}');
-//     }
-//   } catch (error) {
-//     print('Error: $error');
-//   }
-// }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +45,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               SvgPicture.asset('assets/img/logo.svg'),
                               Text(
                                 "Variegata",
-                                style: TextStyle(
+                                style: GoogleFonts.notoSerif(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.white,
@@ -124,7 +101,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Informasi(),
+                                      builder: (context) => InformasiPage(),
                                     ),
                                   );
                                 },
