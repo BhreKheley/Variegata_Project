@@ -1,18 +1,97 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:variegata_project/pages/catalog_shop/Order.dart';
 import 'package:variegata_project/pages/catalog_shop/ganti_alamat.dart';
+import 'package:variegata_project/pages/catalog_shop/midtrans_screen/SnapScreen.dart';
+import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
 
 class Checkout extends StatefulWidget {
-  const Checkout({super.key});
+  final AlamatModel alamatModel;
+  final List<Map<String, dynamic>> selectedProducts;
+
+  Checkout({ required this.selectedProducts, required this.alamatModel });
 
   @override
   State<Checkout> createState() => _CheckoutState();
 }
 
-List<String> options = ['Option 1', 'Option 2'];
-
 class _CheckoutState extends State<Checkout> {
-  String currentOption = options[0];
+
+  Map<String, dynamic> get firstSelectedProduct =>
+      widget.selectedProducts.isNotEmpty ? widget.selectedProducts.first : {};
+
+  double calculateTotalPrice() {
+    double totalPrice = 0.0;
+    for (var product in widget.selectedProducts) {
+      double price = double.tryParse(product['price']?.toString() ?? '0.0') ?? 0.0;
+      int quantity = product['quantity'] ?? 0;
+      totalPrice += (price * quantity);
+    }
+    return totalPrice;
+  }
+
+
+  String formatPrice(double price) {
+    return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
+        .format(price);
+  }
+
+  String formatTotalHarga(double totalHarga) {
+    return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
+        .format(totalHarga);
+  }
+
+  Future<String?> fetchSnapToken(String qty) async {
+    final url = Uri.parse('https://variegata.my.id/api/checkout');
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final String? authToken = prefs.getString('auth_token');
+
+      if (authToken == null) {
+        print('Token tidak ditemukan di penyimpanan lokal.');
+        return null;
+      }
+
+      final response = await http.post(
+        url,
+        headers: {
+          'Authorization': 'Bearer $authToken',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          "qty": qty,
+          "total_price": calculateTotalPrice().toStringAsFixed(2), // Menggunakan total harga yang telah dihitung dengan format dua angka desimal
+          "status": "Belum Bayar",
+          "addresses_id": 1,
+          "product_id": 1
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data['snapToken'];
+      } else if (response.statusCode == 422) {
+        final responseData = json.decode(response.body);
+        final errorMessage = responseData['message'];
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Gagal mengambil snapToken: $errorMessage'),
+          ),
+        );
+        return null;
+      } else {
+        print('Gagal mengambil snapToken: ${response.statusCode}');
+        return null;
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +108,9 @@ class _CheckoutState extends State<Checkout> {
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            // Navigator.pop(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => Alamat(),
-            //   ),
-            // );
+            Navigator.pop(
+              context,
+            );
           },
         ),
       ),
@@ -58,101 +134,92 @@ class _CheckoutState extends State<Checkout> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => GantiAlamat()),
-                      );
-                    },
-                    child: Container(
-                      child: Text(
-                        "Ganti Alamat",
-                        style: TextStyle(
-                          color: Color(0xFF94AF9F),
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               SizedBox(
                 height: 10,
               ),
-              Container(
-                width: 355,
-                height: 118,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(3),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 15,
-                    right: 15,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GantiAlamat(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 355,
+                  height: 118,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3),
+                    color: Colors.white,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 25),
-                            child: Container(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    "Nama",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Center(
-                                    child: Text(
-                                      "+6283877176448",
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                      right: 15,
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 25),
+                              child: Container(
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      widget.alamatModel.namaPenerima,
                                       style: TextStyle(
-                                        color: Color(0xFF505050),
+                                        color: Colors.black,
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        widget.alamatModel.nomorTelepon,
+                                        style: TextStyle(
+                                          color: Color(0xFF505050),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Container(
-                            width: 240,
-                            child: Text(
-                              "Rangkapan Jaya, Kec. Pancoran Mas, Kota Depok, Jawa Barat, 16435, Indonesia",
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  color: Color(0xFF505050),
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w400),
+                            SizedBox(
+                              height: 10,
                             ),
-                          ),
-                        ],
-                      ),
-                      Image(
-                        image: AssetImage("assets/img/lokasi.png"),
-                        width: 58,
-                        height: 58,
-                      )
-                    ],
+                            Container(
+                              width: 240,
+                              child: Text(
+                                widget.alamatModel.alamat,
+                                maxLines: 3,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: Color(0xFF505050),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Image(
+                          image: AssetImage("assets/img/lokasi.png"),
+                          width: 58,
+                          height: 58,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -170,322 +237,176 @@ class _CheckoutState extends State<Checkout> {
               SizedBox(
                 height: 10,
               ),
-              Container(
-                width: 355,
-                height: 197,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(3),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Stack(
-                          children: [
-                            SvgPicture.asset(
-                              "assets/img/vector-checkout.svg",
-                              width: 199,
-                              height: 53,
-                            ),
-                            Positioned(
-                              left: 15,
-                              top: 9,
-                              child: Container(
-                                width: 32,
-                                height: 32,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: ClipOval(
-                                  child: Image(
-                                    image: AssetImage("assets/img/logo.png"),
-                                    width: 29,
-                                    height: 29,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              left: 55,
-                              top: 6,
-                              child: Column(
+              Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      print("Data yang dikirim ke Order: ${widget.selectedProducts}");
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Order(selectedProducts: widget.selectedProducts),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: 355,
+                      height: 197,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(3),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Stack(
                                 children: [
-                                  Text(
-                                    "Variegata",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w600,
+                                  SvgPicture.asset(
+                                    "assets/img/vector-checkout.svg",
+                                    width: 199,
+                                    height: 53,
+                                  ),
+                                  Positioned(
+                                    left: 15,
+                                    top: 9,
+                                    child: Container(
+                                      width: 32,
+                                      height: 32,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      child: ClipOval(
+                                        child: Image(
+                                          image: AssetImage("assets/img/logo.png"),
+                                          width: 29,
+                                          height: 29,
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text(
-                                    "Kab. Kudus",
-                                    style: TextStyle(
-                                      color: Color(0xFF505050),
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
+                                  Positioned(
+                                    left: 55,
+                                    top: 6,
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          "Variegata",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 17,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 3,
+                                        ),
+                                        Text(
+                                          "Kab. Kudus",
+                                          style: TextStyle(
+                                            color: Color(0xFF505050),
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 15,
-                        top: 15,
-                        right: 8,
-                        bottom: 15,
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image(
-                              image: AssetImage(
-                                  "assets/img/produk-philodendron.png"),
-                              width: 88,
-                              height: 89,
-                            ),
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Tanaman",
-                                style: TextStyle(
-                                    color: Color(0xFFADADAD),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(
-                                height: 3,
-                              ),
-                              Container(
-                                width: 185,
-                                child: Text(
-                                  "Tanaman Philodendron Monstera Deliciosa",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 15,
+                              top: 15,
+                              right: 8,
+                              bottom: 15,
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                    'https://variegata.my.id/storage/${firstSelectedProduct['image']}',
+                                    width: 88,
+                                    height: 89,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "1 Barang",
-                                style: TextStyle(
-                                    color: Color(0xFFADADAD),
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                "Rp150.000",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Text(
-                "Pilihan Pengiriman",
-                style: TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  showModalBottomSheet(
-
-                      isScrollControlled: true,
-                      context: context,
-                      isDismissible: false,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
-                      ),
-                      builder: ((context) {
-                        return Container(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 20,
+                                SizedBox(
+                                  width: 8,
                                 ),
-                                child: Column(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
+                                    Text(
+                                      "Tanaman",
+                                      style: TextStyle(
+                                          color: Color(0xFFADADAD),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
                                     Container(
-                                      width: 60,
-                                      height: 7,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFDADADA),
-                                        borderRadius: BorderRadius.circular(4),
+                                      width: 185,
+                                      child: Text(
+                                        firstSelectedProduct['name'],
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w500,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
-                                      height: 4,
+                                      height: 5,
                                     ),
-                                    Container(
-                                      width: 40,
-                                      height: 6,
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFDADADA),
-                                        borderRadius: BorderRadius.circular(3),
-                                      ),
+                                    Text(
+                                      "Jumlah ${firstSelectedProduct['quantity']}",
+                                      style: TextStyle(
+                                          color: Color(0xFFADADAD),
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      formatPrice(double.parse(firstSelectedProduct['price'] ?? '0.0')), // Menggunakan fungsi formatPrice
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600),
                                     ),
                                   ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Center(
-                                child: Text(
-                                  "Pilih Waktu Pengiriman ",
-                                  style: TextStyle(
-                                    color: Color(0xFF505050),
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              OngkirContent(),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              OngkirContent(),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              OngkirContent(),
-                              SizedBox(height: 20,),
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.pop(
-                                    context,
-                                  );
-                                },
-                                child: Container(
-                                  width: 355,
-                                  height: 40,
-                                  child: Center(
-                                    child: Text(
-                                      "Simpan",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 21,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFF9ED098),
-                                    borderRadius: BorderRadius.circular(3),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 20,)
-                            ],
+                                )
+                              ],
+                            ),
                           ),
-                        );
-                      }));
-                },
-                child: Container(
-                  width: 355,
-                  height: 49,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    border: Border.all(
-                      color: Color(0xFFD9D9D9),
-                      width: 2,
+                        ],
+                      ),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Klik untuk pilih",
-                          style: TextStyle(
-                            color: Color(0xFF505050),
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down_sharp,
-                          color: Color(0xFF94AF9F),
-                          size: 34,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ],
               ),
               SizedBox(
                 height: 30,
-              ),
-              Text(
-                "Ringkasan Pembayaran",
-                style: TextStyle(
-                  color: Color(0xFF505050),
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
               ),
               SizedBox(
                 height: 10,
               ),
               Container(
                 width: 355,
-                height: 178,
+                height: 150,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(3),
@@ -513,7 +434,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Subtotal  Produk (1 Item)",
+                            "Subtotal  Produk (${widget.selectedProducts.length} Item)",
                             style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 16,
@@ -521,7 +442,8 @@ class _CheckoutState extends State<Checkout> {
                             ),
                           ),
                           Text(
-                            "Rp150.000",
+                            formatTotalHarga(
+                                calculateTotalPrice()), // Menggunakan fungsi formatTotalHarga
                             style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 16,
@@ -544,7 +466,7 @@ class _CheckoutState extends State<Checkout> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Ringkasan Pembayaran",
+                            "Subtotal Pembayaran",
                             style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 17,
@@ -552,35 +474,12 @@ class _CheckoutState extends State<Checkout> {
                             ),
                           ),
                           Text(
-                            "Rp150.000",
+                            formatTotalHarga(
+                                calculateTotalPrice()), // Menggunakan fungsi formatTotalHarga
                             style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Biaya Layanan",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 17,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "Rp2.000",
-                            style: TextStyle(
-                              color: Color(0xFF505050),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -623,7 +522,8 @@ class _CheckoutState extends State<Checkout> {
                       height: 5,
                     ),
                     Text(
-                      "Rp150.000",
+                      formatTotalHarga(
+                          calculateTotalPrice()), // Menggunakan fungsi formatTotalHarga
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 21,
@@ -633,11 +533,23 @@ class _CheckoutState extends State<Checkout> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Alamat()),
-                    // );
+                  onTap: () async {
+                    final snapToken = await fetchSnapToken(widget.selectedProducts.length.toString());
+                    if (snapToken != null) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Snap_screen(snap_token: snapToken),
+                        ),
+                      );
+                    } else {
+                      // Handle jika gagal mengambil snap_token
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Gagal mengambil snap_token'),
+                        ),
+                      );
+                    }
                   },
                   child: Container(
                     width: 136,
@@ -661,70 +573,6 @@ class _CheckoutState extends State<Checkout> {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget OngkirContent() {
-    return Container(
-      width: 355,
-      height: 97,
-      decoration: BoxDecoration(
-        border: Border.all(color: Color(0xFFD9D9D9)),
-        borderRadius: BorderRadius.circular(2),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 14,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Variegata Reguler",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Rp12.000 - Rp15.000",
-                  style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 15,
-                  ),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  "Estimasi tiba 10 - 14 Aug",
-                  style: TextStyle(
-                    color: Color(0xFF505050),
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-            Radio(
-                activeColor: Color(0xFF91C6A6),
-                value: options[1],
-                groupValue: currentOption,
-                onChanged: (value) {
-                  setState(() {
-                    currentOption = value.toString();
-                  });
-                }),
-          ],
         ),
       ),
     );
