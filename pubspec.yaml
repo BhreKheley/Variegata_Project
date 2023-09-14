@@ -55,6 +55,8 @@ dependencies:
   geolocator: ^9.0.2
   flutter_map: ^4.0.0
   latlong2: ^0.8.2
+  webview_flutter: ^2.0.0
+  modal_progress_hud_nsn:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
