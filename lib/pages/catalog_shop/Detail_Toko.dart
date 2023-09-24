@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
+import 'package:variegata_project/pages/catalog_shop/ulasan_pembeli.dart';
 
 import '../../common/widget/product_card.dart';
 
@@ -407,10 +408,21 @@ class _DetailProdukState extends State<DetailProduk> {
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),
-                                  Text(
-                                    'Lihat Semua',
-                                    style: TextStyle(
-                                        color: Color(0xFF94AF9F), fontSize: 14),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UlasanPembeli()),
+                                      );
+                                    },
+                                    child: Text(
+                                      'Lihat Semua',
+                                      style: TextStyle(
+                                          color: Color(0xFF94AF9F),
+                                          fontSize: 14),
+                                    ),
                                   ),
                                 ],
                               ),

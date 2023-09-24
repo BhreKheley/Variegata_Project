@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:variegata_project/auth/login_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:variegata_project/pages/profile/edit_profil.dart';
 import 'package:variegata_project/pages/profile/favorit.dart';
 import 'package:variegata_project/pages/profile/riwayat_pembelian.dart';
 import 'package:variegata_project/pages/profile/status_pemesanan.dart';
@@ -97,15 +98,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                         ),
                                       ),
                                       Text(
-                                        '+6283877176446',
-                                        style: TextStyle(
-                                          color: Color(0xFFADADAD),
-                                          fontSize: 10,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                      Text(
                                         'nabil132@gmail.com',
                                         style: TextStyle(
                                           color: Color(0xFFADADAD),
@@ -120,12 +112,20 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                             Center(
-                              child: Text(
-                                "Ubah",
-                                style: TextStyle(
-                                  color: Color(0xFF94AF9F),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => EditProfil()));
+                                },
+                                child: Text(
+                                  "Ubah",
+                                  style: TextStyle(
+                                    color: Color(0xFF94AF9F),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
                               ),
                             ),
@@ -204,7 +204,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Color(0xFFD9D9D9),
                 ),
                 //Pengaturan Akun
-                //Pengaturan Akun
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -221,9 +220,17 @@ class _ProfilePageState extends State<ProfilePage> {
                               fontWeight: FontWeight.w600),
                         ),
                       ),
-                      IconMenu(
-                        'edit-profil.svg',
-                        'Edit Profil',
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EditProfil()));
+                        },
+                        child: IconMenu(
+                          'edit-profil.svg',
+                          'Edit Profil',
+                        ),
                       ),
                       Divider(
                         thickness: 1,

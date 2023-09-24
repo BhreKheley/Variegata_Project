@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:variegata_project/pages/profile/nilai_produk.dart';
 import 'package:variegata_project/pages/profile/riwayat_pembelian.dart';
 
 class DetailPemesanan extends StatefulWidget {
@@ -554,7 +554,7 @@ class _DetailPemesananState extends State<DetailPemesanan> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const KatalogShop()),
+                              builder: (context) => const NilaiProduk()),
                         );
                       },
                       child: Container(
@@ -566,7 +566,7 @@ class _DetailPemesananState extends State<DetailPemesanan> {
                         ),
                         child: const Center(
                           child: Text(
-                            "Beli Lagi",
+                            "Nilai",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 21,
