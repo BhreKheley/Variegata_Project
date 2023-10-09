@@ -1,14 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
-import 'package:variegata_project/pages/catalog_shop/alat_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/benih_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/cart.dart';
-import 'package:variegata_project/pages/catalog_shop/pestisida_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/pupuk_catalog.dart';
-import 'package:variegata_project/pages/catalog_shop/tanaman_catalog.dart';
+import 'package:variegata_project/common/widget/iklan_carousel.dart';
+import 'package:variegata_project/pages/catalog_shop/Keranjang/cart.dart';
+import 'package:variegata_project/pages/catalog_shop/Toko_Product/Toko_Alat.dart';
+import 'package:variegata_project/pages/catalog_shop/Toko_Product/Toko_Benih.dart';
+import 'package:variegata_project/pages/catalog_shop/Toko_Product/Toko_Pestisida.dart';
+import 'package:variegata_project/pages/catalog_shop/Toko_Product/Toko_Pupuk.dart';
+import 'package:variegata_project/pages/catalog_shop/Toko_Product/Toko_Tanaman.dart';
 
-import '../../common/widget/iklan_carousel.dart';
-import '../../common/widget/search_box.dart';
 
 class KatalogShop extends StatefulWidget {
   const KatalogShop({super.key});
@@ -23,7 +22,7 @@ class _KatalogShopState extends State<KatalogShop> {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
-        backgroundColor: Color(0xFFF6F7FA),
+        backgroundColor: Colors.white,
         elevation: 1,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -65,8 +64,9 @@ class _KatalogShopState extends State<KatalogShop> {
                   height: 10,
                 ),
                 Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Search_box()),
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    // child: Search_box()
+                ),
                 Iklan_carousel(),
                 SizedBox(
                   height: 30,
@@ -173,13 +173,6 @@ class _KatalogShopState extends State<KatalogShop> {
                           'Rp50.000',
                         ),
                       ),
-
-                      // ProductCard(
-                      //   image: 'pupuk_merah.png',
-                      //   title:
-                      //       'Pupuk NPK phonska plus 15-15-15 kemasan pabrik 25kg',
-                      //   price: 'Rp459.000',
-                      // ),
                     ],
                   ),
                 ),
@@ -230,76 +223,6 @@ class _KatalogShopState extends State<KatalogShop> {
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Products(
-                              'pestisida.png',
-                              'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                              'Rp50.000',
-                            ),
-                            Products(
-                              'pestisida.png',
-                              'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                              'Rp50.000',
-                            ),
-                            Products(
-                              'pestisida.png',
-                              'Pestisida Organik Cair untuk tanaman padi dan palawijaya BIOSIDA',
-                              'Rp50.000',
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
-                  color: Colors.white,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          width: MediaQuery.of(context).size.width,
-                          height: 99,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                              image: AssetImage('assets/img/bg-ktg1.png'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.only(left: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Toko Variegata',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  'Cari Kebutuhan Berkebun mu\ndengan cara yang mudah',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 11,
-                                    fontFamily: 'Inter',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Products(
                               'pestisida.png',

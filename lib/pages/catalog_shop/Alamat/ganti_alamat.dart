@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/catalog_shop/checkout.dart';
 
 class GantiAlamat extends StatefulWidget {
   const GantiAlamat({super.key});
@@ -28,12 +27,9 @@ class _GantiAlamatState extends State<GantiAlamat> {
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            // Navigator.pop(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => Checkout(),
-            //   ),
-            // );
+            Navigator.pop(
+              context,
+            );
           },
         ),
       ),

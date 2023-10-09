@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:variegata_project/pages/catalog_shop/cart.dart';
-import 'package:variegata_project/pages/catalog_shop/checkout.dart';
+
+import 'package:variegata_project/pages/catalog_shop/Checkout/checkout_product.dart';
 
 class AlamatModel {
   final String alamat;
@@ -20,7 +21,10 @@ class AlamatModel {
 
 class TambahAlamat extends StatefulWidget {
   final List<Map<String, dynamic>> selectedProducts;
-  TambahAlamat({Key? key, required this.currentAddress, required this.selectedProducts});
+  TambahAlamat(
+      {Key? key,
+        required this.currentAddress,
+        required this.selectedProducts});
   final String currentAddress;
 
   @override
@@ -33,19 +37,27 @@ class _TambahAlamatState extends State<TambahAlamat> {
   final TextEditingController nomorTeleponController = TextEditingController();
   final TextEditingController catatanController = TextEditingController();
 
+  Future<String?> _getAuthToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
+  }
+
   void _simpanData() async {
     final String alamat = alamatController.text;
     final String namaPenerima = namaPenerimaController.text;
     final String nomorTelepon = nomorTeleponController.text;
     final String catatan = catatanController.text;
 
-    if (alamat.isEmpty || namaPenerima.isEmpty || nomorTelepon.isEmpty) {
+    // Mengambil auth_token dari SharedPreferences
+    final String? authToken = await _getAuthToken();
+
+    if (alamat.isEmpty || namaPenerima.isEmpty || nomorTelepon.isEmpty || authToken == null) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Peringatan'),
-            content: Text('Mohon lengkapi semua data yang diperlukan.'),
+            content: Text('Mohon lengkapi semua data yang diperlukan atau token tidak tersedia.'),
             actions: <Widget>[
               TextButton(
                 child: Text('Tutup'),
@@ -92,6 +104,7 @@ class _TambahAlamatState extends State<TambahAlamat> {
       Uri.parse('https://variegata.my.id/api/addresses'), // Ganti dengan URL endpoint Anda
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer $authToken', // Menambahkan Bearer token ke header
       },
       body: jsonEncode(requestData),
     );
@@ -104,12 +117,30 @@ class _TambahAlamatState extends State<TambahAlamat> {
         catatan: catatan,
       );
 
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => Checkout(alamatModel: alamatModel,
-            selectedProducts: widget.selectedProducts,
-          ),
-        ),
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Sukses'),
+            content: Text('Alamat Anda sudah terbuat.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Lanjut'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Tutup dialog sukses
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CheckoutProduct(
+                        alamatModel: alamatModel,
+                        selectedProducts: widget.selectedProducts,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
       );
     } else {
       showDialog(
@@ -154,9 +185,6 @@ class _TambahAlamatState extends State<TambahAlamat> {
           onPressed: () {
             Navigator.pop(
               context,
-              MaterialPageRoute(
-                builder: (context) => const Cart(),
-              ),
             );
           },
         ),
@@ -228,7 +256,7 @@ class _TambahAlamatState extends State<TambahAlamat> {
                           height: 10,
                         ),
                         const Text(
-                          "Pilih titik lokasi yang sesuai",
+                          "Titik lokasi anda saat ini",
                           style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 14,

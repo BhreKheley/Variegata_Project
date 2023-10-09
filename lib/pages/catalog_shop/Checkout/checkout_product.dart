@@ -4,22 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:variegata_project/pages/catalog_shop/Order.dart';
-import 'package:variegata_project/pages/catalog_shop/ganti_alamat.dart';
+import 'package:variegata_project/pages/catalog_shop/Alamat/Tambah_Alamat.dart';
+import 'package:variegata_project/pages/catalog_shop/Checkout/Detail_pesanan_checkout.dart';
 import 'package:variegata_project/pages/catalog_shop/midtrans_screen/SnapScreen.dart';
-import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
 
-class Checkout extends StatefulWidget {
+class CheckoutProduct extends StatefulWidget {
   final AlamatModel alamatModel;
   final List<Map<String, dynamic>> selectedProducts;
 
-  Checkout({ required this.selectedProducts, required this.alamatModel });
+  CheckoutProduct({ required this.selectedProducts, required this.alamatModel });
 
   @override
-  State<Checkout> createState() => _CheckoutState();
+  State<CheckoutProduct> createState() => _CheckoutProductState();
 }
 
-class _CheckoutState extends State<Checkout> {
+class _CheckoutProductState extends State<CheckoutProduct> {
 
   Map<String, dynamic> get firstSelectedProduct =>
       widget.selectedProducts.isNotEmpty ? widget.selectedProducts.first : {};
@@ -34,12 +33,10 @@ class _CheckoutState extends State<Checkout> {
     return totalPrice;
   }
 
-
   String formatPrice(double price) {
     return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
         .format(price);
   }
-
   String formatTotalHarga(double totalHarga) {
     return NumberFormat.currency(locale: 'id', symbol: 'Rp.', decimalDigits: 0)
         .format(totalHarga);
@@ -64,8 +61,7 @@ class _CheckoutState extends State<Checkout> {
         },
         body: jsonEncode({
           "qty": qty,
-          "total_price": calculateTotalPrice().toStringAsFixed(2), // Menggunakan total harga yang telah dihitung dengan format dua angka desimal
-          "status": "Belum Bayar",
+          "total_price": calculateTotalPrice().toStringAsFixed(2),
           "addresses_id": 1,
           "product_id": 1
         }),
@@ -139,87 +135,78 @@ class _CheckoutState extends State<Checkout> {
               SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GantiAlamat(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 355,
-                  height: 118,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.white,
+              Container(
+                width: 355,
+                height: 118,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(3),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                    right: 15,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 15,
-                      right: 15,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25),
-                              child: Container(
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      widget.alamatModel.namaPenerima,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 25),
+                            child: Container(
+                              child: Row(
+                                children: [
+                                  Text(
+                                    widget.alamatModel.namaPenerima,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 3,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      widget.alamatModel.nomorTelepon,
                                       style: TextStyle(
-                                        color: Colors.black,
+                                        color: Color(0xFF505050),
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: 3,
-                                    ),
-                                    Center(
-                                      child: Text(
-                                        widget.alamatModel.nomorTelepon,
-                                        style: TextStyle(
-                                          color: Color(0xFF505050),
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            width: 240,
+                            child: Text(
+                              widget.alamatModel.alamat,
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                  color: Color(0xFF505050),
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
                             ),
-                            Container(
-                              width: 240,
-                              child: Text(
-                                widget.alamatModel.alamat,
-                                maxLines: 3,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: Color(0xFF505050),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Image(
-                          image: AssetImage("assets/img/lokasi.png"),
-                          width: 58,
-                          height: 58,
-                        )
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                      Image(
+                        image: AssetImage("assets/img/lokasi.png"),
+                        width: 58,
+                        height: 58,
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -357,7 +344,7 @@ class _CheckoutState extends State<Checkout> {
                                     Container(
                                       width: 185,
                                       child: Text(
-                                        firstSelectedProduct['name'],
+                                        firstSelectedProduct['name'] ?? 'Nama Produk Tidak Tersedia',
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(

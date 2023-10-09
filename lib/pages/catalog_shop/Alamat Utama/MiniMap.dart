@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:variegata_project/pages/catalog_shop/tambah_alamat.dart';
+import 'package:variegata_project/pages/catalog_shop/Alamat%20Utama/AddAlamat.dart';
 
-import '../../common/widget/mapFunction.dart';
+import '../../../common/widget/mapFunction.dart';
 
 const MAPBOX_ACCESS_TOKEN =
     'pk.eyJ1IjoibWlrYWEyOSIsImEiOiJjbGxkcXBsNTQwYncyM2dxdjFqN2VuZGFwIn0.j5VpcKbH6WjqW0JiHfD-YQ';
 
-class MiniMap extends StatefulWidget {
-  final List<Map<String, dynamic>> selectedProducts;
-
-  MiniMap({required this.selectedProducts});
+class MapAlamat extends StatefulWidget {
 
   @override
-  State<MiniMap> createState() => _MiniMapState();
+  State<MapAlamat> createState() => _MapAlamatState();
 }
 
-class _MiniMapState extends State<MiniMap> {
+class _MapAlamatState extends State<MapAlamat> {
   late LatLng MyPosition;
   bool isloading = true;
   String _currentAddress = "";
@@ -92,9 +89,8 @@ class _MiniMapState extends State<MiniMap> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => TambahAlamat(
+                        builder: (context) => AddAlamat(
                           currentAddress: _currentAddress,
-                          selectedProducts: widget.selectedProducts,
                         ),
                       ),
                     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:variegata_project/pages/catalog_shop/Mini_map.dart';
+import 'package:variegata_project/pages/catalog_shop/Alamat/Mini_map.dart';
+import 'package:variegata_project/pages/catalog_shop/Checkout/Checkout_kosong.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 
 class Cart extends StatefulWidget {
@@ -12,6 +13,20 @@ class Cart extends StatefulWidget {
 
   @override
   State<Cart> createState() => _CartState();
+}
+
+class Product {
+  final String name;
+  final int quantity;
+  final String image;
+  final double price;
+
+  Product({
+    required this.name,
+    required this.quantity,
+    required this.image,
+    required this.price,
+  });
 }
 
 class _CartState extends State<Cart> {
@@ -186,38 +201,76 @@ class _CartState extends State<Cart> {
         .format(totalHarga);
   }
 
-  void checkoutAndNavigate() {
-    selectedProducts.clear();
-    for (var cartItem in cartItems) {
-      if (cartItem['isChecked']) {
-        selectedProducts.add({
-          'name': cartItem['product']['name'],
-          'quantity': productQuantities[cartItem['product']['id']] ?? 1,
-          'image': cartItem['product']['image'],
-          'price': cartItem['product']['price'],
-        });
-      }
-    }
+  Future<String?> getAccessToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token'); // Ganti 'access_token' dengan 'auth_token'
+  }
 
-    if (selectedProducts.isNotEmpty) {
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (context) => Order(selectedProducts: selectedProducts),
-      //   ),
-      // );
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => MiniMap(selectedProducts: selectedProducts),
-        ),
+  Future<void> _checkoutAndNavigate() async {
+    final token = await getAccessToken();
+    print('Access Token: $token');
+
+    if (token != null) {
+      final response = await http.get(
+        Uri.parse('https://variegata.my.id/api/addresses'), // Endpoint sesuai dengan metode index di kontroler Laravel
+        headers: {
+          'Authorization': 'Bearer $token',
+        },
       );
+
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+
+        if (responseData['addresses'].isNotEmpty) {
+          // Pengguna memiliki alamat
+          // Lanjutkan dengan checkout
+          selectedProducts.clear();
+          for (var cartItem in cartItems) {
+            if (cartItem['isChecked']) {
+              final productId = cartItem['product']['id'];
+              final quantity = productQuantities[productId] ?? 1;
+              final name = cartItem['product']['name'];
+              final image = cartItem['product']['image'];
+              final price = double.parse(cartItem['product']['price']);
+
+              selectedProducts.add({
+                'name': name,
+                'quantity': quantity,
+                'image': image,
+                'price': price.toStringAsFixed(2),
+              });
+            }
+          }
+
+          if (selectedProducts.isNotEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Checkout_AK(selectedProducts: selectedProducts),
+              ),
+            );
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text("Harap pilih item untuk melanjutkan")),
+            );
+          }
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MiniMap(selectedProducts: selectedProducts),
+            ),
+          );
+        }
+      } else {
+        print("Error: ${response.statusCode}");
+      }
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Harap pilih item untuk melanjutkan")),
-      );
     }
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -373,10 +426,10 @@ class _CartState extends State<Cart> {
                               Center(
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: CachedNetworkImage(
-                                    imageUrl: 'https://variegata.my.id/storage/${cartItem['product']['image']}',
-                                    placeholder: (context, url) => CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) => Icon(Icons.error),
+                                  child: Image.network(
+                                    'https://variegata.my.id/storage/${cartItem['product']['image']}',
+                                    errorBuilder: (context, error, stackTrace) =>
+                                        Icon(Icons.error),
                                     width: 85,
                                     height: 85,
                                   ),
@@ -538,7 +591,7 @@ class _CartState extends State<Cart> {
               ),
               Center(
                 child: InkWell(
-                  onTap: checkoutAndNavigate,
+                  onTap: _checkoutAndNavigate,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: 40,

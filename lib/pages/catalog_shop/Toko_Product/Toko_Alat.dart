@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:shimmer/shimmer.dart';
 import 'dart:convert';
-
 import 'Detail_Toko.dart';
 
 class ShopAlat extends StatefulWidget {
@@ -14,8 +12,8 @@ class ShopAlat extends StatefulWidget {
 }
 
 class _ShopAlatState extends State<ShopAlat> {
-  String apiUrl =
-      'https://variegata.my.id/api/products/category/5'; // Ganti dengan URL Anda
+  String apiUrl = 'https://variegata.my.id/api/products/category/5';
+  bool isLoading = true;
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -27,13 +25,36 @@ class _ShopAlatState extends State<ShopAlat> {
     }
   }
 
+  Widget _buildShimmerProductCard() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        width: 140,
+        height: 231,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: -4,
+              blurRadius: 14,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
         title: Text(
-          "Tanaman",
+          "Alat",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
         backgroundColor: Color(0xFFF6F7FA),
@@ -42,9 +63,8 @@ class _ShopAlatState extends State<ShopAlat> {
           icon: Icon(Icons.arrow_back),
           color: Color(0xFF33363F),
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => KatalogShop()),
             );
           },
         ),
@@ -53,23 +73,40 @@ class _ShopAlatState extends State<ShopAlat> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing: 20.0,
+                childAspectRatio: 0.62,
+              ),
+              padding: EdgeInsets.all(20.0),
+              shrinkWrap: true,
+              itemCount: snapshot.data?.length ?? 10,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildShimmerProductCard();
+              },
             );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
             return Text('No data available');
           } else {
-            return GridView.builder(
+            return RefreshIndicator(
+              onRefresh: () async {
+                setState(() {
+                  fetchProducts();
+                });
+              },
+              child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Jumlah kolom dalam grid
-                  mainAxisSpacing: 20.0, // Jarak antara baris
-                  crossAxisSpacing: 20.0, // Jarak antara kolom
-                  childAspectRatio: 0.62, // Rasio lebar-tinggi item dalam grid
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20.0,
+                  crossAxisSpacing: 20.0,
+                  childAspectRatio: 0.62,
                 ),
-                padding: EdgeInsets.all(20.0), // Padding di sekitar grid
-                // physics: NeverScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.all(20.0),
                 shrinkWrap: true,
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -94,8 +131,7 @@ class _ShopAlatState extends State<ShopAlat> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                DetailProduk(product: product),
+                            builder: (context) => DetailProduk(product: product),
                           ),
                         );
                       },
@@ -105,14 +141,11 @@ class _ShopAlatState extends State<ShopAlat> {
                             borderRadius: BorderRadius.vertical(
                               top: Radius.circular(5),
                             ),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  'https://variegata.my.id/storage/${product['image']}',
-                              placeholder: (context, url) =>
-                                  CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
-                              alignment: Alignment.topCenter,
+                            child: Image.network(
+                              'https://variegata.my.id/storage/${product['image']}',
+                              errorBuilder: (context, error, stackTrace) {
+                                return Icon(Icons.error);
+                              },
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: 110,
@@ -126,8 +159,7 @@ class _ShopAlatState extends State<ShopAlat> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  product['name'],
+                                Text(product['name'],
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style: TextStyle(
@@ -138,8 +170,7 @@ class _ShopAlatState extends State<ShopAlat> {
                                 SizedBox(
                                   height: 9,
                                 ),
-                                Text(
-                                  '\Rp.${product['price']}',
+                                Text('\Rp.${product['price']}',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
@@ -208,7 +239,9 @@ class _ShopAlatState extends State<ShopAlat> {
                       ),
                     ),
                   );
-                });
+                },
+              ),
+            );
           }
         },
       ),

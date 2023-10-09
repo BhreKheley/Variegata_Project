@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class DetailHamaPenyakit extends StatefulWidget {
@@ -79,10 +78,22 @@ class _DetailHamaPenyakitState extends State<DetailHamaPenyakit> {
                     Container(
                       height: 220,
                       width: 320,
-                      child: CachedNetworkImage(
-                        imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
-                        placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) => Icon(Icons.error),),
+                      child: Image.network(
+                        'https://variegata.my.id/storage/${widget.product['image']}',
+                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, exception, stackTrace) {
+                          return Icon(Icons.error);
+                        },
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 12),
