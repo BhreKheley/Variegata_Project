@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
+import 'package:shimmer/shimmer.dart';
 import 'dart:convert';
-
 import 'Detail_Toko.dart';
 
 class ShopBenih extends StatefulWidget {
@@ -14,8 +12,8 @@ class ShopBenih extends StatefulWidget {
 }
 
 class _ShopBenihState extends State<ShopBenih> {
-
-  String apiUrl = 'https://variegata.my.id/api/products/category/2'; // Ganti dengan URL Anda
+  String apiUrl = 'https://variegata.my.id/api/products/category/2';
+  bool isLoading = true;
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -27,24 +25,46 @@ class _ShopBenihState extends State<ShopBenih> {
     }
   }
 
+  Widget _buildShimmerProductCard() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      child: Container(
+        width: 140,
+        height: 231,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(5),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: -4,
+              blurRadius: 14,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F7FA),
+      backgroundColor: Color(0xFFF6F7FA),
       appBar: AppBar(
-        title: const Text(
-          "Tanaman",
+        title: Text(
+          "Benih",
           style: TextStyle(color: Color(0xFF33363F)),
         ),
-        backgroundColor: const Color(0xFFF6F7FA),
+        backgroundColor: Color(0xFFF6F7FA),
         elevation: 1,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: const Color(0xFF33363F),
+          icon: Icon(Icons.arrow_back),
+          color: Color(0xFF33363F),
           onPressed: () {
-            Navigator.push(
+            Navigator.pop(
               context,
-              MaterialPageRoute(builder: (context) => const KatalogShop()),
             );
           },
         ),
@@ -53,21 +73,40 @@ class _ShopBenihState extends State<ShopBenih> {
         future: fetchProducts(),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator(),);
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20.0,
+                crossAxisSpacing: 20.0,
+                childAspectRatio: 0.62,
+              ),
+              padding: EdgeInsets.all(20.0),
+              shrinkWrap: true,
+              itemCount: snapshot.data?.length ?? 10,
+              itemBuilder: (BuildContext context, int index) {
+                return _buildShimmerProductCard();
+              },
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else if (!snapshot.hasData) {
-            return const Text('No data available');
+            return Text('No data available');
           } else {
-            return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // Jumlah kolom dalam grid
-                  mainAxisSpacing: 20.0, // Jarak antara baris
-                  crossAxisSpacing: 20.0, // Jarak antara kolom
-                  childAspectRatio: 0.62, // Rasio lebar-tinggi item dalam grid
+            return RefreshIndicator(
+              onRefresh: () async {
+                setState(() {
+                  fetchProducts();
+                });
+              },
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20.0,
+                  crossAxisSpacing: 20.0,
+                  childAspectRatio: 0.62,
                 ),
-                padding: const EdgeInsets.all(20.0), // Padding di sekitar grid
-                // physics: NeverScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.all(20.0),
                 shrinkWrap: true,
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -83,7 +122,7 @@ class _ShopBenihState extends State<ShopBenih> {
                           color: Colors.grey.withOpacity(0.5),
                           spreadRadius: -4,
                           blurRadius: 14,
-                          offset: const Offset(0, 2),
+                          offset: Offset(0, 2),
                         ),
                       ],
                     ),
@@ -99,48 +138,48 @@ class _ShopBenihState extends State<ShopBenih> {
                       child: Column(
                         children: [
                           ClipRRect(
-                            borderRadius: const BorderRadius.vertical(
+                            borderRadius: BorderRadius.vertical(
                               top: Radius.circular(5),
                             ),
-                            child: CachedNetworkImage(
-                              imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                              placeholder: (context, url) => const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
-                              alignment: Alignment.topCenter,
+                            child: Image.network(
+                              'https://variegata.my.id/storage/${product['image']}',
+                              errorBuilder: (context, error, stackTrace) {
+                                return Icon(Icons.error);
+                              },
                               fit: BoxFit.cover,
                               width: double.infinity,
                               height: 110,
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 9,
                           ),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 9),
+                            padding: EdgeInsets.symmetric(horizontal: 9),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(product['name'],
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 9,
                                 ),
                                 Text('\Rp.${product['price']}',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 9,
                                 ),
-                                const Row(
+                                Row(
                                   children: [
                                     Icon(
                                       Icons.location_on,
@@ -159,8 +198,8 @@ class _ShopBenihState extends State<ShopBenih> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 2),
-                                const Row(
+                                SizedBox(height: 2),
+                                Row(
                                   children: [
                                     Icon(
                                       Icons.star,
@@ -182,8 +221,8 @@ class _ShopBenihState extends State<ShopBenih> {
                               ],
                             ),
                           ),
-                          const Spacer(),
-                          const Row(
+                          Spacer(),
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Icon(
@@ -200,7 +239,9 @@ class _ShopBenihState extends State<ShopBenih> {
                       ),
                     ),
                   );
-                });
+                },
+              ),
+            );
           }
         },
       ),

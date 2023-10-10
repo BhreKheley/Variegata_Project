@@ -1,14 +1,30 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:variegata_project/pages/catalog_shop/cart.dart';
-import 'package:variegata_project/pages/catalog_shop/checkout.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
-import '../../common/widget/mapFunction.dart';
+import 'package:variegata_project/pages/catalog_shop/Checkout/checkout_product.dart';
+
+class AlamatModel {
+  final String alamat;
+  final String namaPenerima;
+  final String nomorTelepon;
+  final String catatan;
+
+  AlamatModel({
+    required this.alamat,
+    required this.namaPenerima,
+    required this.nomorTelepon,
+    required this.catatan,
+  });
+}
 
 class TambahAlamat extends StatefulWidget {
-  TambahAlamat({super.key, required this.currentAddress});
+  final List<Map<String, dynamic>> selectedProducts;
+  TambahAlamat(
+      {Key? key,
+        required this.currentAddress,
+        required this.selectedProducts});
   final String currentAddress;
 
   @override
@@ -16,22 +32,135 @@ class TambahAlamat extends StatefulWidget {
 }
 
 class _TambahAlamatState extends State<TambahAlamat> {
-  late LatLng MyPosition;
-  bool isloading = true;
-  String _currentAddress = "";
+  final TextEditingController alamatController = TextEditingController();
+  final TextEditingController namaPenerimaController = TextEditingController();
+  final TextEditingController nomorTeleponController = TextEditingController();
+  final TextEditingController catatanController = TextEditingController();
 
-  @override
-  void initState() {
-    super.initState();
-    getLocationAndAddress(_onLocationReceived);
+  Future<String?> _getAuthToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
   }
 
-  void _onLocationReceived(LatLng myPosition, String currentAddress) {
-    setState(() {
-      MyPosition = myPosition;
-      _currentAddress = currentAddress;
-      isloading = false;
-    });
+  void _simpanData() async {
+    final String alamat = alamatController.text;
+    final String namaPenerima = namaPenerimaController.text;
+    final String nomorTelepon = nomorTeleponController.text;
+    final String catatan = catatanController.text;
+
+    // Mengambil auth_token dari SharedPreferences
+    final String? authToken = await _getAuthToken();
+
+    if (alamat.isEmpty || namaPenerima.isEmpty || nomorTelepon.isEmpty || authToken == null) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Peringatan'),
+            content: Text('Mohon lengkapi semua data yang diperlukan atau token tidak tersedia.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Tutup'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    if (!nomorTelepon.contains(RegExp(r'^[0-9]+$')) || nomorTelepon.length != 12) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Peringatan'),
+            content: Text('Nomor telepon harus berupa 12 digit angka.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Tutup'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
+    final Map<String, dynamic> requestData = {
+      'nama': namaPenerima,
+      'alamat': alamat,
+      'nomor_telepon': nomorTelepon,
+      'catatan_driver': catatan,
+    };
+
+    final response = await http.post(
+      Uri.parse('https://variegata.my.id/api/addresses'), // Ganti dengan URL endpoint Anda
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $authToken', // Menambahkan Bearer token ke header
+      },
+      body: jsonEncode(requestData),
+    );
+
+    if (response.statusCode == 200) {
+      final AlamatModel alamatModel = AlamatModel(
+        alamat: alamat,
+        namaPenerima: namaPenerima,
+        nomorTelepon: nomorTelepon,
+        catatan: catatan,
+      );
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Sukses'),
+            content: Text('Alamat Anda sudah terbuat.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Lanjut'),
+                onPressed: () {
+                  Navigator.of(context).pop(); // Tutup dialog sukses
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => CheckoutProduct(
+                        alamatModel: alamatModel,
+                        selectedProducts: widget.selectedProducts,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Error'),
+            content: Text('Terjadi kesalahan saat menyimpan data.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Tutup'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -56,9 +185,6 @@ class _TambahAlamatState extends State<TambahAlamat> {
           onPressed: () {
             Navigator.pop(
               context,
-              MaterialPageRoute(
-                builder: (context) => const Cart(),
-              ),
             );
           },
         ),
@@ -130,7 +256,7 @@ class _TambahAlamatState extends State<TambahAlamat> {
                           height: 10,
                         ),
                         const Text(
-                          "Pilih titik lokasi yang sesuai atau mendekati",
+                          "Titik lokasi anda saat ini",
                           style: TextStyle(
                               color: Color(0xFF505050),
                               fontSize: 14,
@@ -162,14 +288,15 @@ class _TambahAlamatState extends State<TambahAlamat> {
                 height: 10,
               ),
               Container(
-                child: const TextField(
+                child: TextField(
+                  controller: alamatController,
                   maxLines: 3,
                   decoration: InputDecoration(
                     hintText: 'Masukan alamat lengkap',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
-                      color: Color(0xFFD9D9D9),
-                    )),
+                          color: Color(0xFFD9D9D9),
+                        )),
                   ),
                 ),
               ),
@@ -189,13 +316,14 @@ class _TambahAlamatState extends State<TambahAlamat> {
                 height: 10,
               ),
               Container(
-                child: const TextField(
+                child: TextField(
+                  controller: namaPenerimaController,
                   decoration: InputDecoration(
                     hintText: 'Masukan nama penerima paket',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
-                      color: Color(0xFFD9D9D9),
-                    )),
+                          color: Color(0xFFD9D9D9),
+                        )),
                   ),
                 ),
               ),
@@ -215,13 +343,15 @@ class _TambahAlamatState extends State<TambahAlamat> {
                 height: 10,
               ),
               Container(
-                child: const TextField(
+                child: TextField(
+                  controller: nomorTeleponController,
+                  keyboardType: TextInputType.number,
                   decoration: InputDecoration(
-                    hintText: 'Masukan nomor telpon penerima paket',
+                    hintText: 'Masukan nomor telepon penerima paket',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
-                      color: Color(0xFFD9D9D9),
-                    )),
+                          color: Color(0xFFD9D9D9),
+                        )),
                   ),
                 ),
               ),
@@ -229,7 +359,7 @@ class _TambahAlamatState extends State<TambahAlamat> {
                 height: 20,
               ),
               const Text(
-                'Catatan untuk Driver (Opsional)',
+                'Catatan (Opsional)',
                 style: TextStyle(
                   color: Color(0xFF4F4F4F),
                   fontSize: 12,
@@ -241,46 +371,40 @@ class _TambahAlamatState extends State<TambahAlamat> {
                 height: 10,
               ),
               Container(
-                child: const TextField(
+                child: TextField(
+                  controller: catatanController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    hintText: 'Isi patokan/petunjuk arah',
+                    hintText: 'Tambahkan catatan jika diperlukan',
                     border: OutlineInputBorder(
                         borderSide: BorderSide(
-                      color: Color(0xFFD9D9D9),
-                    )),
+                          color: Color(0xFFD9D9D9),
+                        )),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 85,
+                height: 20,
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Checkout()),
-                  );
-                },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF9ED098),
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      "Simpan",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 21,
-                        fontWeight: FontWeight.w600,
-                      ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF9ED098),
+                  borderRadius: BorderRadius.circular(3),
+                ),
+                child: TextButton(
+                  onPressed: _simpanData,
+                  child: const Text(
+                    'Simpan',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 21,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

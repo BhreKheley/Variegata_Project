@@ -1,6 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:variegata_project/pages/screens/Example_informasi.dart';
+import 'package:intl/intl.dart';
 
 class DetailInformasi extends StatefulWidget {
   final dynamic product;
@@ -19,7 +18,7 @@ class _DetailInformasiState extends State<DetailInformasi> {
         leading: BackButton(
           onPressed: () {
             Navigator.pop(
-              context
+                context
             );
           },
           color: Colors.black,
@@ -90,14 +89,14 @@ class _DetailInformasiState extends State<DetailInformasi> {
                             ),
                           ),
                           Text(
-                            'Apr 04, 2092',
+                            DateFormat('dd, MMMM yyyy').format(DateTime.parse(widget.product['created_at'])),
                             style: TextStyle(
                               color: Color(0xFFBABABA),
                               fontSize: 10,
                               fontFamily: 'Inter',
                               fontWeight: FontWeight.w500,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -105,18 +104,11 @@ class _DetailInformasiState extends State<DetailInformasi> {
                       child: Container(
                         height: 350,
                         width: 350,
-                        child: CachedNetworkImage(
-                          imageUrl: 'https://variegata.my.id/storage/${widget.product['image']}',
-                          placeholder: (context, url) => CircularProgressIndicator(),
-                          errorWidget: (context, url, error) => Icon(Icons.error),
-                          imageBuilder: (context, imageProvider) => Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10), // Ganti 10 dengan radius yang diinginkan
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10), // Sesuaikan dengan border radius yang Anda inginkan
+                          child: Image.network(
+                            'https://variegata.my.id/storage/${widget.product['image']}',
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ),
@@ -134,86 +126,9 @@ class _DetailInformasiState extends State<DetailInformasi> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    // SizedBox(height: 10),
-                    // Text(
-                    //   'Varian lain yang terkenal adalah tomat Roma (Solanum lycopersicum var. Roma). Tomat Roma memiliki bentuk lonjong yang khas dan daging yang padat. Mereka sering digunakan dalam masakan Italia, seperti saus tomat, sup, dan hidangan panggang. Tomat Roma sangat cocok untuk diolah karena memiliki kandungan air yang lebih rendah, menghasilkan saus yang lebih kental dan pekat.',
-                    //   textAlign: TextAlign.justify,
-                    //   style: TextStyle(
-                    //     color: Colors.black,
-                    //     fontSize: 14,
-                    //     fontFamily: 'Inter',
-                    //     fontWeight: FontWeight.w400,
-                    //   ),
-                    // ),
-                    // SizedBox(height: 10),
-                    // Text(
-                    //   'Tomat Beefsteak (Solanum lycopersicum var. Beefsteak) adalah varietas tomat yang menghasilkan buah berukuran besar dengan daging yang tebal dan sedikit biji. Mereka sering digunakan dalam sandwich, burger, dan hidangan utama lainnya karena tekstur dan rasa yang khas. Tomat Beefsteak sangat cocok untuk dipotong dalam irisan tebal dan digunakan dalam hidangan yang membutuhkan tomat dengan tekstur yang lebih padat.',
-                    //   textAlign: TextAlign.justify,
-                    //   style: TextStyle(
-                    //     color: Colors.black,
-                    //     fontSize: 14,
-                    //     fontFamily: 'Inter',
-                    //     fontWeight: FontWeight.w400,
-                    //   ),
-                    // ),
-                    // SizedBox(height: 10),
-                    // Text(
-                    //   'Selain itu, ada juga varietas heirloom (Solanum lycopersicum var. Heirloom), yang merupakan tomat yang diwariskan dari generasi ke generasi dengan ciri khas rupa, warna, dan rasa yang unik. Varietas ini sering dikagumi karena keunikan dan keaslian mereka. Setiap varietas heirloom memiliki karakteristik yang berbeda, seperti warna-warni yang mencolok, rasa yang kompleks, dan tekstur yang unik.',
-                    //   textAlign: TextAlign.justify,
-                    //   style: TextStyle(
-                    //     color: Colors.black,
-                    //     fontSize: 14,
-                    //     fontFamily: 'Inter',
-                    //     fontWeight: FontWeight.w400,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
-              // SizedBox(
-              //   height: 33,
-              // ),
-              // Divider(
-              //   thickness: 2,
-              // ),
-              // Container(
-              //   padding: EdgeInsets.symmetric(
-              //     horizontal: 20,
-              //   ),
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Container(
-              //         padding: EdgeInsets.only(top: 25, bottom: 15),
-              //         child: Text(
-              //           'Lihat lainnya',
-              //           style: TextStyle(
-              //             color: Colors.black,
-              //             fontSize: 14,
-              //             fontFamily: 'Inter',
-              //             fontWeight: FontWeight.w600,
-              //           ),
-              //         ),
-              //       ),
-              //       // Informasi(),
-              //       // CardInfo(
-              //       //   image: 'tomat.png',
-              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-              //       //   kategori: 'Penyakit',
-              //       // ),
-              //       // CardInfo(
-              //       //   image: 'tomat.png',
-              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-              //       //   kategori: 'Penyakit',
-              //       // ),
-              //       // CardInfo(
-              //       //   image: 'tomat.png',
-              //       //   title: 'Kenali Nama Latin dan Jenis-Jenis Tanaman Tomat:',
-              //       //   kategori: 'Penyakit',
-              //       // ),
-              //     ],
-              //   ),
-              // )
             ],
           ),
         ),

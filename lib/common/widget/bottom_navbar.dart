@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+import 'package:variegata_project/pages/ProfilContent/profile_page.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
 import 'package:variegata_project/pages/dashboard/dashboard_page.dart';
-import 'package:variegata_project/pages/profile/profile_page.dart';
 
 class BotNavbar extends StatefulWidget {
   const BotNavbar({Key? key}) : super(key: key);

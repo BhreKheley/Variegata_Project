@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:variegata_project/common/widget/bottom_navbar.dart';
@@ -17,6 +16,11 @@ class Budidaya extends StatefulWidget {
 class _BudidayaState extends State<Budidaya> {
   String apiUrl = 'https://variegata.my.id/api/plants';
   bool isLoading = true;
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = GlobalKey<RefreshIndicatorState>();
+
+  Future<void> refreshData() async {
+    await fetchProducts();
+  }
 
   Future<List<dynamic>> fetchProducts() async {
     final response = await http.get(Uri.parse(apiUrl));
@@ -44,6 +48,42 @@ class _BudidayaState extends State<Budidaya> {
         height: 100,
         color: Color(0xFFF6F7FA),
         padding: EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 45,
+                  height: 45,
+                  margin: EdgeInsets.only(right: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.white,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 150,
+                      height: 15,
+                      color: Colors.white,
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      width: 100,
+                      height: 12,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Icon(Icons.arrow_forward_ios)
+          ],
+        ),
       ),
     );
   }
@@ -70,16 +110,91 @@ class _BudidayaState extends State<Budidaya> {
           },
         ),
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: fetchProducts(),
-        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ListView.builder(
-              itemCount: snapshot.data?.length ?? 10, // Jumlah placeholder shimmer
-              itemBuilder: (BuildContext context, int index) {
-                if (snapshot.data == null || index >= snapshot.data!.length) {
-                  return _buildShimmerPlantCard();
-                } else {
+      body: RefreshIndicator(
+        key: _refreshIndicatorKey,
+        onRefresh: refreshData,
+        child: FutureBuilder<List<dynamic>>(
+          future: fetchProducts(),
+          builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return ListView.builder(
+                physics: AlwaysScrollableScrollPhysics(), // Ini memungkinkan untuk menarik ke bawah untuk merefresh
+                itemCount: snapshot.data?.length ?? 8, // Jumlah placeholder shimmer
+                itemBuilder: (BuildContext context, int index) {
+                  if (snapshot.data == null || index >= snapshot.data!.length) {
+                    return _buildShimmerPlantCard();
+                  } else {
+                    final product = snapshot.data![index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPlant(product: product),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: 2),
+                        width: MediaQuery.of(context).size.width,
+                        height: 100,
+                        color: Color(0xFFF6F7FA),
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 45,
+                                  height: 45,
+                                  margin: EdgeInsets.only(right: 20),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white,
+                                  ),
+                                  child: Image.network(
+                                    'https://variegata.my.id/storage/${product['image']}',
+                                    errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                                  ),
+                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      product['name'],
+                                      style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                                    ),
+                                    Text(
+                                      product['scientific'],
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.black.withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Icon(Icons.arrow_forward_ios)
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (!snapshot.hasData) {
+              return Text('No data available');
+            } else {
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (BuildContext context, int index) {
                   final product = snapshot.data![index];
                   return GestureDetector(
                     onTap: () {
@@ -109,18 +224,34 @@ class _BudidayaState extends State<Budidaya> {
                                   borderRadius: BorderRadius.circular(50),
                                   color: Colors.white,
                                 ),
-                                child: CachedNetworkImage(
-                                    imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                                    errorWidget: (context, url, error) => Icon(Icons.error)),
+                                child: Image.network(
+                                  'https://variegata.my.id/storage/${product['image']}',
+                                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    } else {
+                                      return Center(
+                                        child: CircularProgressIndicator(
+                                          value: loadingProgress.expectedTotalBytes != null
+                                              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                                ),
                               ),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(product['name'],
+                                  Text(
+                                    product['name'],
                                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
                                   ),
-                                  Text(product['scientific'],
+                                  Text(
+                                    product['scientific'],
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
@@ -137,84 +268,12 @@ class _BudidayaState extends State<Budidaya> {
                       ),
                     ),
                   );
-                }
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else if (!snapshot.hasData) {
-            return Text('No data available');
-          } else {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (BuildContext context, int index) {
-                final product = snapshot.data![index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailPlant(product: product),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(bottom: 2),
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    color: Color(0xFFF6F7FA),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 45,
-                              height: 45,
-                              margin: EdgeInsets.only(right: 20),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: Colors.white,
-                              ),
-                              child: CachedNetworkImage(
-                                  imageUrl: 'https://variegata.my.id/storage/${product['image']}',
-                                  placeholder: (context, url) => CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) => Icon(Icons.error)),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(product['name'],
-                                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                                ),
-                                Text(product['scientific'],
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                    fontStyle: FontStyle.italic,
-                                    color: Colors.black.withOpacity(0.7),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Icon(Icons.arrow_forward_ios)
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          }
-        },
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(home: Budidaya()));
 }

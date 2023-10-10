@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class ContentDetail extends StatelessWidget {
   final dynamic content;
@@ -40,22 +39,24 @@ class ContentDetail extends StatelessWidget {
               SizedBox(height: 20),
               Stack(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: 'https://variegata.my.id/storage/${content['image']}',
-                    placeholder: (context, url) => CircularProgressIndicator(),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  Image.network(
+                    'https://variegata.my.id/storage/${content['image']}',
+                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, exception, stackTrace) {
+                      return Icon(Icons.error);
+                    },
                     fit: BoxFit.cover,
                     width: 395,
                     height: 201,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
                   ),
                   Positioned(
                     left: 0,

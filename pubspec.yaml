@@ -30,31 +30,35 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_splash_screen: ^1.3.0
-  cached_network_image: ^3.0.0
   carousel_slider: ^4.2.1
-  cupertino_icons: ^1.0.2
   curved_navigation_bar: ^1.0.3
   flashy_tab_bar2: ^0.0.6
-  flutter:
-    sdk: flutter
   flutter_dash: ^1.0.0
-  flutter_screenutil: ^5.8.4
-  flutter_svg: null
+  flutter_screenutil: ^5.9.0
+  flutter_svg: ^2.0.7
   geocoding: ^2.1.0
   get: ^4.3.8
   google_fonts: null
   html: ^0.15.4
-  http: ^0.13.4
+  http: ^1.1.0
   intl: ^0.18.1
   location: ^5.0.3
   motion_tab_bar_v2: ^0.3.0
+  midtrans_sdk: ^0.4.0
+  provider: ^6.0.5
   readmore: ^2.2.0
   shimmer: ^3.0.0
   smooth_page_indicator: ^1.1.0
-  xml: ^5.3.0
-  geolocator: ^9.0.2
-  flutter_map: ^4.0.0
-  latlong2: ^0.8.2
+  xml: ^6.3.0
+  geolocator: ^10.0.1
+  flutter_map: ^5.0.0
+  latlong2: ^0.9.0
+  webview_flutter: ^2.0.0
+  modal_progress_hud_nsn: ^0.4.0
+  shared_preferences: ^2.0.8
+  flutter_blurhash: ^0.7.0
+  url_launcher: ^6.1.14
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
