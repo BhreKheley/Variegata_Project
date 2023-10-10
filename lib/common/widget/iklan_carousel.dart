@@ -85,7 +85,7 @@ class _Iklan_carouselState extends State<Iklan_carousel> {
                   ),
                 ),
                 Positioned(
-                  right: 5,
+                  right: 0,
                   bottom: 3.5,
                   child: Container(
                     // color: Colors.amber,

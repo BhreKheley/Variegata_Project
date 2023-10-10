@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -23,7 +21,7 @@ class ProductCard extends StatelessWidget {
       child: Column(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.vertical(
+            borderRadius: const BorderRadius.vertical(
               top: Radius.circular(5),
             ),
             child: Image(
@@ -34,11 +32,11 @@ class ProductCard extends StatelessWidget {
               height: 110,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 9,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 9),
+            padding: const EdgeInsets.symmetric(horizontal: 9),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -46,25 +44,25 @@ class ProductCard extends StatelessWidget {
                   title.toString(),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 9,
                 ),
                 Text(
                   price.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 9,
                 ),
-                Row(
+                const Row(
                   children: [
                     Icon(
                       Icons.location_on,
@@ -83,8 +81,8 @@ class ProductCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 2),
-                Row(
+                const SizedBox(height: 2),
+                const Row(
                   children: [
                     Icon(
                       Icons.star,
@@ -106,8 +104,8 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
-          Row(
+          const Spacer(),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Icon(
