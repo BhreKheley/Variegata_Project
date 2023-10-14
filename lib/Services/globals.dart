@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const String baseURL = "http://variegata.my.id/api/"; //emulator localhost
+const String baseURL = "https://variegata.my.id/api/"; //emulator localhost
 const Map<String, String> headers = {"Content-Type": "application/json"};
 
 errorSnackBar(BuildContext context, String text) {

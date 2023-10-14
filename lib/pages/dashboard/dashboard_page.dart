@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:variegata_project/common/widget/artikel.dart';
-import 'package:variegata_project/common/widget/iklan_carousel.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:variegata_project/common/widget/cuaca.dart';
-import 'package:variegata_project/common/widget/product.dart';
+import 'package:variegata_project/common/widget/iklan_carousel.dart';
 import 'package:variegata_project/pages/budidaya/Budidaya.dart';
 import 'package:variegata_project/pages/catalog_shop/dashboard_catalog.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:variegata_project/common/widget/search_box.dart';
+import 'package:variegata_project/pages/informasi/Artikel.dart';
 import 'package:variegata_project/pages/informasi/informasi.dart';
+
+import '../../common/widget/product.dart';
+
+
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key? key}) : super(key: key);
@@ -53,7 +55,8 @@ class _DashboardPageState extends State<DashboardPage> {
                               ),
                             ],
                           ),
-                          Search_box(),
+                          SizedBox(height: 30,),
+                          // Search_box(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -176,7 +179,7 @@ class _DashboardPageState extends State<DashboardPage> {
                             ],
                           ),
                           SizedBox(
-                            height: 90,
+                            height: 130,
                           )
                         ],
                       ),

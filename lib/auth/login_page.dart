@@ -1,7 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:variegata_project/Services/auth_services.dart';
 import 'package:variegata_project/Services/globals.dart';
 import 'package:variegata_project/Services/rounded_button.dart';
@@ -17,31 +17,96 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
+  String _name = '';
   String _email = '';
   String _password = '';
+  bool _isLoading = false;
 
   loginPressed() async {
-    if (_email.isNotEmpty && _password.isNotEmpty) {
-      http.Response response = await AuthServices.login(_email, _password);
-      Map responseMap = jsonDecode(response.body);
-      if (response.statusCode == 200) {
-        Navigator.push(
+    if (_email.isNotEmpty && _password.isNotEmpty && !_isLoading) {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        // Menampilkan dialog dengan CircularProgressIndicator dan pesan "Loading..."
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text("Loading..."),
+                ],
+              ),
+            );
+          },
+        );
+
+        http.Response response = await AuthServices.login(_email, _password);
+        Map responseMap = jsonDecode(response.body);
+        if (response.statusCode == 200) {
+          final String token = responseMap['token'];
+          await AuthServices.saveTokenToLocalStorage(token);
+
+          final prefs = await SharedPreferences.getInstance();
+          prefs.setString('token', token);
+
+          final Map<String, dynamic> userData = responseMap['user']; // Ambil data user dari respons JSON
+          final String name = userData['name']; // Ambil name dari data user
+          final String email = userData['email']; // Ambil email dari data user
+
+          // Simpan name ke penyimpanan lokal
+          prefs.setString('name', name);
+          prefs.setString('email', email);
+
+          setState(() {
+            _name = name; // Simpan name ke dalam _name
+            _email = email; // Simpan email ke dalam _email
+            _isLoading = false;
+          });
+
+          // Tutup dialog setelah proses selesai
+          Navigator.of(context).pop();
+
+          // Navigasi ke halaman BotNavbar dan hapus semua rute sebelumnya
+          Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
-              builder: (BuildContext context) => const BotNavbar(),
-            ));
-      } else {
-        errorSnackBar(context, responseMap.values.first);
+              builder: (BuildContext context) => BotNavbar(),
+            ),
+                (route) => false,
+          );
+        } else {
+          setState(() {
+            _isLoading = false;
+          });
+          errorSnackBar(context, "Email atau password anda salah. Mohon periksa kembali.");
+
+          // Tutup dialog karena ada kesalahan
+          Navigator.of(context).pop();
+        }
+      } catch (error) {
+        setState(() {
+          _isLoading = false;
+        });
+        errorSnackBar(context, "Terjadi kesalahan. Mohon coba lagi.");
+
+        // Tutup dialog karena ada kesalahan
+        Navigator.of(context).pop();
       }
+    } else if (_isLoading) {
+      // Tidak melakukan apa-apa jika tombol sedang dalam mode loading
     } else {
-      errorSnackBar(context, 'enter all required fields');
+      errorSnackBar(context, 'Isi Email dan Password anda terlebih dahulu');
     }
   }
 
-  horizontalMode() {}
-
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
     final currentWidth = MediaQuery.of(context).size.width;
     double currentHeight = MediaQuery.of(context).size.height;
     return Scaffold(
@@ -53,7 +118,6 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Positioned(
                   right: 0,
-                  // top: 0,
                   child: Image.asset(
                     "assets/img/vector-login.png",
                     height: 196,
@@ -117,7 +181,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        //email
                         Container(
                           margin: EdgeInsets.only(top: 13, bottom: 30),
                           width: 350,
@@ -126,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0xFFBBD6B8)),
+                                BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -137,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'Example396@gmail.com',
+                              hintText: 'email@gmail.com',
                               hintStyle: TextStyle(
                                 color: Color(0xFF878787),
                                 fontSize: 16,
@@ -162,7 +225,6 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                        //password
                         Container(
                           margin: EdgeInsets.only(top: 13, bottom: 30),
                           width: 350,
@@ -172,7 +234,7 @@ class _LoginPageState extends State<LoginPage> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Color(0xFFBBD6B8)),
+                                BorderSide(color: Color(0xFFBBD6B8)),
                                 borderRadius: BorderRadius.circular(24),
                               ),
                               focusedBorder: OutlineInputBorder(
@@ -193,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   })),
                               contentPadding: EdgeInsets.only(left: 20),
-                              hintText: 'example78650',
+                              hintText: 'password',
                               hintStyle: TextStyle(color: Color(0xFF878787)),
                               fillColor: Colors.white,
                               filled: true,
@@ -207,84 +269,85 @@ class _LoginPageState extends State<LoginPage> {
                           btnText: 'Continue',
                           onBtnPressed: () => loginPressed(),
                         ),
+                        // Container(
+                        //   padding: EdgeInsets.symmetric(vertical: 20),
+                        //   child: Row(
+                        //     children: [
+                        //       Expanded(
+                        //         child: Divider(
+                        //           color: Color(0xFF94AF9F),
+                        //           thickness: 2,
+                        //         ),
+                        //       ),
+                        //       Padding(
+                        //         padding:
+                        //         const EdgeInsets.symmetric(horizontal: 15),
+                        //         child: Text(
+                        //           "Or",
+                        //           style: TextStyle(
+                        //             color: Color(0xFF505050),
+                        //             fontSize: 19,
+                        //             fontWeight: FontWeight.w600,
+                        //           ),
+                        //         ),
+                        //       ),
+                        //       Expanded(
+                        //         child: Divider(
+                        //           color: Color(0xFF94AF9F),
+                        //           thickness: 2,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        // GestureDetector(
+                        //   onTap: () {
+                        //     Navigator.push(
+                        //       context,
+                        //       MaterialPageRoute(
+                        //         builder: (context) => BotNavbar(),
+                        //       ),
+                        //     );
+                        //   },
+                        //   child: Container(
+                        //     padding: EdgeInsets.symmetric(horizontal: 18),
+                        //     margin: EdgeInsets.only(bottom: 30),
+                        //     width: 350,
+                        //     height: 50,
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(24),
+                        //       border: Border.all(
+                        //         color: Color(0xFFBBD6B8),
+                        //       ),
+                        //     ),
+                        //     child: Row(
+                        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //       crossAxisAlignment: CrossAxisAlignment.center,
+                        //       children: [
+                        //         Image.asset(
+                        //           "assets/img/google-icon.png",
+                        //           height: 22,
+                        //           width: 22,
+                        //           fit: BoxFit.fill,
+                        //         ),
+                        //         Text(
+                        //           "Sign in with Google",
+                        //           style: TextStyle(
+                        //             color: Color(0xFF505050),
+                        //             fontWeight: FontWeight.w600,
+                        //           ),
+                        //         ),
+                        //         Icon(
+                        //           Icons.arrow_forward_ios,
+                        //           color: Color(0xFF94AF9F),
+                        //         )
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
                         Container(
                           padding: EdgeInsets.symmetric(vertical: 20),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Divider(
-                                  color: Color(0xFF94AF9F),
-                                  thickness: 2,
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 15),
-                                child: Text(
-                                  "Or",
-                                  style: TextStyle(
-                                    color: Color(0xFF505050),
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Divider(
-                                  color: Color(0xFF94AF9F),
-                                  thickness: 2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BotNavbar(),
-                              ),
-                            );
-                          },
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 18),
-                            margin: EdgeInsets.only(bottom: 30),
-                            width: 350,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(24),
-                              border: Border.all(
-                                color: Color(0xFFBBD6B8),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/img/google-icon.png",
-                                  height: 22,
-                                  width: 22,
-                                  fit: BoxFit.fill,
-                                ),
-                                Text(
-                                  "Sign in with Google",
-                                  style: TextStyle(
-                                    color: Color(0xFF505050),
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF94AF9F),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
